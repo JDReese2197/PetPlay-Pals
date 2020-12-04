@@ -9,7 +9,7 @@
 --                                                password: password
 --                                               
 --
---	Be sure you have created a database called: final_capstone
+--	Be sure you have created a database called: 'final_capstone'
 --
 -- To create a database:  1. Open a WINDOWS command prompt (NOT GitBash)
 --                        2. Enter the command: createdb -U postgres final_capstone
