@@ -1,12 +1,23 @@
 package com.techelevator.application.dao;
 
+import java.util.List;
+
+import com.techelevator.application.model.Pet;
+
 public interface PetDAO {
 	
-	// List of all pets
-	// Get pet by personality
-	// Get pet by type
-	// Get pet by username 
-	// Create pet
-	// Delete pet 
+	public List<Pet> getAllPets();
+	
+	public List<Pet> getPetsByPersonality();
+	
+	public List<Pet> getPetsByType();
+	
+	public List<Pet> getPetsByUsername();
+	
+	public void registerPet(Pet newPet);
+	
+	public void updatePet(Pet petToUpdate);
+	
+	public void deletePet(Pet petToDelete);
 
 }

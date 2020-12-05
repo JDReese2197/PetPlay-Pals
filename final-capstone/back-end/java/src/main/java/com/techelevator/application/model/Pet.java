@@ -3,6 +3,7 @@ package com.techelevator.application.model;
 public class Pet {
 	
 	private int petId;
+	private int profileId;
 	private String petName;
 	private String petType;
 	private int age;
@@ -13,6 +14,12 @@ public class Pet {
 	}
 	public void setPetId(int petId) {
 		this.petId = petId;
+	}
+	public int getProfileId() {
+		return profileId;
+	}
+	public void setProfileId(int profileId) {
+		this.profileId = profileId;
 	}
 	public String getPetName() {
 		return petName;
