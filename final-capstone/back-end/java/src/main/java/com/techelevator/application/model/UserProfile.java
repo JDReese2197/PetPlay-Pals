@@ -1,6 +1,6 @@
 package com.techelevator.application.model;
 
-public class User {
+public class UserProfile {
 	
 	private int profileId;
 	private String firstName;
