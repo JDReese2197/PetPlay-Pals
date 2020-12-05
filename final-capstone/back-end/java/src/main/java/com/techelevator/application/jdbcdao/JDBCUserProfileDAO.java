@@ -40,7 +40,7 @@ public class JDBCUserProfileDAO implements UserProfileDAO {
 	//Update user profile
 	@Override
 	public UserProfile updateUserProfile(UserProfile updatedUserProfile) {
-		
+//		String query = "UPDATE user_profile SET "
 		return updatedUserProfile;
 	}
 		
