@@ -8,11 +8,11 @@ public interface PetDAO {
 	
 	public List<Pet> getAllPets();
 	
-	public List<Pet> getPetsByPersonality();
+	public List<Pet> getPetsByPersonality(String personalitySearch);
 	
-	public List<Pet> getPetsByType();
+	public List<Pet> getPetsByType(String petTypeSearch);
 	
-	public List<Pet> getPetsByUsername();
+	public List<Pet> getPetsByUsername(String userNameSearch);
 	
 	public void registerPet(Pet newPet);
 	
