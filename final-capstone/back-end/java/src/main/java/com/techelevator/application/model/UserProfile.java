@@ -3,6 +3,7 @@ package com.techelevator.application.model;
 public class UserProfile {
 	
 	private int profileId;
+	private int userId;
 	private String firstName;
 	private String lastName;
 	private String address1;
@@ -19,6 +20,14 @@ public class UserProfile {
 	public void setProfileId(int profileId) {
 		this.profileId = profileId;
 	}
+	
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
