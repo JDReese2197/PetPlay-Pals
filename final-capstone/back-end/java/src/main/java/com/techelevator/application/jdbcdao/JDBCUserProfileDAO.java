@@ -39,9 +39,12 @@ public class JDBCUserProfileDAO implements UserProfileDAO {
 		
 	//Update user profile
 	@Override
-	public UserProfile updateUserProfile(UserProfile updatedUserProfile) {
-//		String query = "UPDATE user_profile SET "
-		return updatedUserProfile;
+	public void updateUserProfile(UserProfile updatedUserProfile) {
+		String query = "UPDATE user_profile SET first_name = ?, last_name = ?, address_1 = ?, address_2 = ?, city = ?,"
+				+ " zip_code = ?, state = ?, email = ?, phone_number = ? WHERE profile_id = ?";
+		jdbcTemplate.update(query, updatedUserProfile.getFirstName(), updatedUserProfile.getLastName(),
+				updatedUserProfile.getAddress1(), updatedUserProfile.getAddress2(), updatedUserProfile.getCity(),updatedUserProfile.getZip(),
+				updatedUserProfile.getState(), updatedUserProfile.getEmail(), updatedUserProfile.getPhone(), updatedUserProfile.getProfileId());
 	}
 		
 //	//Delete user profile

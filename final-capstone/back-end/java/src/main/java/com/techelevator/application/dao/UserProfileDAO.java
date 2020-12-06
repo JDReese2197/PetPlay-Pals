@@ -13,7 +13,7 @@ public interface UserProfileDAO {
 //	public UserProfile getUserProfileByUsername(String username);
 	
 	//Update user profile
-	public UserProfile updateUserProfile(UserProfile updatedUserProfile);
+	public void updateUserProfile(UserProfile updatedUserProfile);
 	
 	//Delete user profile
 //	public void deleteUserProfile(UserProfile aUserProfile);
