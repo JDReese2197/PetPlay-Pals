@@ -30,15 +30,15 @@ public class ApiController {
 		// registerProfile Method is not yet created
 	}
 	
-	@RequestMapping(path = "/update/profile", method=RequestMethod.PUT)
+	/* @RequestMapping(path = "/update/profile", method=RequestMethod.PUT)
 	public void updateProfile(@RequestBody UserProfile userProfile) {
-		userProfileDAO.updateProfile(userProfile.getFirstName(), userProfile.getLastName(), userProfile.getAddress1(), userProfile.getAddress2(), userProfile.getCity(), userProfile.getState(), userProfile.getZip(), userProfile.getEmail(), userProfile.getPhone());
+		userProfileDAO.updateUserProfile(userProfile.getFirstName(), userProfile.getLastName(), userProfile.getAddress1(), userProfile.getAddress2(), userProfile.getCity(), userProfile.getState(), userProfile.getZip(), userProfile.getEmail(), userProfile.getPhone());
 		// updateProfile Method is not yet created
-	}
+	}*/
 	
 	@RequestMapping(path = "/register/pet", method=RequestMethod.POST)
-	public Pet registerPet(@RequestBody Pet petProfile) {
-		return petDAO.registerPet(petProfile);
+	public void registerPet(@RequestBody Pet petProfile) {
+		petDAO.registerPet(petProfile); 
 		// registerPet Method is not yet created
 	}
 
