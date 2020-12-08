@@ -136,11 +136,12 @@ button {
 }
 #login {
     background-color: white;
-    color: #1aebeb;
+    font-size: 15px;
+    color: #29d2db;
     padding: 3px 10px;
 }
 #signup {
-    background-color: #1aebeb;
+    background-color: #29d2db;
     color: white;
     font-size: 20px;
     padding: 5px 15px;
@@ -155,11 +156,12 @@ body {
 }
 #home-graphic {
     grid-area: graphic;
-    width: 1200px;
-    height: 300px;
+    width: 70%;
+    height: auto;
+    margin: 125px 225px 125px 175px;
 }
 footer {
-    background-color: #1aebeb;
+    background-color: #29d2db;
     color: #555555;
     text-align: center;
     font-size: 12px;

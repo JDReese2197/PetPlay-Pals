@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import AddPetForm from '@/views/AddPetForm.vue'
 import Homepage from '@/views/Homepage.vue'
+import ProfilePage from '@/views/ProfilePage.vue'
 
 Vue.use(Router)
 
@@ -64,7 +65,13 @@ const router = new Router({
       path: "/home",
       name: "homepage",
       component: Homepage
+    },
+    {
+      path: "/profile",
+      name: "profile-page",
+      component: ProfilePage
     }
+
   ]
 })
 
