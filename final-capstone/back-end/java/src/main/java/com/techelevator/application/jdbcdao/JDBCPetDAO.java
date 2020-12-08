@@ -78,12 +78,12 @@ public class JDBCPetDAO implements PetDAO {
 	
 	@Override 
 	public Pet registerPet(Pet newPet) { // profile_id - SELECT user_id FROM users WHERE 
-		String query = "INSERT INTO pet_profile " +
-				"(pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personaility_type) " +
-				"VALUES (?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO pet_profile "
+				+ "(pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personality_type) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int nextPetId = getNextPetId();
 		jdbcTemplate.update(query, nextPetId, newPet.getProfileId(), newPet.getPetType(), newPet.getPetName(), newPet.getBreed(), newPet.getSize(), newPet.getGender(), newPet.getDescription(), newPet.getAge(), newPet.getPersonalityType());
-		// add in method to get current user profile id
+		
 		newPet.setPetId(nextPetId);
 		
 		return newPet;   
