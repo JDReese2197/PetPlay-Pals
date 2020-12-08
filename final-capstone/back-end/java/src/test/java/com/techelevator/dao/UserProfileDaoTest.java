@@ -1,5 +1,8 @@
 package com.techelevator.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.junit.Assert;
@@ -27,8 +30,17 @@ public class UserProfileDaoTest extends DAOIntegrationTest{
 	@Test
 	public void createUserProfile() {
 		userProfileDao.createUserProfile(testUser);
-		UserProfile result = userProfileDao.getProfileByEmail(testUser.getEmail());
-		Assert.assertEquals("User Profile was not inserted", testUser.getEmail(), result.getEmail());
+		
+		List<UserProfile> results = new ArrayList<>();
+		results = userProfileDao.listOfAllProfiles();
+		
+		for(UserProfile profile : results) {
+			if(profile.getEmail().toLowerCase().equals(testUser.getEmail().toLowerCase())) {
+				Assert.assertTrue(true);
+				return;
+			}
+		}
+		Assert.assertTrue("testUser was not found in list of current profiles", false);
 	}
 	
 	@Test
@@ -38,11 +50,38 @@ public class UserProfileDaoTest extends DAOIntegrationTest{
 		testUser.setAddress1("19990 New Address");
 		testUser.setFirstName("John");
 		testUser.setLastName("Doe");
+		testUser.setEmail("thisismynewemail@email.com");
 		
 		userProfileDao.updateUserProfile(testUser);
-		UserProfile result = userProfileDao.getProfileByEmail(testUser.getEmail());
 		
-		Assert.assertEquals("Profile did not properly update", testUser, result);
+		List<UserProfile> results = new ArrayList<>();
+		results = userProfileDao.listOfAllProfiles();
+		
+		for(UserProfile profile : results) {
+			if(profile.getEmail().toLowerCase().equals(testUser.getEmail().toLowerCase())
+				&& profile.getFirstName().toLowerCase().equals(testUser.getFirstName().toLowerCase())
+				&& profile.getLastName().toLowerCase().equals(testUser.getLastName().toLowerCase())
+				&& profile.getAddress1().toLowerCase().equals(testUser.getAddress1().toLowerCase())) {
+				
+				Assert.assertTrue(true);
+				return;
+			}
+		}
+		
+		Assert.assertTrue("UserProfile info was not updated", false);
+	}
+	
+	@Test
+	public void listAll() {
+		userProfileDao.createUserProfile(testUser);
+		
+		List<UserProfile> results = new ArrayList<>();
+		results = userProfileDao.listOfAllProfiles();
+		
+		System.out.println(results);
+		
+		Assert.assertTrue("Result list is null", results != null);
+		Assert.assertTrue("Results list is empty", !results.isEmpty());
 	}
 	
 	//	Method which populates the testUser object with dummy data
