@@ -3,6 +3,7 @@
  ************************************************************************************************/
 package com.techelevator.application.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import com.techelevator.application.model.Pet;
 import com.techelevator.application.model.UserProfile;
 
 @RestController
+@CrossOrigin
 public class ApiController {
 	
 	private JDBCPetDAO petDAO;

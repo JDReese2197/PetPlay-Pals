@@ -79,18 +79,14 @@ export default {
         submitPetForm() {
             const newPet = this.pet;
             if (this.pet.profileId === 1) {
-                console.log("made it past if statement");
                 applicationServices
                     .addPet(newPet)
                     .then(response => {
-                        console.log("before if statement");
-                        if(response.status(201)) {
-                            console.log("made it to if 201 statement");
+                        if(response.status === 200) {
                             this.$router.push(`/profile`, newPet);
                         }
                     })
                     .catch(error => {
-                        console.log("yes dummy, you have an error");
                         this.handleErrorResponse(error, "updating");
                     });
             }
