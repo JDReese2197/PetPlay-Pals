@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Add New Pet</h1>
+        <h1>Register Your Pet</h1>
         <add-pet />
     </div>
 </template>
@@ -17,5 +17,8 @@ export default {
 </script>
 
 <style scoped>
-
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
 </style>

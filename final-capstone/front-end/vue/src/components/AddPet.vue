@@ -1,12 +1,6 @@
 <template>
+<div class="form">
     <form v-on:submit.prevent>
-        <div class="field">
-            <label for="name">Type</label>
-            <select id="type">
-                <option value="dog">Dog</option>
-                <option value="cat">Cat</option>
-            </select>
-        </div>
         <div class="field">
             <label for="name">Name</label>
             <input type="text" name="name" v-model="pet.name"/>
@@ -14,6 +8,20 @@
         <div class="field">
             <label for="age">Age</label>
             <input type="number" name="age" v-model="pet.age"/>
+        </div>
+        <div class="field">
+            <label for="name">Type</label>
+            <select id="type">
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="bird">Bird</option>
+                <option value="reptile">Reptile</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+         <div class="field">
+            <label for="breed">Breed</label>
+            <input type="text" name="breed" v-model="pet.breed"/>
         </div>
         <div class="field">
             <label for="name">Personality</label>
@@ -27,10 +35,15 @@
                 <option value="confident">Confident, String-Willed</option>
             </select>
         </div>
+        <div class="field">
+            <label for="bio">Bio</label>
+            <input type="text" name="bio" v-model="pet.bio"/>
+        </div>
         <div class="actions">
             <button type="submit">Add Pet</button>
         </div>
     </form>
+</div>
 </template>
 
 <script>
@@ -43,8 +56,10 @@ export default {
                 profileId: "",
                 name: "",
                 type: "",
+                breed: "",
                 age: "",
-                personality: ""
+                personality: "",
+                bio: ""
             }
         }
     }
@@ -52,5 +67,44 @@ export default {
 </script>
 
 <style scoped>
-
+.form {
+    font-family: Arial, Helvetica, sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-areas: 
+        ". form .";
+}
+form {
+    grid-area: form;
+    line-height: 20px;
+}
+input {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+.field {
+    margin: 10px 0;
+}
+label {
+    font-weight: bold;
+}
+select {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+button {
+    border: none;
+    border-radius: 20px;
+    text-transform: uppercase;
+    background-color: #29d2db;
+    color: white;
+    font-size: 20px;
+    padding: 5px 15px;
+}
 </style>
