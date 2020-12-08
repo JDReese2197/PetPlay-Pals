@@ -8,6 +8,11 @@ public class Pet {
 	private String petName;
 	private String breed;
 	private String size;
+	private String gender;
+	private String description;
+	private int age;
+	private String personalityType;
+	
 	public String getBreed() {
 		return breed;
 	}
@@ -32,10 +37,6 @@ public class Pet {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	private String gender;
-	private String description;
-	private int age;
-	private String personalityType;
 	
 	public int getPetId() {
 		return petId;
