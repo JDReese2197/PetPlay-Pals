@@ -64,7 +64,7 @@ public class JDBCUserProfileDAO implements UserProfileDAO {
 		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query);
 		
 		while(rowSet.next()) {
-			UserProfile profile = this.mapRowToUserProfile(rowSet);
+			UserProfile profile = mapRowToUserProfile(rowSet);
 			profiles.add(profile);
 		}
 		return profiles;
@@ -72,8 +72,7 @@ public class JDBCUserProfileDAO implements UserProfileDAO {
 	
 	@Override
 	public UserProfile getProfileByEmail(String email) {
-		String query = "SELECT first_name, last_name, address_1, address_2, city, zip_code, state, email, phone_number, profile_id, user_id"
-				+ " FROM user_profile WHERE email IN ('?')";
+		String query = "SELECT * FROM user_profile WHERE email IN ('?')";
 		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, email);
 		if(rowSet.next()) {
 			return mapRowToUserProfile(rowSet);
@@ -83,8 +82,7 @@ public class JDBCUserProfileDAO implements UserProfileDAO {
 	
 	@Override
 	public UserProfile getProfileByUserId(int id) {
-		String query = "SELECT first_name, last_name, address_1, address_2, city, zip_code, state, email, phone_number, profile_id, user_id"
-					+ " FROM user_profile WHERE user_id = ?";
+		String query = "SELECT * FROM user_profile WHERE user_id = ?";
 		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, id);
 		return mapRowToUserProfile(rowSet);
 	}
