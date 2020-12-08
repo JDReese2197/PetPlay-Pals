@@ -13,5 +13,8 @@ const http = axios.create({
 export default {
     addPet(pet) {
         return http.post('/register/pet', pet)
+    },
+    registerUserProfile(userProfile) {
+        return http.post('/register/profile', userProfile)
     }
 }

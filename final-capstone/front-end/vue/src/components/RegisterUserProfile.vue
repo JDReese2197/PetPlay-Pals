@@ -1,6 +1,6 @@
 <template>
 <div id="register">
-    <form v-on:submit.prevent>
+    <form v-on:submit.prevent="registerProfile">
         <div class="field">
             <label for="name">First Name</label>
             <input type="text" name="firstName" v-model="user_profile.firstName"/>
@@ -96,6 +96,8 @@
 </template>
 
 <script>
+import applicationServices from "@/services/ApplicationServices";
+
 export default {
     name: "register-profile",
     data() {
@@ -111,6 +113,34 @@ export default {
                 zip: "",
                 email: "",
                 phone: ""
+            }
+        }
+    },
+    methods: {
+        registerProfile() {
+            applicationServices
+                .registerUserProfile(this.user_profile)
+                .then(response => {
+                    if(response.status === 200) {
+                        this.$router.push('/profile')
+                    }
+                })
+                .catch(error => {
+                    this.handleErrorResponse(error, "Registering")
+                })
+        },
+        handleErrorResponse(error, verb) {
+            if (error.response) {  
+            this.errorMsg =                                     
+                "Error " + verb + " User Profile. Response received was '" + 
+                error.response.statusText +                   
+                "'.";                                            
+            } else if (error.request) {     
+                this.errorMsg =                                         
+                "Error " + verb + " User Profile. Server could not be reached.";  
+            } else {                       
+                this.errorMsg =                                            
+                "Error " + verb + " User Profile. Request could not be created."; 
             }
         }
     }
