@@ -62,8 +62,7 @@ export default {
     data() {
         return {
             pet: {
-                petId: "",
-                profileId: "",
+                profileId: 1,
                 petName: "",
                 age: "",
                 petType: "",
@@ -78,26 +77,20 @@ export default {
     },
     methods: {
         submitPetForm() {
-            const newPet = {
-                profileId: 1,
-                petName: this.pet.petName,
-                age: this.pet.age,
-                petType: this.pet.petType,
-                breed: this.pet.breed,
-                size: this.pet.size,
-                gender: this.pet.gender,
-                personalityType: this.pet.personalityType,
-                description: this.pet.description
-            };
-            if (this.profileId === 0) {
+            const newPet = this.pet;
+            if (this.pet.profileId === 1) {
+                console.log("made it past if statement");
                 applicationServices
                     .addPet(newPet)
                     .then(response => {
-                        if(response.status === 201) {
+                        console.log("before if statement");
+                        if(response.status(201)) {
+                            console.log("made it to if 201 statement");
                             this.$router.push(`/profile`, newPet);
                         }
                     })
                     .catch(error => {
+                        console.log("yes dummy, you have an error");
                         this.handleErrorResponse(error, "updating");
                     });
             }
