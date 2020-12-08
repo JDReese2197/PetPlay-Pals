@@ -1,5 +1,6 @@
 package com.techelevator.application.jdbcdao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -22,7 +23,9 @@ public class JDBCUserProfileDAO implements UserProfileDAO {
 	//Create user profile
 	@Override
 	public UserProfile createUserProfile(UserProfile newUserProfile) {
-		String query = "INSERT INTO user_profile VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO user_profile "
+					+ "(profile_id, user_id, first_name, last_name, address_1, address_2, city, zip_code, state, email, phone_number) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int nextProfileId = getNextProfileId();
 		jdbcTemplate.update(query, nextProfileId, newUserProfile.getUserId(), newUserProfile.getFirstName(), newUserProfile.getLastName(),
 							newUserProfile.getAddress1(), newUserProfile.getAddress2(), newUserProfile.getCity(),newUserProfile.getZip(),
@@ -54,10 +57,37 @@ public class JDBCUserProfileDAO implements UserProfileDAO {
 //	}
 //		
 //	//Get list of users
-//	@Override
-//	public List<UserProfile> listOfAllProfiles() {
-//		
-//	}
+	@Override
+	public List<UserProfile> listOfAllProfiles() {
+		List<UserProfile> profiles = new ArrayList<>();
+		String query = "SELECT * FROM user_profile";
+		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query);
+		
+		while(rowSet.next()) {
+			UserProfile profile = this.mapRowToUserProfile(rowSet);
+			profiles.add(profile);
+		}
+		return profiles;
+	}
+	
+	@Override
+	public UserProfile getProfileByEmail(String email) {
+		String query = "SELECT first_name, last_name, address_1, address_2, city, zip_code, state, email, phone_number, profile_id, user_id"
+				+ " FROM user_profile WHERE email IN ('?')";
+		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, email);
+		if(rowSet.next()) {
+			return mapRowToUserProfile(rowSet);
+		}
+		return null;
+	}
+	
+	@Override
+	public UserProfile getProfileByUserId(int id) {
+		String query = "SELECT first_name, last_name, address_1, address_2, city, zip_code, state, email, phone_number, profile_id, user_id"
+					+ " FROM user_profile WHERE user_id = ?";
+		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, id);
+		return mapRowToUserProfile(rowSet);
+	}
 	
 // Private methods used within this class
 	private int getNextProfileId() {
@@ -67,6 +97,24 @@ public class JDBCUserProfileDAO implements UserProfileDAO {
 			return rowSet.getInt(1);
 		}
 		
-		return 0;
+		return 1;
+	}
+	
+	private UserProfile mapRowToUserProfile(SqlRowSet rs) {
+		UserProfile profile = new UserProfile();
+		
+		profile.setAddress1(rs.getString("address_1"));
+		profile.setAddress2(rs.getString("address_2"));
+		profile.setCity(rs.getString("city"));
+		profile.setEmail(rs.getString("email"));
+		profile.setFirstName(rs.getString("first_name"));
+		profile.setLastName(rs.getString("last_name"));
+		profile.setPhone(rs.getString("phone_number"));
+		profile.setProfileId(rs.getInt("profile_id"));
+		profile.setState(rs.getString("state"));
+		profile.setUserId(rs.getInt("user_id"));
+		profile.setZip(rs.getString("zip_code"));
+		
+		return profile;
 	}
 }

@@ -19,7 +19,11 @@ public interface UserProfileDAO {
 //	public void deleteUserProfile(UserProfile aUserProfile);
 	
 	//Get list of users
-//	public List<UserProfile> listOfAllProfiles();
+	public List<UserProfile> listOfAllProfiles();
 	
+	// Get a profile by the User ID
+	public UserProfile getProfileByUserId(int id);
 	
+	//	Get a profile by the email address
+	public UserProfile getProfileByEmail(String email);
 }
