@@ -31,16 +31,9 @@ public class UserProfileDaoTest extends DAOIntegrationTest{
 	public void createUserProfile() {
 		userProfileDao.createUserProfile(testUser);
 		
-		List<UserProfile> results = new ArrayList<>();
-		results = userProfileDao.listOfAllProfiles();
+		UserProfile result = userProfileDao.getProfileByEmail(testUser.getEmail());
 		
-		for(UserProfile profile : results) {
-			if(profile.getEmail().toLowerCase().equals(testUser.getEmail().toLowerCase())) {
-				Assert.assertTrue(true);
-				return;
-			}
-		}
-		Assert.assertTrue("testUser was not found in list of current profiles", false);
+		Assert.assertEquals("Dummy", testUser.getEmail(), result.getEmail());
 	}
 	
 	@Test

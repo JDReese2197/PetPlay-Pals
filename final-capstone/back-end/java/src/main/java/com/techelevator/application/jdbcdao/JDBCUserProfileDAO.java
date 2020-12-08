@@ -72,7 +72,7 @@ public class JDBCUserProfileDAO implements UserProfileDAO {
 	
 	@Override
 	public UserProfile getProfileByEmail(String email) {
-		String query = "SELECT * FROM user_profile WHERE email IN ('?')";
+		String query = "SELECT * FROM user_profile WHERE email IN (?)";
 		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, email);
 		if(rowSet.next()) {
 			return mapRowToUserProfile(rowSet);
@@ -84,7 +84,10 @@ public class JDBCUserProfileDAO implements UserProfileDAO {
 	public UserProfile getProfileByUserId(int id) {
 		String query = "SELECT * FROM user_profile WHERE user_id = ?";
 		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, id);
-		return mapRowToUserProfile(rowSet);
+		if(rowSet.next()) {
+			return mapRowToUserProfile(rowSet);
+		}
+		return null;
 	}
 	
 // Private methods used within this class
