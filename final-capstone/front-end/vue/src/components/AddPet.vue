@@ -3,7 +3,7 @@
     <form v-on:submit.prevent>
         <div class="field">
             <label for="name">Name</label>
-            <input type="text" name="name" v-model="pet.name"/>
+            <input type="text" name="name" v-model="pet.petName"/>
         </div>
         <div class="field">
             <label for="age">Age</label>
@@ -11,7 +11,7 @@
         </div>
         <div class="field">
             <label for="name">Type</label>
-            <select id="type">
+            <select id="type" name="type" v-model="pet.petType">
                 <option value="dog">Dog</option>
                 <option value="cat">Cat</option>
                 <option value="bird">Bird</option>
@@ -28,8 +28,12 @@
             <input type="text" name="size" v-model="pet.size"/>
         </div>
         <div class="field">
+            <label for="gender">Gender</label>
+            <input type="text" name="gender" v-model="pet.gender"/>
+        </div>
+        <div class="field">
             <label for="name">Personality</label>
-            <select id="personality">
+            <select id="personality" name="personality" v-model="pet.personalityType">
                 <option value="shy">Shy, Timid</option>
                 <option value="friendly">Friendly, Sweet</option>
                 <option value="loving">Loving, Affectionate</option> 
@@ -41,16 +45,18 @@
         </div>
         <div class="field">
             <label for="bio">Bio</label>
-            <input type="text" name="bio" v-model="pet.bio"/>
+            <input type="text" name="bio" v-model="pet.description"/>
         </div>
         <div class="actions">
-            <button type="submit">Add Pet</button>
+            <button type="submit" v-on:click="submitPetForm">Add Pet</button>
         </div>
     </form>
 </div>
 </template>
 
 <script>
+import applicationServices from "@/services/ApplicationServices";
+
 export default {
     name: "add-pet",
     data() {
@@ -58,16 +64,59 @@ export default {
             pet: {
                 petId: "",
                 profileId: "",
-                name: "",
+                petName: "",
                 age: "",
-                type: "",
+                petType: "",
                 breed: "",
                 size:"",
-                personality: "",
-                bio: ""
+                gender: "",
+                personalityType: "",
+                description: ""
+            },
+            errorMessage: ""
+        };
+    },
+    methods: {
+        submitPetForm() {
+            const newPet = {
+                profileId: 1,
+                petName: this.pet.petName,
+                age: this.pet.age,
+                petType: this.pet.petType,
+                breed: this.pet.breed,
+                size: this.pet.size,
+                gender: this.pet.gender,
+                personalityType: this.pet.personalityType,
+                description: this.pet.description
+            };
+            if (this.profileId === 0) {
+                applicationServices
+                    .addPet(newPet)
+                    .then(response => {
+                        if(response.status === 201) {
+                            this.$router.push(`/profile`, newPet);
+                        }
+                    })
+                    .catch(error => {
+                        this.handleErrorResponse(error, "updating");
+                    });
+            }
+        },
+        handleErrorResponse(error, verb) {
+            if (error.response) {  
+            this.errorMsg =                                     
+                "Error " + verb + " card. Response received was '" + 
+                error.response.statusText +                   
+                "'.";                                            
+            } else if (error.request) {     
+                this.errorMsg =                                         
+                "Error " + verb + " card. Server could not be reached.";  
+            } else {                       
+                this.errorMsg =                                            
+                "Error " + verb + " card. Request could not be created."; 
             }
         }
-    }
+    },
 }
 </script>
 

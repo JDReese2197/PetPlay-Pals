@@ -16,11 +16,11 @@
         <div class="main">
             <header>
                 <img id="logo" src="https://res.cloudinary.com/ashdav/image/upload/v1607439755/img/dvcdp1esn3ry9jmbffjg.png" />
-                <button id="login">Login</button>
+                <router-link v-bind:to="{name: 'login'}"><button id="login">Login</button></router-link>
             </header>
             <section class="greeting">
                 <h1>Welcome</h1>
-                <button id="signup">Sign Up</button>
+                <router-link v-bind:to="{name: 'register'}"><button id="signup">Sign Up</button></router-link>
             </section>
         </div>
         <body>
