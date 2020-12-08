@@ -27,14 +27,13 @@ public class ApiController {
 	@RequestMapping(path = "/register/profile", method=RequestMethod.POST)
 	public UserProfile registerProfile(@RequestBody UserProfile userProfile) {
 		return userProfileDAO.createUserProfile(userProfile);
-		// registerProfile Method is not yet created
 	}
 	
 	/* @RequestMapping(path = "/update/profile", method=RequestMethod.PUT)
-	public void updateProfile(@RequestBody UserProfile userProfile) {
+	public void updateUserProfile(@RequestBody UserProfile userProfile) {
 		userProfileDAO.updateUserProfile(userProfile.getFirstName(), userProfile.getLastName(), userProfile.getAddress1(), userProfile.getAddress2(), userProfile.getCity(), userProfile.getState(), userProfile.getZip(), userProfile.getEmail(), userProfile.getPhone());
 		// updateProfile Method is not yet created
-	}*/
+	} */
 	
 	@RequestMapping(path = "/register/pet", method=RequestMethod.POST)
 	public void registerPet(@RequestBody Pet petProfile) {

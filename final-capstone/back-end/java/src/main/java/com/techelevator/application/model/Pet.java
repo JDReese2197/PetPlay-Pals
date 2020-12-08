@@ -4,8 +4,36 @@ public class Pet {
 	
 	private int petId;
 	private int profileId;
-	private String petName;
 	private String petType;
+	private String petName;
+	private String breed;
+	private String size;
+	public String getBreed() {
+		return breed;
+	}
+	public void setBreed(String breed) {
+		this.breed = breed;
+	}
+	public String getSize() {
+		return size;
+	}
+	public void setSize(String size) {
+		this.size = size;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	private String gender;
+	private String description;
 	private int age;
 	private String personalityType;
 	

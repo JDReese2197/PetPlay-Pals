@@ -24,7 +24,7 @@ public class JDBCPetDAO implements PetDAO {
 	@Override
 	public List<Pet> getAllPets() {
 		List<Pet> allPets = new ArrayList<>(); 
-		String sqlAllPets = "SELECT pet_type, pet_name, age, personality_type FROM pet_profile";
+		String sqlAllPets = "SELECT * FROM pet_profile";
 		
 		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sqlAllPets);
 		while(rowSet.next()) {
@@ -37,7 +37,7 @@ public class JDBCPetDAO implements PetDAO {
 	@Override
 	public List<Pet> getPetsByPersonality(String personalitySearch) {
 		List<Pet> petsByPersonality = new ArrayList<>();
-		String sqlPetsByPersonality = "SELECT pet_type, pet_name, age, personality_type FROM pet_profile WHERE personality_type=?";
+		String sqlPetsByPersonality = "SELECT * FROM pet_profile WHERE personality_type=?";
 		
 		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sqlPetsByPersonality, personalitySearch);
 		while(rowSet.next()) {
@@ -79,9 +79,9 @@ public class JDBCPetDAO implements PetDAO {
 	
 	@Override 
 	public void registerPet(Pet newPet) { // profile_id - SELECT user_id FROM users WHERE 
-		String sqlCreatePet = "INSERT INTO pet_profile (pet_id, profile_id, pet_type, pet_name, age, personaility_type) VALUES (?,?,?,?,?,?)";
+		String sqlCreatePet = "INSERT INTO pet_profile (pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personaility_type) VALUES (?,?,?,?,?,?,?,?,?,?)";
 		int nextPetId = getNextPetId();
-		jdbcTemplate.update(sqlCreatePet, nextPetId, newPet.getProfileId(), newPet.getPetType(), newPet.getPetName(), newPet.getAge(), newPet.getPersonalityType());
+		jdbcTemplate.update(sqlCreatePet, nextPetId, newPet.getProfileId(), newPet.getPetType(), newPet.getPetName(), newPet.getBreed(), newPet.getSize(), newPet.getGender(), newPet.getDescription(), newPet.getAge(), newPet.getPersonalityType());
 		// add in method to get current user profile id
 		newPet.setPetId(nextPetId);   
 	} 
