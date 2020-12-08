@@ -15,7 +15,7 @@
         ></vue-dropzone>
         <div class="main">
             <header>
-                <img src="https://cdn.freebiesupply.com/logos/large/2x/tinder-1-logo-black-and-white.png" />
+                <img id="logo" src="https://res.cloudinary.com/ashdav/image/upload/v1607439755/img/dvcdp1esn3ry9jmbffjg.png" />
                 <button id="login">Login</button>
             </header>
             <section class="greeting">
@@ -110,10 +110,11 @@ header {
     justify-content: space-between;
     align-items: flex-start;
 }
-img {
-    width: 75px;
-    height: 25px;
-    padding: 3px 10px;
+#logo {
+    width:150px;
+    height: auto;
+    margin-top: 15px;
+    margin-left: 15px;
 }
 section {
     grid-area: section;
@@ -136,9 +137,11 @@ button {
 }
 #login {
     background-color: white;
-    font-size: 15px;
+    font-size: 17px;
     color: #29d2db;
     padding: 3px 10px;
+    margin-top: 30px;
+    margin-right: 20px;
 }
 #signup {
     background-color: #29d2db;
