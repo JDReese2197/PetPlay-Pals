@@ -36,8 +36,8 @@ public class ApiController {
 	} */
 	
 	@RequestMapping(path = "/register/pet", method=RequestMethod.POST)
-	public void registerPet(@RequestBody Pet petProfile) {
-		petDAO.registerPet(petProfile); 
+	public Pet registerPet(@RequestBody Pet petProfile) {
+		return petDAO.registerPet(petProfile); 
 		// registerPet Method is not yet created
 	}
 

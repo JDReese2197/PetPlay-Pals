@@ -16,7 +16,6 @@ import com.techelevator.application.model.Pet;
 public class JDBCPetDAO implements PetDAO {
 
 	private JdbcTemplate jdbcTemplate;
-	
 	public JDBCPetDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
@@ -78,12 +77,16 @@ public class JDBCPetDAO implements PetDAO {
 	}
 	
 	@Override 
-	public void registerPet(Pet newPet) { // profile_id - SELECT user_id FROM users WHERE 
-		String sqlCreatePet = "INSERT INTO pet_profile (pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personaility_type) VALUES (?,?,?,?,?,?,?,?,?,?)";
+	public Pet registerPet(Pet newPet) { // profile_id - SELECT user_id FROM users WHERE 
+		String query = "INSERT INTO pet_profile " +
+				"(pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personaility_type) " +
+				"VALUES (?,?,?,?,?,?,?,?,?,?)";
 		int nextPetId = getNextPetId();
-		jdbcTemplate.update(sqlCreatePet, nextPetId, newPet.getProfileId(), newPet.getPetType(), newPet.getPetName(), newPet.getBreed(), newPet.getSize(), newPet.getGender(), newPet.getDescription(), newPet.getAge(), newPet.getPersonalityType());
+		jdbcTemplate.update(query, nextPetId, newPet.getProfileId(), newPet.getPetType(), newPet.getPetName(), newPet.getBreed(), newPet.getSize(), newPet.getGender(), newPet.getDescription(), newPet.getAge(), newPet.getPersonalityType());
 		// add in method to get current user profile id
-		newPet.setPetId(nextPetId);   
+		newPet.setPetId(nextPetId);
+		
+		return newPet;   
 	} 
 	
 	@Override
@@ -113,6 +116,10 @@ public class JDBCPetDAO implements PetDAO {
 		pet.setProfileId(rowSet.getInt("profile_id"));
 		pet.setPetType(rowSet.getString("pet_type"));
 		pet.setPetName(rowSet.getString("pet_name"));
+		pet.setBreed(rowSet.getString("breed"));
+		pet.setSize(rowSet.getString("size"));
+		pet.setGender(rowSet.getString("gender"));
+		pet.setDescription(rowSet.getString("description"));
 		pet.setAge(rowSet.getInt("age"));
 		pet.setPersonalityType(rowSet.getString("personality_type"));
 		return pet;

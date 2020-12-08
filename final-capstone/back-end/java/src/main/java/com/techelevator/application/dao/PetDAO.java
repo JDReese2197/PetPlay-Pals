@@ -14,7 +14,7 @@ public interface PetDAO {
 	
 	public List<Pet> getPetsByUsername(String userNameSearch);
 	
-	public void registerPet(Pet newPet);
+	public Pet registerPet(Pet newPet);
 	
 	public void updatePet(Pet petToUpdate);
 	
