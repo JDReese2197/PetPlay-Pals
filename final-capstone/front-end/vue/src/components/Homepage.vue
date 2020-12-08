@@ -5,13 +5,13 @@
                 <img src="https://cdn.freebiesupply.com/logos/large/2x/tinder-1-logo-black-and-white.png" />
                 <button id="login">Login</button>
             </header>
-            <div class="welcome">
+            <section class="greeting">
                 <h1>Welcome</h1>
                 <button id="signup">Sign Up</button>
-            </div>
+            </section>
         </div>
         <body>
-            <img src="HomeGraphic_Full.PNG"><img/>
+            <!--Homepage graphic goes here-->
         </body>
         <footer> 
             <p>© 2020 Pet Play Pals. All Rights Reserved</p>
@@ -32,20 +32,33 @@ export default {
     display: flex;
     flex-direction: column;
 }
+.main {
+    background-image: url(https://besthqwallpapers.com/Temp/8-12-2020/cavalier-king-charles-spaniel-black-cat-pets-dogs-friendship-besthqwallpapers.com-1920x1080.jpg);
+    background-size: cover;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "header"
+        "section"
+        ".";
+}
+header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
 img {
     width: 75px;
     height: 25px;
     padding: 3px 10px;
 }
-.main {
-    background-image: url(https://besthqwallpapers.com/Uploads/5-5-2018/51220/thumb2-cavalier-king-charles-spaniel-black-cat-pets-dogs-friendship.jpg);
-    background-size: cover;
+section {
+    grid-area: section;
     display: flex;
     flex-direction: column;
-}
-.welcome {
-    display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 h1 {
     color: white;
@@ -61,22 +74,17 @@ button {
 }
 #login {
     background-color: white;
-    color: #33FFFF;
+    color: #1aebeb;
     padding: 3px 10px;
 }
-header {
-    display: flex;
-    justify-content: space-between;
-}
 #signup {
-    background-color: #33FFFF;
+    background-color: #1aebeb;
     color: white;
     font-size: 20px;
     padding: 5px 15px;
-    flex-grow: none;
 }
 footer {
-    background-color: #33FFFF;
+    background-color: #1aebeb;
     color: #555555;
     text-align: center;
     font-size: 12px;
