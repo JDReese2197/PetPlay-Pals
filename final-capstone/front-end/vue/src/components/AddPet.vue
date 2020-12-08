@@ -1,5 +1,5 @@
 <template>
-<div class="form">
+<div id="register">
     <form v-on:submit.prevent>
         <div class="field">
             <label for="name">Name</label>
@@ -22,6 +22,10 @@
          <div class="field">
             <label for="breed">Breed</label>
             <input type="text" name="breed" v-model="pet.breed"/>
+        </div>
+        <div class="field">
+            <label for="size">Size</label>
+            <input type="text" name="size" v-model="pet.size"/>
         </div>
         <div class="field">
             <label for="name">Personality</label>
@@ -55,9 +59,10 @@ export default {
                 petId: "",
                 profileId: "",
                 name: "",
+                age: "",
                 type: "",
                 breed: "",
-                age: "",
+                size:"",
                 personality: "",
                 bio: ""
             }
@@ -67,7 +72,7 @@ export default {
 </script>
 
 <style scoped>
-.form {
+#register {
     font-family: Arial, Helvetica, sans-serif;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
@@ -84,12 +89,14 @@ input {
     margin: 8px 0;
     box-sizing: border-box;
     font-size: 15px;
+    color: #555555;
 }
 .field {
-    margin: 10px 0;
+    margin: 5px 0;
 }
 label {
     font-weight: bold;
+    color: #555555;
 }
 select {
     width: 100%;
@@ -97,6 +104,7 @@ select {
     margin: 8px 0;
     box-sizing: border-box;
     font-size: 15px;
+    color: #555555;
 }
 button {
     border: none;

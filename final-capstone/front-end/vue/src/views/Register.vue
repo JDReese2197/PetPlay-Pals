@@ -5,33 +5,38 @@
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <label for="username" class="sr-only">Username</label>
-      <input
-        type="text"
-        id="username"
-        class="form-control"
-        placeholder="Username"
-        v-model="user.username"
-        required
-        autofocus
-      />
-      <label for="password" class="sr-only">Password</label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="Password"
-        v-model="user.password"
-        required
-      />
-      <input
-        type="password"
-        id="confirmPassword"
-        class="form-control"
-        placeholder="Confirm Password"
-        v-model="user.confirmPassword"
-        required
-      />
+      <div class="field">
+        <label for="username" class="sr-only">Username</label>
+        <input
+          type="text"
+          id="username"
+          class="form-control"
+          placeholder="Username"
+          v-model="user.username"
+          required
+          autofocus
+        />
+      </div>
+      <div class="field">
+        <label for="password" class="sr-only">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          placeholder="Password"
+          v-model="user.password"
+          required
+        />
+        <input
+          type="password"
+          id="confirmPassword"
+          class="form-control"
+          placeholder="Confirm Password"
+          v-model="user.confirmPassword"
+          required
+        />
+      </div>
+      <register-user-profile />
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
@@ -42,9 +47,13 @@
 
 <script>
 import authService from '../services/AuthService';
+import registerUserProfile from '@/components/RegisterUserProfile';
 
 export default {
   name: 'register',
+  components: {
+    registerUserProfile
+  },
   data() {
     return {
       user: {
@@ -90,4 +99,51 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: #29d2db;
+}
+#register {
+    font-family: Arial, Helvetica, sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-areas: 
+      ". form .";
+}
+form {
+    grid-area: form;
+    line-height: 20px;
+}
+input {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+.field {
+    margin: 5px 0;
+}
+label {
+    font-weight: bold;
+    color: #555555;
+}
+select {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+button {
+    border: none;
+    border-radius: 20px;
+    text-transform: uppercase;
+    background-color: #29d2db;
+    color: white;
+    font-size: 20px;
+    padding: 5px 15px;
+}
+</style>
