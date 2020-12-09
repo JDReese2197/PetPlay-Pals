@@ -12,15 +12,15 @@ const http = axios.create({
 
 export default {
     addPet(pet) {
-        return http.post('/register/pet', pet)
+        return http.post(`/register/pet`, pet)
     },
     registerUserProfile(userProfile) {
-        return http.post('/register/profile', userProfile)
+        return http.post(`/register/profile`, userProfile)
     },
     getUserById(userId) {
-        return http.get('/update/profile', userId)
+        return http.get(`/profile?user_id=${userId}`)
     },
     updateUserProfile(userProfile) {
-        return http.put(`/update/profile${userProfile}`)
+        return http.put(`/update/profile/`, userProfile)
     }
 }

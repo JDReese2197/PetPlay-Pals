@@ -42,7 +42,7 @@ public class ApiController {
 		return petDAO.registerPet(petProfile); 
 	}
 	
-	@RequestMapping(path = "/update/profile", method=RequestMethod.GET)
+	@RequestMapping(path = "/profile", method=RequestMethod.GET)
 	public UserProfile getProfileByUserId(@RequestParam(value="user_id") int id) {
 		return userProfileDAO.getProfileByUserId(id);
 	}
