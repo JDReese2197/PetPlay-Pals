@@ -136,22 +136,25 @@ h1 {
     margin: 10px;
     transition-duration: 0.5s;
 }
-.button:hover {
-    background-color: #81eff5cb;
-}
+
 #login {
-    background-color: white;
+    /*background-color: white;*/
+    background-image: linear-gradient(to right, #e6615c, rgb(253, 253, 130));
     font-size: 17px;
-    color: #29d2db;
+    color: white;
     padding: 5px 15px;
     margin-top: 30px;
     margin-right: 20px;
 }
 #signup {
-    background-color: #29d2db;
+    /*background-color: #29d2db;*/
+    background-image: linear-gradient(to right, #29d2db, #e6615c);
     color: white;
     font-size: 20px;
     padding: 5px 15px;
+}
+.button:hover {
+    background-image: linear-gradient(to left,rgb(253, 253, 130) , #e6615c, #29d2db);
 }
 body {
     display: grid;
@@ -168,8 +171,8 @@ body {
     margin: 125px 225px 125px 175px;
 }
 footer {
-    background-color: #29d2db;
-    color: #555555;
+    background-image: linear-gradient(to right, #29d2db, #e6615c, rgb(253, 253, 130));
+    color: white;
     text-align: center;
     font-size: 12px;
     padding: 10px;

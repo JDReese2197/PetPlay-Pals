@@ -61,6 +61,7 @@ export default {
     name: "add-pet",
     data() {
         return {
+            selectedFile: null,
             pet: {
                 profileId: 1,
                 petName: "",

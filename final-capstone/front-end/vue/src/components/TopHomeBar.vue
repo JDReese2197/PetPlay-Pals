@@ -12,7 +12,7 @@ export default {
 
 <style scoped>
 .bar {
-    background-color: #29d2db;
+    background-image: linear-gradient(to left,rgb(253, 253, 130) , #e6615c, #29d2db);
     padding: 5px;
 }
 #logo {
