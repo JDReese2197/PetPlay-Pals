@@ -21,6 +21,6 @@ export default {
         return http.get(`/profile?user_id=${userId}`)
     },
     updateUserProfile(userProfile) {
-        return http.put(`/update/profile/`, userProfile)
+        return http.put(`/update/profile`, userProfile)
     }
 }
