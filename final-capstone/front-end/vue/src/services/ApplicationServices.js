@@ -16,5 +16,8 @@ export default {
     },
     registerUserProfile(userProfile) {
         return http.post('/register/profile', userProfile)
+    },
+    getUserById(userId) {
+        return http.get('/update/profile', userId)
     }
 }
