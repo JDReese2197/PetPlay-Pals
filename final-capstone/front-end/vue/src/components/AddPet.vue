@@ -62,7 +62,7 @@ export default {
     data() {
         return {
             pet: {
-                profileId: 1,
+                profileId: 106,
                 petName: "",
                 age: "",
                 petType: "",
@@ -78,7 +78,7 @@ export default {
     methods: {
         submitPetForm() {
             const newPet = this.pet;
-            if (this.pet.profileId === 1) {
+            if (this.pet.profileId === 106) {
                 applicationServices
                     .addPet(newPet)
                     .then(response => {
