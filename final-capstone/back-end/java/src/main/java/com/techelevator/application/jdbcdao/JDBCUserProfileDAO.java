@@ -41,14 +41,22 @@ public class JDBCUserProfileDAO implements UserProfileDAO {
 //	}
 		
 	//Update user profile
+	/* @Override
+	public void updateUserProfile(String firstName, String lastName, String address1, String address2, String city, String zip, String state, String email, String phone, int id) {
+		String query = "UPDATE user_profile "
+				+ "SET first_name = ?, last_name = ?, address_1 = ?, address_2 = ?, city = ?,"
+				+ " zip_code = ?, state = ?, email = ?, phone_number = ? WHERE user_id = ?";
+		jdbcTemplate.update(query, firstName, lastName, address1, address2, city, zip, state, email, phone, id);
+	} */
+	
 	@Override
-	public void updateUserProfile(UserProfile updatedUserProfile) {
-		String query = "UPDATE user_profile SET first_name = ?, last_name = ?, address_1 = ?, address_2 = ?, city = ?,"
-				+ " zip_code = ?, state = ?, email = ?, phone_number = ? WHERE profile_id = ?";
-		jdbcTemplate.update(query, updatedUserProfile.getFirstName(), updatedUserProfile.getLastName(),
-				updatedUserProfile.getAddress1(), updatedUserProfile.getAddress2(), updatedUserProfile.getCity(),updatedUserProfile.getZip(),
-				updatedUserProfile.getState(), updatedUserProfile.getEmail(), updatedUserProfile.getPhone(), updatedUserProfile.getProfileId());
-	}
+    public void updateUserProfile(UserProfile updatedUserProfile) {
+        String query = "UPDATE user_profile SET first_name = ?, last_name = ?, address_1 = ?, address_2 = ?, city = ?,"
+                + " zip_code = ?, state = ?, email = ?, phone_number = ? WHERE profile_id = ?";
+        jdbcTemplate.update(query, updatedUserProfile.getFirstName(), updatedUserProfile.getLastName(),
+                updatedUserProfile.getAddress1(), updatedUserProfile.getAddress2(), updatedUserProfile.getCity(),updatedUserProfile.getZip(),
+                updatedUserProfile.getState(), updatedUserProfile.getEmail(), updatedUserProfile.getPhone(), updatedUserProfile.getProfileId());
+    }
 		
 //	//Delete user profile
 //	@Override
@@ -86,8 +94,9 @@ public class JDBCUserProfileDAO implements UserProfileDAO {
 		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, id);
 		if(rowSet.next()) {
 			return mapRowToUserProfile(rowSet);
+		} else {
+			return null;
 		}
-		return null;
 	}
 	
 // Private methods used within this class
