@@ -2,20 +2,23 @@
     <div class="user-profile"> <!-- One div to rule them all -->
 
         <div class="pet-profile-side-bar"> <!-- This is where the pet profile section goes-->
-        <!-- https://res.cloudinary.com/ashdav/image/upload/v1607440049/img/cxk6sloi51lhdwindzxi.png -->
-            <img src = "https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"> <!-- Pet image/TEMPORARY IMG-->
+        
+            <div class="pet-image"><img id = "pet-pic" src = "https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"> </div>
+             <!-- Pet image/TEMPORARY IMG-->
             <div class="pet-info"> 
-                <button id="edit-pet-profile">Edit</button>
-                <h2>PetName</h2>
+                
+               <span> <h2>PetName</h2><h5><a href="#" class="edit-pet-profile">Edit</a></h5> </span>
                 <p> Type | Breed | Size </p>
                 <p> Age | Gender </p>
                 <p> Personality </p>
                 <p> Bio </p>
+                <button id="find-a-friend">FIND A FRIEND</button> <!-- Will link to the pet playdate search page-->
             </div>
-            <button id="find-a-friend">FIND A FRIEND</button> <!-- Will link to the pet playdate search page-->
+            
         </div> 
 
         <div class="user-info"> <!-- This is the user info section -->
+            <h1>Username</h1>
             <p>info for user goes here</p>
             <button id="edit-profile">Edit Profile</button>
         </div>
@@ -27,10 +30,10 @@
         </div>
 
         <div class="user-profile-nav"> <!-- This is the list of nav buttons on the user profile page-->
-            <button id="calendar">Your Calendar</button>
-            <button id="register-pet">Register a Pet</button>
-            <button id="messages">Your Messages</button>
-            <button id="log-out">Log Out</button>
+            <button class="nav-btn">Your Calendar</button>
+            <button class="nav-btn">Register a Pet</button>
+            <button class="nav-btn">Your Messages</button>
+            <button class="nav-btn">Log Out</button>
         </div>
 
         <div class="footer">© 2020 Pet Play Pals. All Rights Reserved</div>
@@ -48,19 +51,43 @@ export default {
 .user-profile {
     font-family: Arial, Helvetica, sans-serif;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
     grid-template-areas:
     "petbar userinfo    nav"
     "petbar preferences nav"
     "petbar footer      nav"
     ;
-
-    grid-gap: 15px;
+    grid-gap: 25px;
+}
+.user-info {
+    grid-area: userinfo;
+    width: 600px;
+    
 }
 
+.play-date-preferences {
+    grid-area: preferences;
+    width: 600px;
+}
+
+.footer {
+    grid-area: footer;
+    display: flex;
+    align-items: flex-end;
+    background-color:cornflowerblue;
+}
+
+.user-profile-nav {
+    grid-area: nav;
+    width: 200px;
+}
 .pet-profile-side-bar {
     grid-area: petbar;
     background-color: #D7FEFF;
+    width: 400px;
+    /* border-right: 1px solid rgba(0, 173, 238, 0.4); */
+    height: 100vh;
+    position: relative;
 }
 
 .h2 {
@@ -71,19 +98,61 @@ export default {
     background-color: #5CE1E6;
 }
 
-.user-info {
-    grid-area: userinfo;
+
+.pet-image {
+    display: flex;
+    justify-content: center;
+}
+#pet-pic {
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    width: 300px;
+    height: 300px;
+    margin: 15px;
+    align-content: center;
 }
 
-.play-date-preferences {
-    grid-area: preferences;
+.pet-info {
+    align-content: center;
+    text-align: center;
 }
 
-.footer {
-    grid-area: footer;
+.nav-btn, #edit-profile, #edit-play-date-preferences {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 10px;
+    background-color: #e6615c;
+    color: white;
+}
+#find-a-friend  {
+    border: none;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 10px;
+    background-color: #5CE1E6;
+    color: white;
+    align-content: center;
 }
 
-.user-profile-nav {
-    grid-area: nav;
+span {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color:  #5CE1E6;
+
+}
+
+a:link {
+    color: rgb(39, 39, 39);
+}
+
+h1 {
+    color: #e6615c;
 }
 </style>
