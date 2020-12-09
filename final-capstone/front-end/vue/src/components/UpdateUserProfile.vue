@@ -24,7 +24,7 @@
         <div class="field">
             <label for="state">State</label>
             <select id="state" name="state" v-model="user_profile.state" >
-                <option value= state v-for="state in this.$store.state.states" v-bind:key="state">{{state}}</option>
+                <option v-for="state in this.$store.state.states" v-bind:key="state">{{state}}</option>
             </select>
         </div>
         <div class="field">
