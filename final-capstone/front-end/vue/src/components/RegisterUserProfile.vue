@@ -99,11 +99,14 @@
 import applicationServices from "@/services/ApplicationServices";
 
 export default {
+    created() {
+        this.setUserId()
+    },
     name: "register-profile",
     data() {
         return {
             user_profile: {
-                userId: 1,
+                userId: null,
                 firstName: "",
                 lastName: "",
                 address1: "",
@@ -117,6 +120,12 @@ export default {
         }
     },
     methods: {
+        setUserId() {
+            this.user_profile.userId = this.$store.state.user.id
+        },
+        testUserId() {
+            console.log(this.$store.state.user.id)
+        },
         registerProfile() {
             applicationServices
                 .registerUserProfile(this.user_profile)
