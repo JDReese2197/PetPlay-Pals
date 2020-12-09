@@ -136,7 +136,7 @@ h1 {
     margin: 10px;
     transition-duration: 0.5s;
 }
-button:hover {
+.button:hover {
     background-color: #81eff5cb;
 }
 #login {
