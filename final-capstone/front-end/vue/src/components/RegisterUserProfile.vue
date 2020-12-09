@@ -123,9 +123,6 @@ export default {
         setUserId() {
             this.user_profile.userId = this.$store.state.user.id
         },
-        testUserId() {
-            console.log(this.$store.state.user.id)
-        },
         registerProfile() {
             applicationServices
                 .registerUserProfile(this.user_profile)
