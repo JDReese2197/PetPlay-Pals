@@ -12,12 +12,14 @@
                 <p> Age | Gender </p>
                 <p> Personality </p>
                 <p> Bio </p>
-                <button id="find-a-friend">FIND A FRIEND</button> <!-- Will link to the pet playdate search page-->
+                <button id="find-a-friend">FIND A FRIEND</button>
+                 <!-- Will link to the pet playdate search page-->
             </div>
             
         </div> 
 
         <div class="user-info"> <!-- This is the user info section -->
+        
             <h1>Username</h1>
             <p>info for user goes here</p>
             <button id="edit-profile">Edit Profile</button>
@@ -42,7 +44,9 @@
 </template>
 
 <script>
+import UpdateUserProfile from './UpdateUserProfile.vue'
 export default {
+  components: { UpdateUserProfile },
     
 }
 </script>
@@ -75,7 +79,6 @@ export default {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-
 }
 
 .user-profile-nav {
