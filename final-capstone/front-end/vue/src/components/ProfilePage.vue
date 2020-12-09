@@ -36,7 +36,7 @@
             <button class="nav-btn">Log Out</button>
         </div>
 
-        <div class="footer">© 2020 Pet Play Pals. All Rights Reserved</div>
+        <div class="footer"><h6>© 2020 Pet Play Pals. All Rights Reserved</h6></div>
     </div>
     <!-- -->
 </template>
@@ -74,7 +74,8 @@ export default {
     grid-area: footer;
     display: flex;
     align-items: flex-end;
-    background-color:cornflowerblue;
+    justify-content: center;
+
 }
 
 .user-profile-nav {
@@ -85,9 +86,7 @@ export default {
     grid-area: petbar;
     background-color: #D7FEFF;
     width: 400px;
-    /* border-right: 1px solid rgba(0, 173, 238, 0.4); */
     height: 100vh;
-    position: relative;
 }
 
 .h2 {
@@ -119,8 +118,6 @@ export default {
 }
 
 .nav-btn, #edit-profile, #edit-play-date-preferences {
-    display: flex;
-    flex-direction: column;
     border: none;
     border-radius: 20px;
     text-transform: uppercase;
@@ -128,6 +125,9 @@ export default {
     margin: 10px;
     background-color: #e6615c;
     color: white;
+    width: 150px;
+    height: 25px;
+    text-align: center;
 }
 #find-a-friend  {
     border: none;
