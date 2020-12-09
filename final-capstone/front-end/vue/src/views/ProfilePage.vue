@@ -1,7 +1,7 @@
 <template>
 <div>
-    <profile-page/>
     <top-home-bar/>
+    <profile-page/>
     <update-user-profile/>
 </div>
 </template>

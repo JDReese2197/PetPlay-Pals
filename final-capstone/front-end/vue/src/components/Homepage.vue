@@ -16,11 +16,11 @@
         <div class="main">
             <header>
                 <img id="logo" src="https://res.cloudinary.com/ashdav/image/upload/v1607439755/img/dvcdp1esn3ry9jmbffjg.png" />
-                <router-link v-bind:to="{name: 'login'}"><button id="login">Login</button></router-link>
+                <router-link v-bind:to="{name: 'login'}"><button class="button" id="login">Login</button></router-link>
             </header>
             <section class="greeting">
                 <h1>Welcome</h1>
-                <router-link v-bind:to="{name: 'register'}"><button id="signup">Sign Up</button></router-link>
+                <button @click="$router.push({name: 'register'})" class="button" id="signup">Sign Up</button>
             </section>
         </div>
         <body>
@@ -128,18 +128,22 @@ h1 {
     font-size: 4rem;
     text-align: center;
 }
-button {
+.button {
     border: none;
     border-radius: 20px;
     text-transform: uppercase;
     font-weight: bold;
     margin: 10px;
+    transition-duration: 0.5s;
+}
+button:hover {
+    background-color: #81eff5cb;
 }
 #login {
     background-color: white;
     font-size: 17px;
     color: #29d2db;
-    padding: 3px 10px;
+    padding: 5px 15px;
     margin-top: 30px;
     margin-right: 20px;
 }

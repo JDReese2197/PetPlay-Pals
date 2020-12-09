@@ -33,7 +33,7 @@
 
         <div class="user-profile-nav"> <!-- This is the list of nav buttons on the user profile page-->
             <button class="nav-btn">Your Calendar</button>
-            <button class="nav-btn">Register a Pet</button>
+            <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn">Register a Pet</button></router-link>
             <button class="nav-btn">Your Messages</button>
             <button class="nav-btn">Log Out</button>
         </div>
