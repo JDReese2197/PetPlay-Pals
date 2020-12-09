@@ -19,5 +19,8 @@ export default {
     },
     getUserById(userId) {
         return http.get('/update/profile', userId)
+    },
+    updateUserProfile(userProfile) {
+        return http.put('path', userProfile)
     }
 }
