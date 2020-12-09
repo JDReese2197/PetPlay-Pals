@@ -24,14 +24,14 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    {
+    /*{
       path: '/',
       name: 'home',
       component: Home,
       meta: {
         requiresAuth: true
       }
-    },
+    },*/
     {
       path: "/login",
       name: "login",
@@ -62,7 +62,7 @@ const router = new Router({
       component: AddPetForm
     }, 
     {
-      path: "/home",
+      path: "/",
       name: "homepage",
       component: Homepage
     },

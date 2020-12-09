@@ -20,6 +20,10 @@ export default {
     getUserById(userId) {
         return http.get(`/profile?user_id=${userId}`)
     },
+    // Need to set up getProfileByUsername on backend 
+    /* getUserProfileByUsername(currentUser) {
+        return http.get(`/profile?username=${currentUser}`)
+    },*/
     updateUserProfile(userProfile) {
         return http.put(`/update/profile`, userProfile)
     }

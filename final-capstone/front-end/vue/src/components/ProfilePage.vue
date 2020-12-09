@@ -3,7 +3,10 @@
 
         <div class="pet-profile-side-bar"> <!-- This is where the pet profile section goes-->
         
-            <div class="pet-image"><img id = "pet-pic" src = "https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"> </div>
+            <div class="pet-image">
+                <img id = "pet-pic" src = "https://res.cloudinary.com/ashdav/image/upload/v1607530571/img/Rudy_dt7y3q.png"/>
+                <img id = "pet-pic" src = "https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"/> 
+            </div>
              <!-- Pet image/TEMPORARY IMG-->
             <div class="pet-info"> 
                 
@@ -21,7 +24,8 @@
         <div class="user-info"> <!-- This is the user info section -->
         
             <h1>Username</h1>
-            <p>info for user goes here</p>
+            <p>{{profile.firstName}}</p>
+            <!--<p>{{profile.lastName}}</p>-->
             <button id="edit-profile">Edit Profile</button>
         </div>
 
@@ -44,9 +48,35 @@
 </template>
 
 <script>
-import UpdateUserProfile from './UpdateUserProfile.vue'
+import UpdateUserProfile from './UpdateUserProfile.vue';
+//import applicationServices from '@/services/ApplicationServices';
+
 export default {
-  components: { UpdateUserProfile },
+    components: { 
+        UpdateUserProfile 
+    },
+    data() {
+        return {
+
+        }
+    },
+    methods: {
+        retrieveUserProfile() {
+            applicationServices
+                .getUserById(this.$store.state.currentUser)
+                .then(response => {
+                    this.$store.commit("SET_PROFILE", response.data.profile)
+                })
+        }
+    },
+    created() {
+        this.retrieveUserProfile();
+    },
+    computed: {
+        profile() {
+            return this.$store.state.profile;
+        }
+    }
     
 }
 </script>
@@ -103,7 +133,9 @@ export default {
 
 .pet-image {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 #pet-pic {
     border-radius: 50%;
