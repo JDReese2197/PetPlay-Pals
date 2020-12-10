@@ -17,7 +17,7 @@ export default {
     registerUserProfile(userProfile) {
         return http.post(`/register/profile`, userProfile)
     },
-    getUserById(userId) {
+    getProfileById(userId) {
         return http.get(`/profile?user_id=${userId}`)
     },
     // Need to set up getProfileByUsername on backend 

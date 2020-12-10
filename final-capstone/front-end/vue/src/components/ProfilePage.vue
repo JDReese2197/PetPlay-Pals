@@ -48,13 +48,13 @@
 </template>
 
 <script>
-// import UpdateUserProfile from './UpdateUserProfile.vue';
-import applicationServices from '@/services/ApplicationServices';
+import UpdateUserProfile from './UpdateUserProfile.vue';
+//import applicationServices from '@/services/ApplicationServices';
 
 export default {
-    // components: { 
-    //     UpdateUserProfile 
-    // },
+    components: { 
+        UpdateUserProfile 
+    },
     data() {
         return {
 
@@ -63,7 +63,7 @@ export default {
     methods: {
         retrieveUserProfile() {
             applicationServices
-                .getUserById(this.$store.state.currentUser)
+                .getProfileById(this.$store.state.currentUser)
                 .then(response => {
                     this.$store.commit("SET_PROFILE", response.data.profile)
                 })

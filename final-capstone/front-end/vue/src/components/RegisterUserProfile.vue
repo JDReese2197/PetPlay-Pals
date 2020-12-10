@@ -105,7 +105,7 @@ export default {
     name: "register-profile",
     data() {
         return {
-            user_profile: {
+            userProfile: {
                 userId: null,
                 firstName: "",
                 lastName: "",
@@ -148,7 +148,7 @@ export default {
                 this.errorMsg =                                            
                 "Error " + verb + " User Profile. Request could not be created."; 
             }
-        }
+        },
     }
 }
 </script>
