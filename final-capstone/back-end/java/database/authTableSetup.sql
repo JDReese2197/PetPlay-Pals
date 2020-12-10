@@ -22,10 +22,13 @@ DROP TABLE IF EXISTS user_info cascade;
 DROP TABLE IF EXISTS user_profile cascade;
 DROP TABLE IF EXISTS pet_info cascade;
 DROP TABLE IF EXISTS pet_profile cascade;
+DROP TABLE IF EXISTS playdate_posting cascade;
+DROP TABLE IF EXISTS playdate cascade;
 
 DROP SEQUENCE IF EXISTS seq_profile_id;
 DROP SEQUENCE IF EXISTS seq_user_id;
 DROP SEQUENCE IF EXISTS seq_pet_id;
+DROP SEQUENCE IF EXISTS playdate_id;
 
 CREATE SEQUENCE seq_user_id
   INCREMENT BY 1
@@ -44,6 +47,12 @@ CREATE SEQUENCE seq_pet_id
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
+  
+ CREATE SEQUENCE playdate_id
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
 
 
 CREATE TABLE users (
@@ -56,7 +65,7 @@ CREATE TABLE users (
 
 CREATE TABLE user_profile (
 	profile_id int DEFAULT nextval('seq_profile_id'::regclass) NOT NULL,
-	user_id int,
+	user_id int NOT NULL,
 	first_name varchar(50) NOT NULL,
 	last_name varchar(50) NOT NULL,
 	address_1 varchar(50) NOT NULL,
@@ -67,12 +76,12 @@ CREATE TABLE user_profile (
 	email varchar(50) NOT NULL,
 	phone_number varchar(50),
 	CONSTRAINT PK_user_profile PRIMARY KEY (profile_id),
-	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+	CONSTRAINT FK_user_profile FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
 CREATE TABLE pet_profile (
 	pet_id int DEFAULT nextval('seq_pet_id'::regclass) NOT NULL,
-	profile_id int,
+	profile_id int NOT NULL,
 	pet_type  varchar(50) NOT NULL,
 	pet_name varchar(50) NOT NULL,
 	breed varchar(50),
@@ -81,15 +90,28 @@ CREATE TABLE pet_profile (
 	description varchar(250) NOT NULL,
 	age int NOT NULL,
 	personality_type varchar(250) NOT NULL,
+	image_url varchar(250),
 	CONSTRAINT PK_pet_profile PRIMARY KEY (pet_id),
-	CONSTRAINT FK_user_profile FOREIGN KEY (profile_id) REFERENCES user_profile(profile_id)
+	CONSTRAINT FK_pet_profile FOREIGN KEY (profile_id) REFERENCES user_profile(profile_id)
+);
+
+CREATE TABLE playdate (
+        playdate_id int DEFAULT nextval('seq_pet_id'::regclass) NOT NULL,
+        pet_poster int NOT NULL,
+        pet_booker int,
+        the_date DATE NOT NULL,
+        start_time TIME NOT NULL,
+        end_time TIME NOT NULL,
+        the_location varchar(500) NOT NULL,
+        details varchar(500),
+        CONSTRAINT PK_playdate_posting PRIMARY KEY (playdate_id),
+	CONSTRAINT FK_playdate_posting_poster FOREIGN KEY (pet_poster) REFERENCES pet_profile(pet_id),
+	CONSTRAINT FK_playdate_posting_booker FOREIGN KEY (pet_booker) REFERENCES pet_profile(pet_id)
 );
 
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
-
-
 
 COMMIT TRANSACTION;
 
