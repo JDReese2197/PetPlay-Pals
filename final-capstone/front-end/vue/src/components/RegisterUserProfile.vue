@@ -94,10 +94,8 @@
     </form>
 </div>
 </template>
-
 <script>
 import applicationServices from "@/services/ApplicationServices";
-
 export default {
     created() {
         this.setUserId()
@@ -141,22 +139,22 @@ export default {
                 })
         },*/
         /*handleErrorResponse(error, verb) {
-            if (error.response) {  
-            this.errorMsg =                                     
-                "Error " + verb + " User Profile. Response received was '" + 
-                error.response.statusText +                   
-                "'.";                                            
-            } else if (error.request) {     
-                this.errorMsg =                                         
-                "Error " + verb + " User Profile. Server could not be reached.";  
-            } else {                       
-                this.errorMsg =                                            
-                "Error " + verb + " User Profile. Request could not be created."; 
+            if (error.response) { 
+            this.errorMsg =                                    
+                "Error " + verb + " User Profile. Response received was '" +
+                error.response.statusText +                  
+                "'.";                                           
+            } else if (error.request) {    
+                this.errorMsg =                                        
+                "Error " + verb + " User Profile. Server could not be reached."; 
+            } else {                      
+                this.errorMsg =                                           
+                "Error " + verb + " User Profile. Request could not be created.";
             }
         },*/
         submitUserForm() {
             const newUserProfile = this.user_profile;
-            if (this.profileId === 1) {
+            if (this.user_profile.profileId === 1) {
                 console.log("got to if")
                 applicationServices
                     .registerUserProfile(newUserProfile)
@@ -171,7 +169,7 @@ export default {
             } else {
                 console.log("got to else");
                 applicationServices
-                    .updateUserProfile(this.newUserProfile)
+                    .updateUserProfile(newUserProfile)
                     .then(response => {
                         console.log("got to update if")
                         if(response.status === 201) {
@@ -185,24 +183,22 @@ export default {
             }
         },
         handleErrorResponse(error, verb) {
-            if (error.response) {  
-            this.errorMsg =                                     
-                "Error " + verb + " User Profile. Response received was '" + 
-                error.response.statusText +                   
-                "'.";                                            
-            } else if (error.request) {     
-                this.errorMsg =                                         
-                "Error " + verb + " User Profile. Server could not be reached.";  
-            } else {                       
-                this.errorMsg =                                            
-                "Error " + verb + " User Profile. Request could not be created."; 
+            if (error.response) {
+            this.errorMsg =
+                "Error " + verb + " User Profile. Response received was '" +
+                error.response.statusText +
+                "'.";
+            } else if (error.request) {
+                this.errorMsg =
+                "Error " + verb + " User Profile. Server could not be reached.";
+            } else {
+                this.errorMsg =
+                "Error " + verb + " User Profile. Request could not be created.";
             }
         }
     }
 }
-            
 </script>
-
 <style scoped>
 #register {
     font-family: Arial, Helvetica, sans-serif;
@@ -237,7 +233,7 @@ button {
     border: none;
     border-radius: 20px;
     text-transform: uppercase;
-    background-color: #29d2db;
+    background-color: #29D2DB;
     color: white;
     font-size: 20px;
     padding: 5px 15px;
