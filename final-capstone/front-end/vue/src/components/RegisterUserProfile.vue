@@ -1,6 +1,6 @@
 <template>
 <div id="register">
-    <form v-on:submit.prevent>
+    <form v-on:submit.prevent="registerProfile">
         <div class="field">
             <label for="name">First Name</label>
             <input type="text" name="firstName" v-model="user_profile.firstName"/>
@@ -89,7 +89,7 @@
             <input type="text" name="phone" v-model="user_profile.phone"/>
         </div>
         <div class="actions">
-            <button type="submit" v-on:click="submitUserForm">Register User</button>
+            <button type="submit">Register User</button>
         </div>
     </form>
 </div>
@@ -99,14 +99,13 @@ import applicationServices from "@/services/ApplicationServices";
 export default {
     created() {
         this.setUserId()
-        this.setProfileId()
     },
-    name: "register-user-profile",
+    name: "register-profile",
     data() {
         return {
             user_profile: {
                 userId: null,
-                profileId: null,
+                profileId: 1,
                 firstName: "",
                 lastName: "",
                 address1: "",
@@ -121,12 +120,9 @@ export default {
     },
     methods: {
         setUserId() {
-            this.user_profile.userId = this.$store.state.user.id;
+            this.user_profile.userId = this.$store.state.user.id
         },
-        setProfileId() {
-            this.user_profile.profileId = 1;
-        },
-        /*registerProfile() {
+        registerProfile() {
             applicationServices
                 .registerUserProfile(this.user_profile)
                 .then(response => {
@@ -137,6 +133,7 @@ export default {
                 .catch(error => {
                     this.handleErrorResponse(error, "Registering")
                 })
+<<<<<<< HEAD
         },*/
         /*handleErrorResponse(error, verb) {
             if (error.response) { 
@@ -181,6 +178,8 @@ export default {
                         this.handleErrorResponse(error, "Updating")
                     })
             }
+=======
+>>>>>>> 63977e52a4e99495c76f6d35608159fb393a7093
         },
         handleErrorResponse(error, verb) {
             if (error.response) {
