@@ -107,6 +107,8 @@ export default {
     data() {
         return {
             user_profile: {
+                userId: null,
+                profileId: null,
                 firstName: "",
                 lastName: "",
                 address1: "",
@@ -153,20 +155,9 @@ export default {
             }
         },*/
         submitUserForm() {
-            const newUserProfile = {
-                userId: Number(this.$store.state.user.id),
-                profileId: Number(this.$store.state.profile.id),
-                firstName: this.user_profile.firstName,
-                lastName: this.user_profile.lastName,
-                address1: this.user_profile.address1,
-                address2: this.user_profile.address2,
-                city: this.user_profile.city,
-                state: this.user_profile.state,
-                zip: this.user_profile.zip,
-                email: this.user_profile.email,
-                phone: this.user_profile.phone
-            }
-            if (this.userId === 0) {
+            const newUserProfile = this.user_profile;
+            if (this.profileId === 1) {
+                console.log("got to if")
                 applicationServices
                     .registerUserProfile(newUserProfile)
                     .then(response => {
@@ -178,10 +169,13 @@ export default {
                         this.handleErrorResponse(error, "Registering")
                     });
             } else {
+                console.log("got to else");
                 applicationServices
-                    .updateUserProfile(this.user_profile)
+                    .updateUserProfile(this.newUserProfile)
                     .then(response => {
-                        if(response.status === 200) {
+                        console.log("got to update if")
+                        if(response.status === 201) {
+                            console.log("got to update if")
                             this.$router.push('/profile')
                         }
                     })
