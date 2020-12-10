@@ -133,8 +133,7 @@ export default {
                 .catch(error => {
                     this.handleErrorResponse(error, "Registering")
                 })
-<<<<<<< HEAD
-        },*/
+        },
         /*handleErrorResponse(error, verb) {
             if (error.response) { 
             this.errorMsg =                                    
@@ -177,9 +176,8 @@ export default {
                     .catch(error => {
                         this.handleErrorResponse(error, "Updating")
                     })
+                }
             }
-=======
->>>>>>> 63977e52a4e99495c76f6d35608159fb393a7093
         },
         handleErrorResponse(error, verb) {
             if (error.response) {
@@ -195,7 +193,6 @@ export default {
                 "Error " + verb + " User Profile. Request could not be created.";
             }
         }
-    }
 }
 </script>
 <style scoped>
