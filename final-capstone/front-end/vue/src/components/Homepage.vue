@@ -36,11 +36,25 @@
 /* eslint-disable */
 import vue2Dropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
+import applicationServices from "@/services/ApplicationServices"
 
 export default {
     name: "upload-photo",
     components: {
         vueDropzone: vue2Dropzone
+    },
+    created() {
+      applicationServices
+        .getProfileById(this.$store.state.user.id)
+        .then(response => {
+            if(response.status === 200) {
+                this.$store.commit("SET_PROFILE", response.data)
+          }
+        })
+        .catch(error => {
+          const response = error.response
+          console.log(response)
+        })
     },
     data(){
         return {

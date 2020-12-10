@@ -48,13 +48,13 @@
 </template>
 
 <script>
-import UpdateUserProfile from './UpdateUserProfile.vue';
-//import applicationServices from '@/services/ApplicationServices';
+// import UpdateUserProfile from './UpdateUserProfile.vue';
+import applicationServices from '@/services/ApplicationServices';
 
 export default {
-    components: { 
-        UpdateUserProfile 
-    },
+    // components: { 
+    //     UpdateUserProfile 
+    // },
     data() {
         return {
 
