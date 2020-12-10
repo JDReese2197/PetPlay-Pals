@@ -11,7 +11,6 @@ Vue.use(Vuex)
  */
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user')); // username
-const currentProfile = JSON.parse(localStorage.getItem('profile')); // profile if they have one
 
 if(currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
@@ -21,7 +20,7 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    profile: currentProfile || {},
+    profile: {},
     states: [
       "Alabama", 
       "Alaska",
@@ -94,7 +93,6 @@ export default new Vuex.Store({
     },
     SET_PROFILE(state, profile) {
       state.profile = profile;
-      localStorage.setItem('profile', JSON.stringify(profile));
     }
   }
 })

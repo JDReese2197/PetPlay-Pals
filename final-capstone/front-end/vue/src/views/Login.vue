@@ -39,7 +39,7 @@
 
 <script>
 import authService from "../services/AuthService";
-import applicationServices from "@/services/ApplicationServices";
+// import applicationServices from "@/services/ApplicationServices"
 
 export default {
   name: "login",
@@ -71,13 +71,17 @@ export default {
             this.invalidCredentials = true;
           }
         });
-        applicationServices
-        .getUserById(this.user.id)
-        .then(response => {
-          if(response.status == 200) {
-            this.$store.commit("SET_PROFILE", response.data.profile);
-          }
-        })
+      // applicationServices
+      //   .getUserById(this.$store.state.user.id)
+      //   .then(response => {
+      //     if(response.status === 200) {
+      //       this.$store.commit('SET_PROFILE', response.data.profile)
+      //     }
+      //   })
+      //   .catch(error => {
+      //     const response = error.response
+      //     console.log(response)
+      //   })
     }
   }
 };
