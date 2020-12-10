@@ -29,6 +29,7 @@ DROP SEQUENCE IF EXISTS seq_profile_id;
 DROP SEQUENCE IF EXISTS seq_user_id;
 DROP SEQUENCE IF EXISTS seq_pet_id;
 DROP SEQUENCE IF EXISTS playdate_id;
+DROP SEQUENCE IF EXISTS seq_playdate_id;
 
 CREATE SEQUENCE seq_user_id
   INCREMENT BY 1
@@ -48,7 +49,7 @@ CREATE SEQUENCE seq_pet_id
   NO MINVALUE
   CACHE 1;
   
- CREATE SEQUENCE playdate_id
+ CREATE SEQUENCE seq_playdate_id
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
@@ -112,6 +113,14 @@ CREATE TABLE playdate (
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+
+INSERT INTO user_profile VALUES (1, 1, 'Brian', 'Kilburn', '123 Address St', '', 'Philadelphia', '12345', 'Pennsylvania', 'brian@email.com', '123-456-7890');
+INSERT INTO user_profile VALUES (2, 2, 'Ashley', 'Davis', '123 Address St', '', 'Cleveland', '67890', 'Ohio', 'ashley@email.com', '123-456-7890');
+
+INSERT INTO pet_profile VALUES (1, 1, 'Dog', 'Finn', 'Mutt', 'Small', 'Male', 'Loves the water and playing with big dogs', 4, 'loving', NULL);
+INSERT INTO pet_profile VALUES (2, 2, 'Dog', 'Oslo', 'Grey Hound', 'Large', 'Male', 'Lazy but loving dog', 3, 'loving', NULL);
+
+INSERT INTO playdate VALUES (1, 2, NULL, '2020-12-13', '12:00:00', '14:00:00', 'Lakewood Park, Lake Avenue, Lakewood, OH', 'Looking for a male dog to play with my Greyhound');
 
 COMMIT TRANSACTION;
 

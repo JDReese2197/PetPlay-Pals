@@ -1,5 +1,8 @@
 package com.techelevator.application.jdbcdao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -8,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import com.techelevator.application.dao.PlaydateDAO;
 import com.techelevator.application.model.Playdate;
-import com.techelevator.application.model.UserProfile;
 
 @Component
 public class JDBCPlaydateDAO implements PlaydateDAO {
@@ -22,10 +24,10 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 	@Override
 	public Playdate createPosterPlaydate(Playdate posterPlaydate) {
 		String query = "INSERT INTO playdate "
-				+ "(playdate_id, pet_poster, the_date, start_time, end_time, the_location, details) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+				+ "(playdate_id, pet_poster, the_date, start_time, end_time, the_location, details, pet_booker) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		int playdateId = getNextPlaydateId();
-		jdbcTemplate.update(query, playdateId, posterPlaydate.getPetPosterId(), posterPlaydate.getTheDate(), posterPlaydate.getStartTime(), posterPlaydate.getEndTime(), posterPlaydate.getLocation(), posterPlaydate.getDetails());
+		jdbcTemplate.update(query, playdateId, posterPlaydate.getPetPosterId(), posterPlaydate.getTheDate(), posterPlaydate.getStartTime(), posterPlaydate.getEndTime(), posterPlaydate.getLocation(), posterPlaydate.getDetails(), "NULL");
 		posterPlaydate.setPlaydateId(playdateId);
 		
 		return posterPlaydate;
@@ -33,29 +35,51 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 	
 	//Method to update (PUT) playdate with a matched pet (ie. Booker has selected a playdate)
 	@Override
-	public Playdate createBookerPlaydate(Playdate bookerPlaydate) {
+	public void joinPlaydate(Playdate bookerPlaydate) {
 		String query = "UPDATE playdate "
 				+ "SET pet_booker = ? "
 				+ "WHERE playdate_id = ?";
 		jdbcTemplate.update(query, bookerPlaydate.getPetBookerId(), bookerPlaydate.getPlaydateId());
-		
-		return bookerPlaydate;
 	}
 	
-	// Method to display (GET) listings by Poster's id
-	@Override
-	public UserProfile getPostingBy(int id) {
-		String query = "SELECT * FROM user_profile WHERE user_id = ?";
-		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, id);
-		if(rowSet.next()) {
-			return mapRowToUserProfile(rowSet);
-		} else {
-			return null;
+	//Method to decline (PUT) playdate with a matched pet by removing pet_booker (id) (ie. Booker has selected a playdate, but Poster can remove it)
+		@Override
+		public void declinePlaydate(Playdate bookerPlaydate) {
+			String query = "UPDATE playdate "
+					+ "SET pet_booker = ? "
+					+ "WHERE playdate_id = NULL";
+			jdbcTemplate.update(query, "", bookerPlaydate.getPetPosterId());
 		}
+	
+	// Method to display (GET) listings by Poster's id and Booker's id so it's displayed on their profile
+	@Override
+	public List<Playdate> displayAcceptedInvite(Playdate playdate) {
+		List<Playdate> displayedPlaydates = new ArrayList<>();
+		String query = "SELECT * FROM playdate WHERE (pet_poster = ? OR booker_id = ?) AND NOT booker_id = ?";
+		
+		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, playdate.getPetPosterId(), playdate.getPetBookerId(), "NULL");
+		
+		while(rowSet.next()) {
+			Playdate displayListing = mapRowToPlaydate(rowSet);
+			displayedPlaydates.add(displayListing);
+		}
+		return displayedPlaydates;
 	}
 	
-	//Methods we need:
-	// 
+	// Method to display (GET) listings to display it on the main posting display page when pet_booker is empty
+	@Override
+	public List<Playdate> displayPostings(Playdate playdate) {
+		List<Playdate> displayedPlaydates = new ArrayList<>();
+		String query = "SELECT * FROM playdate WHERE booker_id = ?";
+		
+		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, "NULL");
+		
+		while(rowSet.next()) {
+			Playdate displayListing = mapRowToPlaydate(rowSet);
+			displayedPlaydates.add(displayListing);
+		}
+		return displayedPlaydates;
+	}
 	
 	
 	private int getNextPlaydateId() {
