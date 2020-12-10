@@ -1,6 +1,6 @@
 <template>
 <div id="register">
-    <form v-on:submit.prevent="registerProfile">
+    <form v-on:submit.prevent>
         <div class="field">
             <label for="name">First Name</label>
             <input type="text" name="firstName" v-model="user_profile.firstName"/>
@@ -89,7 +89,7 @@
             <input type="text" name="phone" v-model="user_profile.phone"/>
         </div>
         <div class="actions">
-            <button type="submit">Register User</button>
+            <button type="submit" v-on:click="submitUserForm">Register User</button>
         </div>
     </form>
 </div>
@@ -101,12 +101,12 @@ import applicationServices from "@/services/ApplicationServices";
 export default {
     created() {
         this.setUserId()
+        this.setProfileId()
     },
-    name: "register-profile",
+    name: "register-user-profile",
     data() {
         return {
-            userProfile: {
-                userId: null,
+            user_profile: {
                 firstName: "",
                 lastName: "",
                 address1: "",
@@ -121,9 +121,12 @@ export default {
     },
     methods: {
         setUserId() {
-            this.user_profile.userId = this.$store.state.user.id
+            this.user_profile.userId = this.$store.state.user.id;
         },
-        registerProfile() {
+        setProfileId() {
+            this.user_profile.profileId = 1;
+        },
+        /*registerProfile() {
             applicationServices
                 .registerUserProfile(this.user_profile)
                 .then(response => {
@@ -134,6 +137,58 @@ export default {
                 .catch(error => {
                     this.handleErrorResponse(error, "Registering")
                 })
+        },*/
+        /*handleErrorResponse(error, verb) {
+            if (error.response) {  
+            this.errorMsg =                                     
+                "Error " + verb + " User Profile. Response received was '" + 
+                error.response.statusText +                   
+                "'.";                                            
+            } else if (error.request) {     
+                this.errorMsg =                                         
+                "Error " + verb + " User Profile. Server could not be reached.";  
+            } else {                       
+                this.errorMsg =                                            
+                "Error " + verb + " User Profile. Request could not be created."; 
+            }
+        },*/
+        submitUserForm() {
+            const newUserProfile = {
+                userId: Number(this.$store.state.user.id),
+                profileId: Number(this.$store.state.profile.id),
+                firstName: this.user_profile.firstName,
+                lastName: this.user_profile.lastName,
+                address1: this.user_profile.address1,
+                address2: this.user_profile.address2,
+                city: this.user_profile.city,
+                state: this.user_profile.state,
+                zip: this.user_profile.zip,
+                email: this.user_profile.email,
+                phone: this.user_profile.phone
+            }
+            if (this.userId === 0) {
+                applicationServices
+                    .registerUserProfile(newUserProfile)
+                    .then(response => {
+                        if (response.status === 201) {
+                            this.$router.push(`/profile`);
+                        }
+                    })
+                    .catch(error => {
+                        this.handleErrorResponse(error, "Registering")
+                    });
+            } else {
+                applicationServices
+                    .updateUserProfile(this.user_profile)
+                    .then(response => {
+                        if(response.status === 200) {
+                            this.$router.push('/profile')
+                        }
+                    })
+                    .catch(error => {
+                        this.handleErrorResponse(error, "Updating")
+                    })
+            }
         },
         handleErrorResponse(error, verb) {
             if (error.response) {  
@@ -148,9 +203,10 @@ export default {
                 this.errorMsg =                                            
                 "Error " + verb + " User Profile. Request could not be created."; 
             }
-        },
+        }
     }
 }
+            
 </script>
 
 <style scoped>
