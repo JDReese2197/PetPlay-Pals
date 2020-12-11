@@ -89,15 +89,15 @@ public class ApiController {
 	}
 	
 	// GET the displays for a poster and booker profile
-	@RequestMapping(path = "/display/invite", method = RequestMethod.GET)
-	public List<Playdate> displayAcceptedInvite(@RequestBody Playdate bookerPlaydate) {
-		return playdateDAO.displayAcceptedInvite(bookerPlaydate);
+	@RequestMapping(path = "/display/invites/{id}", method = RequestMethod.GET)
+	public List<Playdate> displayAcceptedInvite(@PathVariable(value="id") int id) {
+		return playdateDAO.displayAcceptedInvite(id);
 	}
 	
 	// GET the displays for the listings where booker_id is NULL
 	@RequestMapping(path = "/display/postings", method = RequestMethod.GET)
-	public List<Playdate> displayPostings(@RequestBody Playdate playdate) {
-		return playdateDAO.displayPostings(playdate);
+	public List<Playdate> displayPostings() {
+		return playdateDAO.displayPostings();
 	}
 	
 
