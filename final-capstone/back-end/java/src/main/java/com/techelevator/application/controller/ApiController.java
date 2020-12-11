@@ -89,7 +89,7 @@ public class ApiController {
 	}
 	
 	// GET the displays for a poster and booker profile
-	@RequestMapping(path = "/display/invites{id}", method = RequestMethod.GET)
+	@RequestMapping(path = "/display/invites/{id}", method = RequestMethod.GET)
 	public List<Playdate> displayAcceptedInvite(@PathVariable(value="id") int id) {
 		return playdateDAO.displayAcceptedInvite(id);
 	}
