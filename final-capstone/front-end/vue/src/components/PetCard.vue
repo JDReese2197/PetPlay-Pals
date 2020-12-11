@@ -13,10 +13,10 @@
 <script>
 import applicationServices from '../services/ApplicationServices.js'
 export default {
-     name: "play-date-card",
+     name: "pet-card",
     data() {
         return {
-            playdate: {
+            pet: {
                 petImage: '',
                 petName: '',
                 petGender: '',
