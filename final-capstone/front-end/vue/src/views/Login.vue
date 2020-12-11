@@ -45,11 +45,11 @@ import authService from "../services/AuthService";
 
 export default {
   name: "login",
-  components: {
-
-  },
+  components: {},
+  props: ["user_profile"], /* added by AD*/
   data() {
     return {
+      profileId: 0, /*added by AD*/
       user: {
         username: "",
         password: ""
@@ -65,7 +65,7 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/");
+            this.$router.push(`${this.profileId}`); /*path updated by AD*/
           }
         })
         .catch(error => {
@@ -75,18 +75,13 @@ export default {
             this.invalidCredentials = true;
           }
         });
-      // applicationServices
-      //   .getUserById(this.$store.state.user.id)
-      //   .then(response => {
-      //     if(response.status === 200) {
-      //       this.$store.commit('SET_PROFILE', response.data.profile)
-      //     }
-      //   })
-      //   .catch(error => {
-      //     const response = error.response
-      //     console.log(response)
-      //   })
+    },
+    setProfileId() { /*added by AD*/
+      this.profileId = this.$store.state.user.id;
     }
+  },
+  updated() { /*added by AD*/
+    this.setProfileId()
   }
 };
 </script>
