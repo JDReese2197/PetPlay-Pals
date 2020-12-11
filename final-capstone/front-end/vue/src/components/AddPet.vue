@@ -80,7 +80,7 @@
             />
         </div>
         <div class="actions">
-            <button type="submit" v-on:click="submitPetForm">Add Pet</button>
+            <button type="submit" v-on:click="submitPetForm">Submit</button>
         </div>
     </form>
 </div>

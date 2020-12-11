@@ -134,7 +134,7 @@
             />
         </div>
         <div class="actions">
-            <button type="submit" v-on:click="submitUserProfile">Register User</button>
+            <button type="submit" v-on:click="submitUserProfile">Submit</button>
         </div>
     </form>
 </div>
@@ -218,12 +218,17 @@ export default {
 <style scoped>
 #register {
     font-family: Arial, Helvetica, sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-areas: 
+        ". form .";
 }
 form {
+    grid-area: form;
     line-height: 20px;
 }
 input {
-    width:300%;
+    width:100%;
     padding: 10px 10px;
     margin: 8px 0;
     box-sizing: border-box;
