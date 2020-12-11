@@ -1,7 +1,7 @@
 <template>
 <div>
     <top-home-bar/>
-    <profile-page/>
+    <profile-page v-bind:profileId="parseInt(this.$route.params.profileId)"/>
 </div>
 </template>
 

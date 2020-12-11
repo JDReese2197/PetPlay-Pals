@@ -51,6 +51,7 @@
         <div class="field">
             <label for="state">State</label>
             <select id="state" name="state" placeholder="State" v-model="user_profile.state">
+                <option value="" disabled selected hidden>State</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -178,7 +179,7 @@ export default {
                     .registerUserProfile(userProfile)
                     .then(response => {
                         if (response.status === 200) {
-                            this.$router.push(`/profile`);
+                            this.$router.push(`/${this.user_profile.profileId}`);
                         }
                     })
                     .catch(error => {
@@ -189,7 +190,7 @@ export default {
                     .updateUserProfile(userProfile)
                     .then(response => {
                         if(response.status === 200) {
-                            this.$router.push('/profile')
+                            this.$router.push(`${this.user_profile.profileId}`)
                         }
                     })
                     .catch(error => {

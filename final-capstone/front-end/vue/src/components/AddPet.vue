@@ -60,6 +60,7 @@
         <div class="field">
             <label for="name">Personality</label>
             <select id="personality" name="personality" placeholder="Personality" v-model="pet.personalityType" required>
+                <option value="" disabled selected hidden>Personality</option>
                 <option value="shy">Shy, Timid</option>
                 <option value="friendly">Friendly, Sweet</option>
                 <option value="loving">Loving, Affectionate</option> 
