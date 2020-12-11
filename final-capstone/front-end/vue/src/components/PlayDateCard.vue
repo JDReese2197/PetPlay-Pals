@@ -1,5 +1,6 @@
 <template>
-    <div data-aos="fade-up" class="playdate-card"> <!-- A single playdate card-->
+<!-- A single playdate card-->
+<div data-aos="fade-up" class="playdate-card"> 
         <img id="pet-img" src="https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"/>
         <h1>Pet Name</h1>
         <p> etc </p>
@@ -25,12 +26,6 @@ export default {
     padding: 5px;
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    
-    /* display: flex;
-    flex-direction: column; */
-    /* border-style: solid;
-    border-width: 2px;
-    border-color:  #5CE1E6; */
 }
 
 #pet-img {

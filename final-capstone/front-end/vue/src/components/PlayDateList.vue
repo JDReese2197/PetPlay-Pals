@@ -1,6 +1,6 @@
 <template>
     <!-- This is where we will display a list of playdate cards-->
-    <div>
+    <div class="container">
         <div class="aPlayDateCard" v-for="card in playDateCards"
         v-bind:key="card.id">
         <play-date-card/>
@@ -44,5 +44,10 @@ export default {
 </script>
 
 <style scoped>
-
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: blueviolet;
+}
 </style>
