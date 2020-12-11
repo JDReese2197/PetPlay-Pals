@@ -36,7 +36,7 @@
           required
         />
       </div>
-      <register-user-profile />
+      <user-profile-form />
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
@@ -47,12 +47,12 @@
 
 <script>
 import authService from '../services/AuthService';
-import registerUserProfile from '@/components/RegisterUserProfile';
+import userProfileForm from '@/components/UserProfileForm';
 
 export default {
   name: 'register',
   components: {
-    registerUserProfile
+    userProfileForm
   },
   data() {
     return {

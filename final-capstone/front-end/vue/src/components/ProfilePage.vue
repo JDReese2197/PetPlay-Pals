@@ -26,7 +26,7 @@
             <h1>Username</h1>
             <p>{{profile.firstName}}</p>
             <!--<p>{{profile.lastName}}</p>-->
-            <button id="edit-profile">Edit Profile</button>
+            <router-link v-bind:to="{name: 'register'}"><button id="edit-profile">Edit Profile</button></router-link>
         </div>
 
         <div class="play-date-preferences"> <!-- This is the playdate info section-->
@@ -45,16 +45,15 @@
         <div class="footer"><h6><a href="https://media1.tenor.com/images/c65f4fdd955cdc6614899b0a38b8473e/tenor.gif?itemid=5648271">
         © 2020 Pet Play Pals. All Rights Reserved</a></h6></div>
     </div>
-    <!-- -->
 </template>
 
 <script>
-//import UpdateUserProfile from './UpdateUserProfile.vue';
+
 import applicationServices from '@/services/ApplicationServices';
 
 export default {
     components: { 
-    //    UpdateUserProfile 
+
     },
     data() {
         return {
