@@ -34,6 +34,29 @@ public class JDBCPetDAO implements PetDAO {
 	}
 	
 	@Override
+	public Pet getPetByPetId(int petId) {
+		String query = "SELECT * FROM pet_profile WHERE pet_id = ?";
+		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, petId);
+		if (rowSet.next()) {
+			return mapRowToPet(rowSet);
+		} else {
+			return null;
+		}
+	}
+	@Override 
+	public List<Pet> getPetByProfileId(int profileId) {
+		List<Pet> petsByProfileId = new ArrayList<>();
+		String query = "SELECT * FROM pet_profile WHERE profile_id = ?";
+		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, profileId);
+		while(rowSet.next()) {
+			Pet petResults = mapRowToPet(rowSet);
+			petsByProfileId.add(petResults);
+		}
+		
+		return petsByProfileId;
+	}
+	
+	@Override
 	public List<Pet> getPetsByPersonality(String personalitySearch) {
 		List<Pet> petsByPersonality = new ArrayList<>();
 		String sqlPetsByPersonality = "SELECT * FROM pet_profile WHERE personality_type=?";

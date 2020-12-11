@@ -42,7 +42,8 @@
             <button class="nav-btn">Log Out</button>
         </div>
 
-        <div class="footer"><h6>© 2020 Pet Play Pals. All Rights Reserved</h6></div>
+        <div class="footer"><h6><a href="https://media1.tenor.com/images/c65f4fdd955cdc6614899b0a38b8473e/tenor.gif?itemid=5648271">
+        © 2020 Pet Play Pals. All Rights Reserved</a></h6></div>
     </div>
     <!-- -->
 </template>
@@ -109,6 +110,11 @@ export default {
     display: flex;
     align-items: flex-end;
     justify-content: center;
+}
+.footer > h6 > a {
+    color: black;
+    text-decoration: none;
+    
 }
 
 .user-profile-nav {
