@@ -18,7 +18,7 @@ export default {
         return http.post(`/register/profile`, userProfile)
     },
     getProfileById(userId) {
-        return http.get(`/profile/${userId}`)
+        return http.get(`/profile/${userId}`) /*updated from /profile?user_id=${userId}
     },
     // Need to set up getProfileByUsername on backend 
     /* getUserProfileByUsername(currentUser) {
