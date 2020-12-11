@@ -32,5 +32,8 @@ export default {
     },
     getPetByProfileId(profileId) {
         return http.get(`/profile/pet/${profileId}`);
+    },
+    getPostingsWithoutBooking() {
+        return http.get(`/display/postings`);
     }
 }
