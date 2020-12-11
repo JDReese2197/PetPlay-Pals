@@ -12,9 +12,9 @@ public interface PlaydateDAO {
 
 	void declinePlaydate(Playdate bookerPlaydate);
 
-	List<Playdate> displayAcceptedInvite(Playdate bookerPlaydate);
+	List<Playdate> displayAcceptedInvite(int petId);
 
-	List<Playdate> displayPostings(Playdate playdate);
+	List<Playdate> displayPostings();
 	
 	
 

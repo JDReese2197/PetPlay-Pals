@@ -47,17 +47,17 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 		public void declinePlaydate(Playdate bookerPlaydate) {
 			String query = "UPDATE playdate "
 					+ "SET pet_booker = ? "
-					+ "WHERE playdate_id = NULL";
-			jdbcTemplate.update(query, "", bookerPlaydate.getPetPosterId());
+					+ "WHERE playdate_id = ?";
+			jdbcTemplate.update(query, "NULL", bookerPlaydate.getPetPosterId());
 		}
 	
-	// Method to display (GET) listings by Poster's id and Booker's id so it's displayed on their profile
+	// Method to display (GET) listings by checking if current pet id is equal to pet_poster or pet_booker so it's displayed on their profile
 	@Override
-	public List<Playdate> displayAcceptedInvite(Playdate playdate) {
+	public List<Playdate> displayAcceptedInvite(int petId) {
 		List<Playdate> displayedPlaydates = new ArrayList<>();
-		String query = "SELECT * FROM playdate WHERE (pet_poster = ? OR booker_id = ?) AND NOT booker_id = ?";
+		String query = "SELECT * FROM playdate WHERE (pet_poster = ? OR pet_booker = ?) AND NOT pet_booker IS NOT NULL";
 		
-		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, playdate.getPetPosterId(), playdate.getPetBookerId(), "NULL");
+		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, petId, petId);
 		
 		while(rowSet.next()) {
 			Playdate displayListing = mapRowToPlaydate(rowSet);
@@ -68,11 +68,11 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 	
 	// Method to display (GET) listings to display it on the main posting display page when pet_booker is empty
 	@Override
-	public List<Playdate> displayPostings(Playdate playdate) {
+	public List<Playdate> displayPostings() {
 		List<Playdate> displayedPlaydates = new ArrayList<>();
-		String query = "SELECT * FROM playdate WHERE booker_id = ?";
+		String query = "SELECT * FROM playdate WHERE booker_id IS NOT NULL";
 		
-		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, "NULL");
+		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query);
 		
 		while(rowSet.next()) {
 			Playdate displayListing = mapRowToPlaydate(rowSet);
