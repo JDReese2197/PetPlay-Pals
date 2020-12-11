@@ -1,6 +1,12 @@
 <template>
-    <div>
-    <!-- Here is a component holding all the pet data -->
+    <div class= "container">
+    <!-- Here is a component holding all the pet data for one pet -->
+        <img src = "{{petImage}}" id="pet-img">
+        <h5> {{petName}} </h5>
+        <p> {{petType}} | {{Breed}} | {{petSize}} </p>
+        <p> {{petAge}} | {{petGender}} </p>
+        <p> {{petPersonality}} </p>
+        <p> {{petDescription}} </p>
     </div>
 </template>
 
