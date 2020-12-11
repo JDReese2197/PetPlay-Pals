@@ -63,7 +63,7 @@ export default {
     methods: {
         retrieveUserProfile() {
             applicationServices
-                .getProfileById(this.$store.state.currentUser)
+                .getProfileById(this.$store.state.user.id)
                 .then(response => {
                     this.$store.commit("SET_PROFILE", response.data.profile)
                 })
