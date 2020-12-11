@@ -100,14 +100,13 @@ import applicationServices from "@/services/ApplicationServices";
 export default {
     created() {
         this.setUserId()
-        this.setProfileId()
     },
     name: "register-user-profile",
     data() {
         return {
             user_profile: {
                 userId: null,
-                profileId: null,
+                profileId: 0,
                 firstName: "",
                 lastName: "",
                 address1: "",
@@ -127,40 +126,14 @@ export default {
         setProfileId() {
             this.user_profile.profileId = this.$store.state.user.id;
         },
-        /*submitUserForm() {
-            applicationServices
-                .registerUserProfile(this.user_profile)
-                .then(response => {
-                    if(response.status === 200) {
-                        this.$router.push('/profile')
-                    }
-                })
-                .catch(error => {
-                    this.handleErrorResponse(error, "Registering")
-                })
-        },*/
-        /*handleErrorResponse(error, verb) {
-            if (error.response) { 
-            this.errorMsg =                                    
-                "Error " + verb + " User Profile. Response received was '" +
-                error.response.statusText +                  
-                "'.";                                           
-            } else if (error.request) {    
-                this.errorMsg =                                        
-                "Error " + verb + " User Profile. Server could not be reached."; 
-            } else {                      
-                this.errorMsg =                                           
-                "Error " + verb + " User Profile. Request could not be created.";
-            }
-        },*/
         submitUserProfile() {
             const userProfile = this.user_profile;
-            if (this.user_profile.profileId === 3) {
+            if (this.user_profile.profileId === 0) {
+                this.setProfileId();
                 applicationServices
                     .registerUserProfile(userProfile)
                     .then(response => {
-                        console.log("got to second if")
-                        if (response.status === 201) {
+                        if (response.status === 200) {
                             this.$router.push(`/profile`);
                         }
                     })
@@ -168,12 +141,10 @@ export default {
                         this.handleErrorResponse(error, "Registering")
                     });
             } else {
-                console.log("got to else")
                 applicationServices
                     .updateUserProfile(userProfile)
                     .then(response => {
-                        console.log("got past .then()")
-                        if(response.status === 201) {
+                        if(response.status === 200) {
                             this.$router.push('/profile')
                         }
                     })
