@@ -1,30 +1,46 @@
 <template>
-    <div class="playdate-card"> <!-- A single playdate card-->
-        <!-- Need to display: pet_poster, date, start-end time, location, details, pet img-->
-        <!-- <img id ="pet-pic" src ="https://res.cloudinary.com/ashdav/image/upload/v1607530571/img/Rudy_dt7y3q.png"/>
-        <h1> PET NAME </h1>
-        <h4> date </h4>
-        <h4> time </h4>
-        <h4> location </h4>
-        <p>Details</p> -->
-        <!-- easy option to accept or decline playdate-->
-        <!-- maybe spot to send messages????-->
+    <div data-aos="fade-up" class="playdate-card"> <!-- A single playdate card-->
+        <img id="pet-img" src="https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"/>
+        <h1>Pet Name</h1>
+        <p> etc </p>
+        <p> etc </p>
+        <p> etc </p>
     </div>
 </template>
 
 <script>
-import PetCard from './PetCard.vue'
 export default {
-  components: { PetCard },
+  components: {  },
     name: "play-date-card",
-    data() {
-        return {
-            
-        }
-    }
+    props: ['cards']
 }
 </script>
 
 <style scoped>
+.playdate-card {
+    width: 300px;
+    height: auto !important;
+    border-radius: 25px;
+    background-image: linear-gradient(#39cfd4, #7bf4f8);
+    padding: 5px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+    /* display: flex;
+    flex-direction: column; */
+    /* border-style: solid;
+    border-width: 2px;
+    border-color:  #5CE1E6; */
+}
 
+#pet-img {
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+    align-content: center;
+    
+}
 </style>
