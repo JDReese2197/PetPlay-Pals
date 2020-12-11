@@ -101,7 +101,7 @@ export default {
     created() {
         this.setUserId()
     },
-    name: "register-user-profile",
+    name: "user-profile-form",
     data() {
         return {
             user_profile: {
@@ -129,7 +129,7 @@ export default {
         submitUserProfile() {
             const userProfile = this.user_profile;
             if (this.user_profile.profileId === 0) {
-                this.setProfileId();
+                this.setProfileId(); 
                 applicationServices
                     .registerUserProfile(userProfile)
                     .then(response => {
