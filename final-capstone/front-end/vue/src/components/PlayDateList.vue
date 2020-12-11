@@ -23,17 +23,22 @@ export default {
     methods: {
         getAllOpenPlayDates() {
             applicationServices
-            .getAllOpenPlayDates()
+            .getPostingsWithoutBooking()
             .then(response => {
+                console.log(response)
                 if(response.status === 200) {
                     this.playDateCards = response.data;
                 }
             })
             .catch ( error => {
+                console.log("uh oh")
                 console.log(error);
             })
         }
-}
+    },
+    mounted() {
+        this.getAllOpenPlayDates()
+    }
 }
 
 </script>

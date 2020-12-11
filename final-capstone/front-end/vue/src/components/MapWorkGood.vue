@@ -11,15 +11,17 @@
 
         </div>
         <br>
-        <gmap-map
+        <gmap-map ref="mapRef"
         :center="center"
-        :zoom="8"
+        :zoom="9"
+        :options="{disableDefaultUi: true}"
         style="width:100%;  height: 400px;"
         >
         <gmap-marker
             :key="index"
             v-for="(m, index) in markers"
             :position="m.position"
+            :clickable="true"
             @click="center=m.position"
         ></gmap-marker>
         </gmap-map>
@@ -27,9 +29,10 @@
 </template>
 
 <script>
+import {gmapApi} from 'vue2-google-maps'
 
 export default {
-    name: "GoogleMap",
+    name: "MapWorkGood",
     data() {
         return {
             center: { lat: 40.367474, lng: -82.996216 },
@@ -51,7 +54,6 @@ export default {
                 this.markers.push({position: marker})
                 this.places.push(this.currentPlace)
                 this.center = marker
-                this.currentPlace = null
             }
         },
         geolocate: function() {
@@ -61,10 +63,11 @@ export default {
                     lng: position.coords.longitude
                 };
             })
+            console.log(this.google.maps)
         }
     },
     computed: {
-
+        google: gmapApi
     },
     components: {
         
