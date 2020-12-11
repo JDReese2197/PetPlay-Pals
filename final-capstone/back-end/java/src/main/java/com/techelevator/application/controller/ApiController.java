@@ -6,6 +6,7 @@ package com.techelevator.application.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -58,15 +59,15 @@ public class ApiController {
 	}
 	
 	// GET all pets by profile ID
-	@RequestMapping(path = "create/playdate", method=RequestMethod.GET)
+	@RequestMapping(path = "/create/playdate", method=RequestMethod.GET)
 	public List<Pet> getPetByProfileId(@RequestParam(value="profileId")int profileId) {
 		return petDAO.getPetByProfileId(profileId);
 	}
 	
 	// GET Profile by user id (NOT Profile Id) to display on the user profile page
 	@RequestMapping(path = "/profile/{id}", method = RequestMethod.GET)
-	public UserProfile getProfileByUserId(@RequestParam(value="userId") int id) {
-		return userProfileDAO.getProfileByUserId(id);
+	public UserProfile getProfileByUserId(@PathVariable(value="id") int id) {
+		return userProfileDAO.getProfileByUserId(id); 
 	}
 	
 	// POST to create a playdate listing
