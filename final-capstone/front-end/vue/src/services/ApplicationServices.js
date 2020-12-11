@@ -29,5 +29,8 @@ export default {
     },
     getPetByPetId(petId) {
         return http.get(`/find-playdate`, petId)
+    },
+    getPetByProfileId(profileId) {
+        return http.get(`/create/playdate`, profileId);
     }
 }

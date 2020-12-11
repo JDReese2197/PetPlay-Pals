@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ApplicationServices from '@/services/ApplicationServices.js'
+import applicationServices from '../services/ApplicationServices.js'
 export default {
      name: "play-date-card",
     data() {
@@ -24,7 +24,19 @@ export default {
         }
     },
     created() {
-
+        // To get the Pet object thru the pet ID
+        applicationServices.getPetByPetId(this.$route.params.id).then(response => {
+            this.petImage = response.data.petImage;
+            this.petName = response.data.petName;
+            this.petGender = response.data.petGender;
+            this.petType = response.data.petType;
+            this.petBreed = response.data.petBreed;
+            this.petSize = response.data.petSize;
+            this.petAge = response.data.petAge;
+            this.petPersonality = response.data.petPersonality;
+            this.petDescription = response.data.petDescription;
+        })
+        
     }
 }
 </script>
