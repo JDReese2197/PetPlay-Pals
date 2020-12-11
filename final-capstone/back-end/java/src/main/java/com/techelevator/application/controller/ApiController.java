@@ -53,13 +53,13 @@ public class ApiController {
 	}
 	
 	// GET a pet from by pet ID
-	@RequestMapping(path = "/find-playdate", method=RequestMethod.GET)
+	@RequestMapping(path = "/pet/{petId}", method=RequestMethod.GET)
 	public Pet getPetbyPetId(@RequestParam(value="petId") int petId) {
 		return petDAO.getPetByPetId(petId);
 	}
 	
 	// GET all pets by profile ID
-	@RequestMapping(path = "/create/playdate", method=RequestMethod.GET)
+	@RequestMapping(path = "/profile/pet/{profileId}", method=RequestMethod.GET)
 	public List<Pet> getPetByProfileId(@RequestParam(value="profileId")int profileId) {
 		return petDAO.getPetByProfileId(profileId);
 	}

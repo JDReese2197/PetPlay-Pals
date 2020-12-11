@@ -28,9 +28,9 @@ export default {
         return http.put(`/update/profile`, userProfile)
     },
     getPetByPetId(petId) {
-        return http.get(`/find-playdate`, petId)
+        return http.get(`/pet/${petId}`)
     },
     getPetByProfileId(profileId) {
-        return http.get(`/create/playdate`, profileId);
+        return http.get(`/profile/pet/${profileId}`);
     }
 }

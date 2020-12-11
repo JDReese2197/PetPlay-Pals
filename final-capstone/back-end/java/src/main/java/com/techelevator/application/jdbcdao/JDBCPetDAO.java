@@ -43,6 +43,7 @@ public class JDBCPetDAO implements PetDAO {
 			return null;
 		}
 	}
+	
 	@Override 
 	public List<Pet> getPetByProfileId(int profileId) {
 		List<Pet> petsByProfileId = new ArrayList<>();
