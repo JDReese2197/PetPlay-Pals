@@ -26,5 +26,8 @@ export default {
     },*/
     updateUserProfile(userProfile) {
         return http.put(`/update/profile`, userProfile)
+    },
+    getPetByPetId(petId) {
+        return http.get(`/find-playdate`, petId)
     }
 }

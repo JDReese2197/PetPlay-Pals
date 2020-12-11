@@ -9,7 +9,7 @@ import AddPetForm from '@/views/AddPetForm.vue'
 import Homepage from '@/views/Homepage.vue'
 import ProfilePage from '@/views/ProfilePage.vue'
 import MapWorkGood from '@/components/MapWorkGood.vue'
-import FindAPlayDate from '@/views/FindAPlayDate.vue'
+import PlayDateSearchPage from '@/views/PlayDateSearchPage.vue'
 
 Vue.use(Router)
 
@@ -76,7 +76,7 @@ const router = new Router({
     {
       path: "/find-a-playdate",
       name: "find-a-playdate",
-      component: FindAPlayDate
+      component: PlayDateSearchPage
     },
     {
       path: "/map-work-good",

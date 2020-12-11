@@ -51,6 +51,18 @@ public class ApiController {
 		return petDAO.registerPet(petProfile); 
 	}
 	
+	// GET a pet from by pet ID
+	@RequestMapping(path = "/find-playdate", method=RequestMethod.GET)
+	public Pet getPetbyPetId(@RequestParam(value="petId") int petId) {
+		return petDAO.getPetByPetId(petId);
+	}
+	
+	// GET all pets by profile ID
+	@RequestMapping(path = "create/playdate", method=RequestMethod.GET)
+	public List<Pet> getPetByProfileId(@RequestParam(value="profileId")int profileId) {
+		return petDAO.getPetByProfileId(profileId);
+	}
+	
 	// GET Profile by user id (NOT Profile Id) to display on the user profile page
 	@RequestMapping(path = "/profile", method = RequestMethod.GET)
 	public UserProfile getProfileByUserId(@RequestParam(value="userId") int id) {
