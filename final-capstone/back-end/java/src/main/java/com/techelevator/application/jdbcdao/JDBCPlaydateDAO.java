@@ -48,7 +48,7 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 			String query = "UPDATE playdate "
 					+ "SET pet_booker = NULL "
 					+ "WHERE playdate_id = ?";
-			jdbcTemplate.update(query, bookerPlaydate.getPetPosterId());
+			jdbcTemplate.update(query, bookerPlaydate.getPlaydateId());
 		}
 	
 	// Method to display (GET) listings by checking if current pet id is equal to pet_poster or pet_booker so it's displayed on their profile
