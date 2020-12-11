@@ -65,9 +65,15 @@ export default {
             applicationServices
                 .getProfileById(this.$store.state.user.id)
                 .then(response => {
-                    this.$store.commit("SET_PROFILE", response.data.profile)
+                    if(response.status === 200) {
+                         this.$store.commit("SET_PROFILE", response.data)
+                    }
                 })
-        }
+                .catch(error => {
+                    const response = error.response
+                    console.log(response)
+                })
+        },
     },
     created() {
         this.retrieveUserProfile();

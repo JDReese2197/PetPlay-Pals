@@ -80,7 +80,7 @@ export default {
       this.profileId = this.$store.state.user.id;
     }
   },
-  updated() { /*added by AD*/
+  created() { /*added by AD*/
     this.setProfileId()
   }
 };
