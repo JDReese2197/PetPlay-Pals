@@ -32,6 +32,8 @@
         required
       />
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
+      <br/>
+      <br/>
       <button type="submit">Sign in</button>
     </form>
   </div>
@@ -43,7 +45,9 @@ import authService from "../services/AuthService";
 
 export default {
   name: "login",
-  components: {},
+  components: {
+
+  },
   data() {
     return {
       user: {
@@ -86,3 +90,54 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: #29d2db;
+}
+#login {
+    font-family: Arial, Helvetica, sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-areas: 
+        ". form .";
+}
+form {
+    grid-area: form;
+    line-height: 20px;
+}
+input {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+    color: #555555;
+}
+.field {
+    margin: 5px 0;
+}
+label {
+    font-weight: bold;
+    color: #555555;
+}
+select {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+    color: #555555;
+}
+button {
+    border: none;
+    border-radius: 20px;
+    text-transform: uppercase;
+    background-color: #29d2db;
+    color: white;
+    font-size: 20px;
+    padding: 5px 15px;
+}
+</style>

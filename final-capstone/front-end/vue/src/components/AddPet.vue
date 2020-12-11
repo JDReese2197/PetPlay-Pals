@@ -3,15 +3,26 @@
     <form v-on:submit.prevent>
         <div class="field">
             <label for="name">Name</label>
-            <input type="text" name="name" v-model="pet.petName"/>
+            <input 
+                type="text" 
+                name="name" 
+                placeholder="Name"
+                v-model="pet.petName"
+                required
+            />
         </div>
         <div class="field">
             <label for="age">Age</label>
-            <input type="number" name="age" v-model="pet.age"/>
+            <input 
+                type="number" 
+                name="age" 
+                placeholder="Age"
+                v-model="pet.age"
+            />
         </div>
         <div class="field">
             <label for="name">Type</label>
-            <select id="type" name="type" v-model="pet.petType">
+            <select id="type" name="type" placeholder="Type" v-model="pet.petType" required>
                 <option value="dog">Dog</option>
                 <option value="cat">Cat</option>
                 <option value="bird">Bird</option>
@@ -21,19 +32,34 @@
         </div>
          <div class="field">
             <label for="breed">Breed</label>
-            <input type="text" name="breed" v-model="pet.breed"/>
+            <input 
+                type="text" 
+                name="breed" 
+                placeholder="Breed"
+                v-model="pet.breed"
+            />
         </div>
         <div class="field">
             <label for="size">Size</label>
-            <input type="text" name="size" v-model="pet.size"/>
+            <input 
+                type="text" 
+                name="size" 
+                placeholder="Size"
+                v-model="pet.size"
+            />
         </div>
         <div class="field">
             <label for="gender">Gender</label>
-            <input type="text" name="gender" v-model="pet.gender"/>
+            <input 
+                type="text" 
+                name="gender" 
+                placeholder="Gender"
+                v-model="pet.gender"
+            />
         </div>
         <div class="field">
             <label for="name">Personality</label>
-            <select id="personality" name="personality" v-model="pet.personalityType">
+            <select id="personality" name="personality" placeholder="Personality" v-model="pet.personalityType" required>
                 <option value="shy">Shy, Timid</option>
                 <option value="friendly">Friendly, Sweet</option>
                 <option value="loving">Loving, Affectionate</option> 
@@ -45,7 +71,12 @@
         </div>
         <div class="field">
             <label for="bio">Bio</label>
-            <input type="text" name="bio" v-model="pet.description"/>
+            <input 
+                type="text"
+                name="bio" 
+                placeholder="Bio"
+                v-model="pet.description"
+            />
         </div>
         <div class="actions">
             <button type="submit" v-on:click="submitPetForm">Add Pet</button>

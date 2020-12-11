@@ -3,27 +3,54 @@
     <form v-on:submit.prevent>
         <div class="field">
             <label for="name">First Name</label>
-            <input type="text" name="firstName" v-model="user_profile.firstName"/>
+            <input 
+                type="text" 
+                name="firstName" 
+                placeholder="First Name"
+                v-model="user_profile.firstName"
+                required
+            />
         </div>
         <div class="field">
             <label for="name">Last Name</label>
-            <input type="text" name="lastName" v-model="user_profile.lastName"/>
+            <input 
+                type="text" 
+                name="lastName" 
+                placeholder="Last Name"
+                v-model="user_profile.lastName"
+                required
+            />
         </div>
         <div class="field">
             <label for="name">Address 1</label>
-            <input type="text" name="address1" v-model="user_profile.address1"/>
+            <input 
+                type="text" 
+                name="address1" 
+                placeholder="Address 1"
+                v-model="user_profile.address1"
+            />
         </div>
         <div class="field">
             <label for="name">Address 2 *</label>
-            <input type="text" name="address2" v-model="user_profile.address2"/>
+            <input 
+                type="text" 
+                name="address2" 
+                placeholder="Address 2"
+                v-model="user_profile.address2"
+            />
         </div>
         <div class="field">
             <label for="name">City</label>
-            <input type="text" name="city" v-model="user_profile.city"/>
+            <input 
+                type="text" 
+                name="city" 
+                placeholder="City"
+                v-model="user_profile.city"
+            />
         </div>
         <div class="field">
             <label for="state">State</label>
-            <select id="state" name="state" v-model="user_profile.state">
+            <select id="state" name="state" placeholder="State" v-model="user_profile.state">
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -78,15 +105,32 @@
         </div>
         <div class="field">
             <label for="name">Zip Code</label>
-            <input type="text" name="zip" v-model="user_profile.zip"/>
+            <input 
+                type="text" 
+                name="zip" 
+                placeholder="Zip Code"
+                v-model="user_profile.zip"
+                required
+            />
         </div>
         <div class="field">
             <label for="name">Email</label>
-            <input type="text" name="email" v-model="user_profile.email"/>
+            <input 
+                type="text" 
+                name="email" 
+                placeholder="Email"
+                v-model="user_profile.email"
+                required
+            />
         </div>
         <div class="field">
             <label for="name">Phone Number</label>
-            <input type="text" name="phone" v-model="user_profile.phone"/>
+            <input 
+                type="text" 
+                name="phone" 
+                placeholder="Phone"
+                v-model="user_profile.phone"
+            />
         </div>
         <div class="actions">
             <button type="submit" v-on:click="submitUserProfile">Register User</button>

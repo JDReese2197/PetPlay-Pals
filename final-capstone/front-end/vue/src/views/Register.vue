@@ -38,6 +38,8 @@
       </div>
       <user-profile-form />
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      <br/>
+      <br/>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
