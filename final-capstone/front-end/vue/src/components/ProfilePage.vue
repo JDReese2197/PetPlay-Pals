@@ -7,43 +7,44 @@
                 <img id = "pet-pic" src = "https://res.cloudinary.com/ashdav/image/upload/v1607530571/img/Rudy_dt7y3q.png"/>
                 <img id = "pet-pic" src = "https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"/> 
             </div>
-             <!-- Pet image/TEMPORARY IMG-->
-            <div class="pet-info"> 
-                
-               <span> <h2>PetName</h2><h5><a href="#" class="edit-pet-profile">Edit</a></h5> </span>
-                <p> Type | Breed | Size </p>
-                <p> Age | Gender </p>
-                <p> Personality </p>
-                <p> Bio </p>
-                <button id="find-a-friend">FIND A FRIEND</button>
-                 <!-- Will link to the pet playdate search page-->
-            </div>
+            
             
         </div> 
 
         <div class="user-info"> <!-- This is the user info section -->
         
-            <h1>Username</h1>
-            <p>{{profile.firstName}}</p>
-            <!--<p>{{profile.lastName}}</p>-->
+            <h1>Human</h1>
+            <p>{{profile.firstName}} {{profile.lastName}}</p>
+            <p>{{profile.address1}}, {{profile.address2}}</p>
+            <p>{{profile.city}}, {{profile.state}} {{profile.zip}}</p>
+            <p>{{profile.email}}</p>
+            <p>{{profile.phone}}</p>
             <router-link v-bind:to="{name: 'register'}"><button id="edit-profile">Edit Profile</button></router-link>
         </div>
 
-        <div class="play-date-preferences"> <!-- This is the playdate info section-->
-            <h1> Perfect Play Date </h1>
-            <p>info for play date goes here</p>
-            <button id="edit-play-date-preferences">Edit Preferences</button>
+         <!-- Pet image/TEMPORARY IMG-->
+        <div class="pet-info"> 
+                
+            <h1>PetName</h1>
+            <p> Type | Breed | Size </p>
+            <p> Age | Gender </p>
+            <p> Personality </p>
+            <p> Bio </p>
+            <router-link v-bind:to="{name: 'addPet'}"><button id="edit-profile">Edit Profile</button></router-link>
+            <button id="find-a-friend">FIND A FRIEND</button>
+                <!-- Will link to the pet playdate search page-->
         </div>
 
         <div class="user-profile-nav"> <!-- This is the list of nav buttons on the user profile page-->
             <button class="nav-btn">Your Calendar</button>
             <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn">Register a Pet</button></router-link>
             <button class="nav-btn">Your Messages</button>
-            <button class="nav-btn">Log Out</button>
+            <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn">Log Out</button></router-link>
         </div>
 
         <div class="footer"><h6><a href="https://media1.tenor.com/images/c65f4fdd955cdc6614899b0a38b8473e/tenor.gif?itemid=5648271">
-        © 2020 Pet Play Pals. All Rights Reserved</a></h6></div>
+        © 2020 Pet Play Pals. All Rights Reserved</a></h6>
+        </div>
     </div>
 </template>
 
@@ -55,6 +56,7 @@ export default {
     components: { 
 
     },
+    props: ["user"],
     data() {
         return {
 
@@ -93,9 +95,9 @@ export default {
     display: grid;
     grid-template-rows: 1fr 2fr 1fr;
     grid-template-areas:
-    "petbar userinfo    nav"
-    "petbar preferences nav"
-    "petbar footer      nav"
+    "petbar userinfo nav"
+    "petbar petinfo  nav"
+    "footer footer   footer"
     ;
     grid-gap: 25px;
 }
@@ -105,32 +107,25 @@ export default {
     
 }
 
-.play-date-preferences {
-    grid-area: preferences;
-    width: 600px;
-}
-
 .footer {
     grid-area: footer;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    text-align: center;
 }
+
 .footer > h6 > a {
     color: black;
-    text-decoration: none;
-    
+    text-decoration: none; 
 }
 
 .user-profile-nav {
     grid-area: nav;
-    width: 200px;
+    display: flex;
+    flex-direction: column;
 }
+
 .pet-profile-side-bar {
     grid-area: petbar;
     background-color: #D7FEFF;
-    width: 400px;
-    height: 100vh;
 }
 
 .h2 {
@@ -148,6 +143,7 @@ export default {
     justify-content: center;
     align-items: center;
 }
+
 #pet-pic {
     border-radius: 50%;
     object-fit: cover;
@@ -159,8 +155,7 @@ export default {
 }
 
 .pet-info {
-    align-content: center;
-    text-align: center;
+    grid-area: petinfo;
 }
 
 .nav-btn, #edit-profile, #edit-play-date-preferences {
