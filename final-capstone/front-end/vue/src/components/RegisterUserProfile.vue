@@ -1,6 +1,6 @@
 <template>
 <div id="register">
-    <form v-on:submit.prevent="registerProfile">
+    <form v-on:submit.prevent>
         <div class="field">
             <label for="name">First Name</label>
             <input type="text" name="firstName" v-model="user_profile.firstName"/>
@@ -89,23 +89,25 @@
             <input type="text" name="phone" v-model="user_profile.phone"/>
         </div>
         <div class="actions">
-            <button type="submit">Register User</button>
+            <button type="submit" v-on:click="submitUserProfile">Register User</button>
         </div>
     </form>
 </div>
 </template>
 <script>
 import applicationServices from "@/services/ApplicationServices";
+
 export default {
     created() {
         this.setUserId()
+        this.setProfileId()
     },
-    name: "register-profile",
+    name: "register-user-profile",
     data() {
         return {
             user_profile: {
                 userId: null,
-                profileId: 1,
+                profileId: null,
                 firstName: "",
                 lastName: "",
                 address1: "",
@@ -122,7 +124,10 @@ export default {
         setUserId() {
             this.user_profile.userId = this.$store.state.user.id
         },
-        registerProfile() {
+        setProfileId() {
+            this.user_profile.profileId = this.$store.state.user.id;
+        },
+        /*submitUserForm() {
             applicationServices
                 .registerUserProfile(this.user_profile)
                 .then(response => {
@@ -133,7 +138,7 @@ export default {
                 .catch(error => {
                     this.handleErrorResponse(error, "Registering")
                 })
-        },
+        },*/
         /*handleErrorResponse(error, verb) {
             if (error.response) { 
             this.errorMsg =                                    
@@ -148,13 +153,13 @@ export default {
                 "Error " + verb + " User Profile. Request could not be created.";
             }
         },*/
-        submitUserForm() {
-            const newUserProfile = this.user_profile;
-            if (this.user_profile.profileId === 1) {
-                console.log("got to if")
+        submitUserProfile() {
+            const userProfile = this.user_profile;
+            if (this.user_profile.profileId === 3) {
                 applicationServices
-                    .registerUserProfile(newUserProfile)
+                    .registerUserProfile(userProfile)
                     .then(response => {
+                        console.log("got to second if")
                         if (response.status === 201) {
                             this.$router.push(`/profile`);
                         }
@@ -163,20 +168,18 @@ export default {
                         this.handleErrorResponse(error, "Registering")
                     });
             } else {
-                console.log("got to else");
+                console.log("got to else")
                 applicationServices
-                    .updateUserProfile(newUserProfile)
+                    .updateUserProfile(userProfile)
                     .then(response => {
-                        console.log("got to update if")
+                        console.log("got past .then()")
                         if(response.status === 201) {
-                            console.log("got to update if")
                             this.$router.push('/profile')
                         }
                     })
                     .catch(error => {
                         this.handleErrorResponse(error, "Updating")
                     })
-                }
             }
         },
         handleErrorResponse(error, verb) {
@@ -193,6 +196,7 @@ export default {
                 "Error " + verb + " User Profile. Request could not be created.";
             }
         }
+    }
 }
 </script>
 <style scoped>
