@@ -2,17 +2,22 @@
     <div class="user-profile"> <!-- One div to rule them all -->
 
         <div class="pet-profile-side-bar"> <!-- This is where the pet profile section goes-->
-        
             <div class="pet-image">
                 <img id = "pet-pic" src = "https://res.cloudinary.com/ashdav/image/upload/v1607530571/img/Rudy_dt7y3q.png"/>
                 <img id = "pet-pic" src = "https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"/> 
-            </div>
-            
-            
+            </div>   
+        </div>
+        <!-- Pet image/TEMPORARY IMG-->
+        <div class="pet-info">   
+            <h1>PetName</h1>
+            <p> Type | Breed | Size </p>
+            <p> Age | Gender </p>
+            <p> Personality </p>
+            <p> Bio </p>
+            <router-link v-bind:to="{name: 'addPet'}"><button id="edit-profile">Edit Profile</button></router-link>
         </div> 
 
         <div class="user-info"> <!-- This is the user info section -->
-        
             <h1>Rudy's Human</h1>
             <p>{{profile.firstName}} {{profile.lastName}}</p>
             <p>{{profile.address1}}, {{profile.address2}}</p>
@@ -22,25 +27,14 @@
             <router-link v-bind:to="{name: 'user-profile-form'}"><button id="edit-profile">Edit Profile</button></router-link>
         </div>
 
-         <!-- Pet image/TEMPORARY IMG-->
-        <div class="pet-info"> 
-                
-            <h1>PetName</h1>
-            <p> Type | Breed | Size </p>
-            <p> Age | Gender </p>
-            <p> Personality </p>
-            <p> Bio </p>
-            <router-link v-bind:to="{name: 'addPet'}"><button id="edit-profile">Edit Profile</button></router-link>
-        </div>
-
         <div class="user-profile-nav"> <!-- This is the list of nav buttons on the user profile page-->
             <button class="nav-btn" id="schedule-btn">Your Schedule</button>
             <router-link v-bind:to="{name: 'find-a-playdate'}"><button class="nav-btn">Find a Playdate</button></router-link>
             <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn">Register a Pet</button></router-link>
             <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn">Log Out</button></router-link>
         </div>
-
-        <div class="footer"><h6><a href="https://media1.tenor.com/images/c65f4fdd955cdc6614899b0a38b8473e/tenor.gif?itemid=5648271">
+        <footer-bar class="footer"/>
+        <div><h6><a href="https://media1.tenor.com/images/c65f4fdd955cdc6614899b0a38b8473e/tenor.gif?itemid=5648271">
         © 2020 Pet Play Pals. All Rights Reserved</a></h6>
         </div>
     </div>
@@ -49,10 +43,11 @@
 <script>
 
 import applicationServices from '@/services/ApplicationServices';
+import footerBar from '@/components/FooterBar';
 
 export default {
     components: { 
-
+        footerBar
     },
     props: ["user"],
     data() {
@@ -74,9 +69,23 @@ export default {
                     console.log(response)
                 })
         },
+        /*retrievePetProfile() {
+            applicationServices
+                .getPetByProfileId(this.$store.state.profile.profileId)
+                .then(response => {
+                    if(response.status === 200) {
+                         this.$store.commit("SET_PET", response.data)
+                    }
+                })
+                .catch(error => {
+                    const response = error.response
+                    console.log(response)
+                })
+        }*/
     },
     created() {
         this.retrieveUserProfile();
+        /*this.retrievePetProfile();*/
     },
     computed: {
         profile() {
@@ -93,14 +102,15 @@ export default {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-areas:
-    "petbar userinfo nav"
-    "petbar petinfo  nav"
+    "petbar petinfo nav"
+    "petbar userinfo  nav"
     "footer footer   footer"
     ;
     grid-gap: 25px;
 }
 p {
     font-size: 20px;
+    color: #555555;
 }
 .user-info {
     grid-area: userinfo;
@@ -112,7 +122,7 @@ p {
 }
 
 .footer > h6 > a {
-    color: black;
+    color: #555555;
     text-decoration: none; 
 }
 
@@ -124,7 +134,7 @@ p {
 
 .pet-profile-side-bar {
     grid-area: petbar;
-    background-color: #D7FEFF;
+    /*background-color: #D7FEFF;*/
 }
 
 .h2 {

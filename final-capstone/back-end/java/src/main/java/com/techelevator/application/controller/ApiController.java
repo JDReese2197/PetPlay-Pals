@@ -60,8 +60,8 @@ public class ApiController {
 	
 	// GET all pets by profile ID
 	@RequestMapping(path = "/profile/pet/{profileId}", method=RequestMethod.GET)
-	public List<Pet> getPetByProfileId(@RequestParam(value="profileId")int profileId) {
-		return petDAO.getPetByProfileId(profileId);
+	public List<Pet> getPetByProfileId(@PathVariable(value="profileId")int profileId) {
+		return petDAO.getPetByProfileId(profileId); 
 	}
 	
 	// GET Profile by user id (NOT Profile Id) to display on the user profile page
