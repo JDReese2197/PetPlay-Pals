@@ -36,7 +36,6 @@
           required
         />
       </div>
-      <user-profile-form />
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
       <br/>
       <br/>
@@ -49,12 +48,10 @@
 
 <script>
 import authService from '../services/AuthService';
-import userProfileForm from '@/components/UserProfileForm';
 
 export default {
   name: 'register',
   components: {
-    userProfileForm
   },
   data() {
     return {
@@ -78,10 +75,19 @@ export default {
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {
-              this.$router.push({
+              authService
+                .login(this.user)
+                .then(response => {
+                  if (response.status == 200) {
+                    this.$store.commit("SET_AUTH_TOKEN", response.data.token);
+                    this.$store.commit("SET_USER", response.data.user);
+                    this.$router.push(`/updateProfile`); /*path updated by AD*/
+                  }
+              })
+              /*this.$router.push({ - CODE PROVIDED
                 path: '/login',
                 query: { registration: 'success' },
-              });
+              });*/
             }
           })
           .catch((error) => {

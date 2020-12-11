@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
+import UserProfileForm from '@/views/UserProfileForm'
 import store from '../store/index'
 import AddPetForm from '@/views/AddPetForm.vue'
 import Homepage from '@/views/Homepage.vue'
@@ -57,6 +58,11 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path: "/updateProfile",
+      name: "user-profile-form",
+      component: UserProfileForm
     },
     {
       path: "/addPet",

@@ -13,13 +13,13 @@
 
         <div class="user-info"> <!-- This is the user info section -->
         
-            <h1>Human</h1>
+            <h1>Rudy's Human</h1>
             <p>{{profile.firstName}} {{profile.lastName}}</p>
             <p>{{profile.address1}}, {{profile.address2}}</p>
             <p>{{profile.city}}, {{profile.state}} {{profile.zip}}</p>
             <p>{{profile.email}}</p>
             <p>{{profile.phone}}</p>
-            <router-link v-bind:to="{name: 'register'}"><button id="edit-profile">Edit Profile</button></router-link>
+            <router-link v-bind:to="{name: 'user-profile-form'}"><button id="edit-profile">Edit Profile</button></router-link>
         </div>
 
          <!-- Pet image/TEMPORARY IMG-->
@@ -31,14 +31,12 @@
             <p> Personality </p>
             <p> Bio </p>
             <router-link v-bind:to="{name: 'addPet'}"><button id="edit-profile">Edit Profile</button></router-link>
-            <button id="find-a-friend">FIND A FRIEND</button>
-                <!-- Will link to the pet playdate search page-->
         </div>
 
         <div class="user-profile-nav"> <!-- This is the list of nav buttons on the user profile page-->
-            <button class="nav-btn">Your Calendar</button>
+            <button class="nav-btn" id="schedule-btn">Your Schedule</button>
+            <router-link v-bind:to="{name: 'find-a-playdate'}"><button class="nav-btn">Find a Playdate</button></router-link>
             <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn">Register a Pet</button></router-link>
-            <button class="nav-btn">Your Messages</button>
             <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn">Log Out</button></router-link>
         </div>
 
@@ -93,7 +91,7 @@ export default {
 .user-profile {
     font-family: Arial, Helvetica, sans-serif;
     display: grid;
-    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
     grid-template-areas:
     "petbar userinfo nav"
     "petbar petinfo  nav"
@@ -101,10 +99,11 @@ export default {
     ;
     grid-gap: 25px;
 }
+p {
+    font-size: 20px;
+}
 .user-info {
     grid-area: userinfo;
-    width: 600px;
-    
 }
 
 .footer {
@@ -158,7 +157,7 @@ export default {
     grid-area: petinfo;
 }
 
-.nav-btn, #edit-profile, #edit-play-date-preferences {
+#edit-profile, #edit-play-date-preferences {
     border: none;
     border-radius: 20px;
     text-transform: uppercase;
@@ -169,6 +168,21 @@ export default {
     width: 150px;
     height: 25px;
     text-align: center;
+}
+.nav-btn {
+    border: none;
+    border-radius: 20px;
+    text-transform: uppercase;
+    margin: 10px;
+    background-color: #e6615c;
+    color: white;
+    font-size: 20px;
+    width: 90%;
+    height: 40px;
+    text-align: center;
+}
+#schedule-btn {
+    margin-top: 25px;
 }
 #find-a-friend  {
     border: none;
