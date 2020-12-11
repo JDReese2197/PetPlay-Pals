@@ -69,7 +69,7 @@ const router = new Router({
       component: Homepage
     },
     {
-      path: "/:profileId",
+      path: "/profile/:profileId",
       name: "profile-page",
       component: ProfilePage
     },

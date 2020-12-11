@@ -179,7 +179,7 @@ export default {
                     .registerUserProfile(userProfile)
                     .then(response => {
                         if (response.status === 200) {
-                            this.$router.push(`/${this.user_profile.profileId}`);
+                            this.$router.push(`/profile/${this.user_profile.profileId}`);
                         }
                     })
                     .catch(error => {
@@ -190,7 +190,7 @@ export default {
                     .updateUserProfile(userProfile)
                     .then(response => {
                         if(response.status === 200) {
-                            this.$router.push(`${this.user_profile.profileId}`)
+                            this.$router.push(`/profile/${this.user_profile.profileId}`)
                         }
                     })
                     .catch(error => {
