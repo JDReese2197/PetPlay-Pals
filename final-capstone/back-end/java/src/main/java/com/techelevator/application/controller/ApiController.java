@@ -64,7 +64,7 @@ public class ApiController {
 	}
 	
 	// GET Profile by user id (NOT Profile Id) to display on the user profile page
-	@RequestMapping(path = "/profile", method = RequestMethod.GET)
+	@RequestMapping(path = "/profile/{id}", method = RequestMethod.GET)
 	public UserProfile getProfileByUserId(@RequestParam(value="userId") int id) {
 		return userProfileDAO.getProfileByUserId(id);
 	}
