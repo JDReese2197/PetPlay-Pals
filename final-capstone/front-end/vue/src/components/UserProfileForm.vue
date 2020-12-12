@@ -184,6 +184,7 @@ export default {
                     .registerUserProfile(userProfile)
                     .then(response => {
                         if (response.status === 200) {
+                            this.$store.commit("SET_PROFILE", response.data);
                             this.$router.push(`/addPet`);
                         }
                     })
