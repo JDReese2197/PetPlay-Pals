@@ -3,7 +3,7 @@
 <div data-aos="fade-up" class="playdate-card"> 
         <img id="pet-img" src="https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"/>
         <h3>{{playDate.playdateId}}</h3>
-        <p> {{}} </p>
+        <p> {{pet}} </p>
         <p> etc </p>
         <p> etc </p>
     </div>
@@ -20,40 +20,37 @@ export default {
           pet: {},
       }
   },
-  computed: {
-        getPet() {
-            return this.$store.state.pet;
-        },
-  },
+  computed: {  },
   methods: {
-        getPlayDate() {
-            console.log(this.$store.playDates.playdate.playdateId)
-            applicationServices.getPlayDateByPlayDateId(this.$store.playDates.playdate.playdateId)
-            .then(response => {
-                console.log(response)
-                if(response.status === 200) {
-                    this.playdate = response.data;
-                }
-            }) .catch (error => {
-                console.log(error);
-            })
-        }
-    //    getPet() {
-    //        applicationServices
-    //        .getPetByPetId()
-    //        .then(response => {
-    //            if(response.status === 200) {
-    //                console.log('helpme');
-    //                this.pet = response.data;
-    //            }
-    //        })
-    //        .catch (error => {
-    //            console.log(error);
-    //        })
-    //    }     
+        // getPlayDate() {
+        //     console.log(this.$store.playDates.playdate.playdateId)
+        //     applicationServices.getPlayDateByPlayDateId(this.$store.playDates.playdate.playdateId)
+        //     .then(response => {
+        //         console.log(response)
+        //         if(response.status === 200) {
+        //             this.playdate = response.data;
+        //         }
+        //     }) .catch (error => {
+        //         console.log(error);
+        //     })
+        // },
+       getPet() {
+           applicationServices
+           .getPetByPetId(this.playDate.petPosterId)
+           .then(response => {
+               if(response.status === 200) {
+                   console.log('helpme');
+                   this.pet = response.data;
+               }
+           })
+           .catch (error => {
+               console.log(error);
+           })
+       }     
   },
   mounted() {
-      this.getPlayDate();
+    //   this.getPlayDate();
+      this.getPet();
   }
 }
 </script>
