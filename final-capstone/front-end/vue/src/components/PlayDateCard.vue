@@ -2,7 +2,7 @@
 <!-- A single playdate card-->
 <div data-aos="fade-up" class="playdate-card"> 
         <img id="pet-img" src="https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"/>
-        <h1>Pet Name</h1>
+        <h3>{{petName}}</h3>
         <p> etc </p>
         <p> etc </p>
         <p> etc </p>
@@ -10,16 +10,47 @@
 </template>
 
 <script>
+import applicationServices from '../services/ApplicationServices';
 export default {
-  components: {  },
+  components: { },
     name: "play-date-card",
-    props: ['cards']
+  data() { 
+      return {
+          pet: {
+            petId: 0,
+            profileId: 0,
+            petImage: '',
+            petName: '',
+            petGender: '',
+            petType: '',
+            petBreed: '',
+            petSize: '',
+            petAge: '',
+            petPersonality: '',
+            petDescription: '',
+          }
+      }
+  },
+  methods: {
+       getPlayDateCard() {
+           applicationServices
+           .getPetByPetId(2)
+           .then(response => {
+               if(response.status === 200) {
+                   this.pet = response.data;
+               }
+           })
+           .catch (error => {
+               console.log(error);
+           })
+       }     
+  }
 }
 </script>
 
 <style scoped>
 .playdate-card {
-    width: 300px;
+    width: 200px;
     height: auto !important;
     border-radius: 25px;
     background-image: linear-gradient(#39cfd4, #7bf4f8);
@@ -32,8 +63,8 @@ export default {
     border-radius: 50%;
     object-fit: cover;
     object-position: center top;
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     margin: 5px;
     align-content: center;
     

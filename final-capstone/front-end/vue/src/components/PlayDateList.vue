@@ -25,16 +25,22 @@ export default {
             applicationServices
             .getPostingsWithoutBooking()
             .then(response => {
-                console.log(response)
                 if(response.status === 200) {
                     this.playDateCards = response.data;
                 }
             })
             .catch ( error => {
-                console.log("uh oh")
                 console.log(error);
             })
         }
+        // randomBackgroundColor() {
+        //     return "#" + this.generateHexCode();
+        // },
+        // generateHexCode() {
+        //     var bg = Math.floor(Math.random()*16777215).toString(16);
+        //     if (bg.length !== 6) bg = this.generateHexCode();
+        //     return bg;
+        // }
     },
     mounted() {
         this.getAllOpenPlayDates()
@@ -48,6 +54,5 @@ export default {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: blueviolet;
 }
 </style>

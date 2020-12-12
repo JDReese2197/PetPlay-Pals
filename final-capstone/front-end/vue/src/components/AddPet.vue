@@ -116,6 +116,7 @@ export default {
                     .addPet(newPet)
                     .then(response => {
                         if(response.status === 200) {
+                            this.$store.commit("SET_PET", response.data);
                             this.$router.push(`/profile`, newPet);
                         }
                     })

@@ -21,8 +21,8 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     profile: {},
-    playDates: {},
-    pets: [],
+    playDates: [],
+    pets: {},
     states: [
       "Alabama", 
       "Alaska",
