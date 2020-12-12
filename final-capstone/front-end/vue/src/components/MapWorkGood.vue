@@ -13,7 +13,7 @@
         <br>
         <gmap-map ref="mapRef"
         :center="center"
-        :zoom="9"
+        :zoom="currentZoom"
         :options="{disableDefaultUi: true}"
         style="width:100%;  height: 400px;"
         >
@@ -39,6 +39,8 @@ export default {
             markers: [],
             places: [],
             currentPlace: null,
+            currentZoom: 10,
+            userLocation: {},
         }
     },
     methods: {
@@ -62,9 +64,12 @@ export default {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
+                this.userLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                }
             })
-            console.log(this.google.maps)
-        }
+        },
     },
     computed: {
         google: gmapApi
