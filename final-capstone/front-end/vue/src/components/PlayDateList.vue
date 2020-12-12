@@ -1,9 +1,9 @@
 <template>
     <!-- This is where we will display a list of playdate cards-->
     <div class="container">
-        <div class="aPlayDateCard" v-for="card in playDateCards"
-        v-bind:key="card.id">
-        <play-date-card/>
+        <div class="aPlayDateCard">
+        <play-date-card v-for="playDate in playDateCards"
+        v-bind:key="playDate.id" v-bind:playDate = "playDate"/>
         </div>
         <!-- TO DO: make a view card details method and add this above:  v-on:click="viewCardDetails(card.id)"-->
     </div>
@@ -32,7 +32,8 @@ export default {
             .catch ( error => {
                 console.log(error);
             })
-        }
+        },
+        
         // randomBackgroundColor() {
         //     return "#" + this.generateHexCode();
         // },

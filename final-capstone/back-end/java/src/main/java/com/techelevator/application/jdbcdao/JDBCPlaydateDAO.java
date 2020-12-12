@@ -67,7 +67,7 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 	@Override
 	public List<Playdate> displayAcceptedInvite(int petId) {
 		List<Playdate> displayedPlaydates = new ArrayList<>();
-		String query = "SELECT * FROM playdate WHERE (pet_poster = ? OR pet_booker = ?) AND NOT pet_booker IS NOT NULL";
+		String query = "SELECT * FROM playdate WHERE (pet_poster = ? OR pet_booker = ?) AND pet_booker IS NOT NULL";
 		
 		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, petId, petId);
 		

@@ -29,25 +29,21 @@ export default {
     props: "Schedule", 
     data() {
         return {
-
+            playdate: {}
         }
     },
     methods: {
-        retrievePlayDate() {
+        retrieveUserProfile() {
             applicationServices
-                .getPlayDateByPlayDateId(this.$store.state.profile.profileId)
+                .getProfileById(this.$store.state.user.id)
                 .then(response => {
                     if(response.status === 200) {
-                         this.$store.commit("SET_PLAYDATE", response.data)
+                         this.$store.commit("SET_PROFILE", response.data)
                     }
                 })
                 .catch(error => {
                     const response = error.response
                     console.log(response)
-                         console.log(this.$store.state.pet.petName)
-                         console.log(this.$store.state.pet)
-                         console.log(this.$store.state.playdate)
-                         console.log(this.$store.state.playdate.location)
                 })
         }
         },
@@ -55,9 +51,6 @@ export default {
         this.retrievePlaydate();
     },
     computed: {
-        playDate() {
-            return this.$store.state.playdate;
-        }
     }
 }
 </script>

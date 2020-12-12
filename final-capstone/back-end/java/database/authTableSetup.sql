@@ -121,6 +121,9 @@ INSERT INTO pet_profile VALUES (1, 1, 'Dog', 'Finn', 'Mutt', 'Small', 'Male', 'L
 INSERT INTO pet_profile VALUES (2, 2, 'Dog', 'Oslo', 'Grey Hound', 'Large', 'Male', 'Lazy but loving dog', 3, 'loving', NULL);
 
 INSERT INTO playdate VALUES (1, 2, NULL, '2020-12-13', '12:00:00', '14:00:00', 'Lakewood Park, Lake Avenue, Lakewood, OH', 'Looking for a male dog to play with my Greyhound');
+INSERT INTO playdate VALUES (2, 1, 2, '2020-12-13', '12:00:00', '14:00:00', 'Lakewood Park, Lake Avenue, Lakewood, OH', 'SECOND LINE');
+
+SELECT * FROM playdate WHERE (pet_poster = 1 OR pet_booker = 1) AND pet_booker IS NOT NULL;
 
 COMMIT TRANSACTION;
 
