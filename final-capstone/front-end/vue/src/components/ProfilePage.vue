@@ -9,11 +9,11 @@
         </div>
         <!-- Pet image/TEMPORARY IMG-->
         <div class="pet-info">   
-            <h1>{{pet.petName}}'s Profile</h1>
-            <p> Type | Breed | Size </p>
-            <p> Age | Gender </p>
-            <p> Personality </p>
-            <p> Bio </p>
+            <h1>{{this.$store.state.pet.petName}}'s Profile</h1>
+            <p> {{pet.petType}} | {{pet.breed}} | {{pet.size}} </p>
+            <p> {{pet.age}} | {{pet.gender}} </p>
+            <p> {{pet.personalityType}} </p>
+            <p> {{pet.description}} </p>
             <router-link v-bind:to="{name: 'addPet'}"><button id="edit-profile">Edit Profile</button></router-link>
         </div> 
 
@@ -91,8 +91,8 @@ export default {
         profile() {
             return this.$store.state.profile;
         },
-        pets() {
-            return this.$store.state.pets;
+        pet() {
+            return this.$store.state.pet;
         }
     }
     
