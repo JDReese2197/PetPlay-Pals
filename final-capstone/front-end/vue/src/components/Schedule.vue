@@ -26,19 +26,19 @@ export default {
     components: { 
         footerBar
     },
-    props: "Schedule", 
+    props: ["Schedule"], 
     data() {
         return {
             playdate: {}
         }
     },
     methods: {
-        retrieveUserProfile() {
+        retrievePlaydate() {
             applicationServices
-                .getProfileById(this.$store.state.user.id)
+                .displayAcceptedInvite(this.$store.state.pet.petId)
                 .then(response => {
                     if(response.status === 200) {
-                         this.$store.commit("SET_PROFILE", response.data)
+                         this.data.playdate = response.data
                     }
                 })
                 .catch(error => {
@@ -51,6 +51,7 @@ export default {
         this.retrievePlaydate();
     },
     computed: {
+
     }
 }
 </script>
