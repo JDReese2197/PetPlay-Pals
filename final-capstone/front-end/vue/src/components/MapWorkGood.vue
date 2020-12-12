@@ -1,7 +1,8 @@
 <template>
     <div>
         <div>
-            <h2></h2>
+            <h1>WARNING! AUTHORIZED PERSONEL ONLY! WARNING!</h1>
+            <h2>Testing grounds for google maps API</h2>
             <label>
                 <gmap-autocomplete v-on:place_changed="setPlace">
                 </gmap-autocomplete>
