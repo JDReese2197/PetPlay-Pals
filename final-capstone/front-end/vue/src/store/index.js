@@ -24,6 +24,7 @@ export default new Vuex.Store({
     playDates: [],
     pet: {},
     pets:[],
+    playDate: {},
     states: [
       "Alabama", 
       "Alaska",

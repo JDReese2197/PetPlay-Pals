@@ -11,6 +11,7 @@ import Homepage from '@/views/Homepage.vue'
 import ProfilePage from '@/views/ProfilePage.vue'
 import MapWorkGood from '@/components/MapWorkGood.vue'
 import PlayDateSearchPage from '@/views/PlayDateSearchPage.vue'
+import Schedule from '@/components/Schedule.vue'
 
 Vue.use(Router)
 
@@ -88,6 +89,11 @@ const router = new Router({
       path: "/map-work-good",
       name: "map-work-good",
       component: MapWorkGood
+    },
+    {
+      path: "/schedule",
+      name: "schedule",
+      component: Schedule
     }
 
   ]
