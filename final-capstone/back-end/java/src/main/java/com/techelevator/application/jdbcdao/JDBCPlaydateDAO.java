@@ -43,14 +43,26 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 	}
 	
 	//Method to decline (PUT) playdate with a matched pet by removing pet_booker (id) (ie. Booker has selected a playdate, but Poster can remove it)
-		@Override
-		public void declinePlaydate(Playdate bookerPlaydate) {
-			String query = "UPDATE playdate "
-					+ "SET pet_booker = NULL "
-					+ "WHERE playdate_id = ?";
-			jdbcTemplate.update(query, bookerPlaydate.getPlaydateId());
-		}
+	@Override
+	public void declinePlaydate(Playdate bookerPlaydate) {
+		String query = "UPDATE playdate "
+				+ "SET pet_booker = NULL "
+				+ "WHERE playdate_id = ?";
+		jdbcTemplate.update(query, bookerPlaydate.getPlaydateId());
+	}
 	
+	//Method to display (GET) a single playdate listing by playdate_id
+	@Override
+	public Playdate getPlaydateByPlaydateId(int playdateId) {
+		String query = "SELECT * FROM playdate WHERE playdate_id = ?";
+		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, playdateId);
+		if(rowSet.next()) {
+			return mapRowToPlaydate(rowSet);
+		} else {
+			return null;	
+		}
+	}
+		
 	// Method to display (GET) listings by checking if current pet id is equal to pet_poster or pet_booker so it's displayed on their profile
 	@Override
 	public List<Playdate> displayAcceptedInvite(int petId) {

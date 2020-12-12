@@ -9,6 +9,8 @@ public interface PlaydateDAO {
 	Playdate createPosterPlaydate(Playdate posterPlaydate);
 
 	void joinPlaydate(Playdate bookerPlaydate);
+	
+	Playdate getPlaydateByPlaydateId(int playdateId);
 
 	void declinePlaydate(Playdate bookerPlaydate);
 

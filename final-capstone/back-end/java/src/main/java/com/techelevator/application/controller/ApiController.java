@@ -100,5 +100,10 @@ public class ApiController {
 		return playdateDAO.displayPostings();
 	}
 	
+	// GET the display for a single playdate based on playdate_id
+	@RequestMapping(path = "/playdate/{playdateId}", method = RequestMethod.GET)
+	public Playdate getPlaydateByPlaydateId(@PathVariable(value="playdateId") int playdateId) {
+		return playdateDAO.getPlaydateByPlaydateId(playdateId);
+	}
 
 }

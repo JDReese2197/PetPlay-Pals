@@ -2,7 +2,7 @@
 <!-- A single playdate card-->
 <div data-aos="fade-up" class="playdate-card"> 
         <img id="pet-img" src="https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"/>
-        <h3>{{petName}}</h3>
+        <h3>{{this.pet.petName}}</h3>
         <p> etc </p>
         <p> etc </p>
         <p> etc </p>
@@ -32,11 +32,12 @@ export default {
       }
   },
   methods: {
-       getPlayDateCard() {
+       getPet() {
            applicationServices
-           .getPetByPetId(2)
+           .getPetByPetId(1)
            .then(response => {
                if(response.status === 200) {
+                   console.log('helpme');
                    this.pet = response.data;
                }
            })
