@@ -23,11 +23,11 @@
         <div class="field">
             <label for="name">Type</label>
             <select id="type" name="type" placeholder="Type" v-model="pet.petType" required>
-                <option value="dog">Dog</option>
-                <option value="cat">Cat</option>
-                <option value="bird">Bird</option>
-                <option value="reptile">Reptile</option>
-                <option value="other">Other</option>
+                <option value="Dog">Dog</option>
+                <option value="Cat">Cat</option>
+                <option value="Bird">Bird</option>
+                <option value="Reptile">Reptile</option>
+                <option value="Other">Other</option>
             </select>
         </div>
          <div class="field">
@@ -61,13 +61,13 @@
             <label for="name">Personality</label>
             <select id="personality" name="personality" placeholder="Personality" v-model="pet.personalityType" required>
                 <option value="" disabled selected hidden>Personality</option>
-                <option value="shy">Shy, Timid</option>
-                <option value="friendly">Friendly, Sweet</option>
-                <option value="loving">Loving, Affectionate</option> 
-                <option value="curious">Curious, Adventurous</option>
-                <option value="gentle">Gentle, Laidback</option>
-                <option value="active">Active, Playful</option>
-                <option value="confident">Confident, String-Willed</option>
+                <option value="Shy, Timid">Shy, Timid</option>
+                <option value="Friendly, Sweet">Friendly, Sweet</option>
+                <option value="Loving, Affectionate">Loving, Affectionate</option> 
+                <option value="Curious, Adventurous">Curious, Adventurous</option>
+                <option value="Gentle, Laidback">Gentle, Laidback</option>
+                <option value="Active, Playful">Active, Playful</option>
+                <option value="Confident, String-Willed">Confident, String-Willed</option>
             </select>
         </div>
         <div class="field">
