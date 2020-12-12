@@ -1,11 +1,19 @@
 <template>
     <!-- This is where we will display a list of playdate cards-->
     <div class="container">
-        <div class="aPlayDateCard">
+        <div class = "play-date-cards">
         <play-date-card v-for="playDate in playDateCards"
         v-bind:key="playDate.id" v-bind:playDate = "playDate"/>
-        </div>
         <!-- TO DO: make a view card details method and add this above:  v-on:click="viewCardDetails(card.id)"-->
+        </div>
+
+        <div class="nav"> <!-- This is the list of nav buttons on the user profile page-->
+            <router-link v-bind:to="{name: 'profile-page'}"><button class="nav-btn"><strong>Your Profile</strong></button></router-link>
+            <button class="nav-btn" id="schedule-btn"><strong>Your Schedule</strong></button>
+            <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn"><strong>Register a Pet</strong></button></router-link>
+            <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn"><strong>Log Out</strong></button></router-link>
+        </div>
+
     </div>
 </template>
 
@@ -33,15 +41,6 @@ export default {
                 console.log(error);
             })
         },
-        
-        // randomBackgroundColor() {
-        //     return "#" + this.generateHexCode();
-        // },
-        // generateHexCode() {
-        //     var bg = Math.floor(Math.random()*16777215).toString(16);
-        //     if (bg.length !== 6) bg = this.generateHexCode();
-        //     return bg;
-        // }
     },
     mounted() {
         this.getAllOpenPlayDates()
@@ -52,8 +51,44 @@ export default {
 
 <style scoped>
 .container {
+    font-family: Arial, Helvetica, sans-serif;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    grid-template-areas:
+    "nav petSearch"
+    ;
+}
+
+.play-date-cards {
+    grid-area: petSearch;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 5px;
+    margin: 15px;
+}
+.nav {
+    grid-area: nav;
+    padding-top: 25px;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    background-color: #96f8fc;
+}
+.nav-btn {
+    border: none;
+    border-radius: 25px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 10px;
+    margin-top: 25px;
+    background-image: linear-gradient(#fd6d68, #dd4b46);
+    color: white;
+    font-size: 15px;
+    width: 90%;
+    height: 50px;
+    text-align: center;
 }
 </style>

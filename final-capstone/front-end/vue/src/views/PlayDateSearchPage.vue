@@ -15,7 +15,6 @@
 
 <script>
 import FooterBar from '../components/FooterBar.vue'
-// import PlayDateCard from '../components/PlayDateCard.vue'
 import PlayDateList from '../components/PlayDateList.vue'
 import TopHomeBar from '../components/TopHomeBar.vue'
 export default {
@@ -25,11 +24,12 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  max-width: 100%;
-  overflow-x: hidden;
+/* .container {
+
 }
 .play-date-list {
   display: flex;
-}
+  flex-direction: row;
+  flex-wrap: wrap;
+} */
 </style>
