@@ -11,7 +11,7 @@ import Homepage from '@/views/Homepage.vue'
 import ProfilePage from '@/views/ProfilePage.vue'
 import MapWorkGood from '@/components/MapWorkGood.vue'
 import PlayDateSearchPage from '@/views/PlayDateSearchPage.vue'
-import Schedule from '@/components/Schedule.vue'
+import Schedule from '@/views/SchedulePage.vue'
 
 Vue.use(Router)
 

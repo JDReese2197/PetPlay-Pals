@@ -9,7 +9,7 @@
 
         <div class="nav"> <!-- This is the list of nav buttons on the user profile page-->
             <router-link v-bind:to="{name: 'profile-page'}"><button class="nav-btn"><strong>Your Profile</strong></button></router-link>
-            <button class="nav-btn" id="schedule-btn"><strong>Your Schedule</strong></button>
+            <router-link v-bind:to="{name: 'schedule'}"><button class="nav-btn"><strong>Your Schedule</strong></button></router-link>
             <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn"><strong>Register a Pet</strong></button></router-link>
             <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn"><strong>Log Out</strong></button></router-link>
         </div>
