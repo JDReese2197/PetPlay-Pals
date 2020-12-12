@@ -151,7 +151,7 @@ export default {
         return {
             user_profile: {
                 userId: null,
-                profileId: 0,
+                profileId: null,
                 firstName: "",
                 lastName: "",
                 address1: "",
@@ -166,20 +166,25 @@ export default {
     },
     methods: {
         setUserId() {
-            this.user_profile.userId = this.$store.state.user.id
+            this.user_profile.userId = this.$store.state.user.id;
+            this.setProfileId();
         },
         setProfileId() {
-            this.user_profile.profileId = this.$store.state.user.id;
+            if (this.$store.state.profile.profileId != null) {
+                this.user_profile.profileId = this.$store.state.profile.profileId;
+            }
+            else {
+                this.user_profile.profileId = 0;
+            }
         },
         submitUserProfile() {
             const userProfile = this.user_profile;
             if (this.user_profile.profileId === 0) {
-                this.setProfileId(); 
                 applicationServices
                     .registerUserProfile(userProfile)
                     .then(response => {
                         if (response.status === 200) {
-                            this.$router.push(`/profile/${this.user_profile.profileId}`);
+                            this.$router.push(`/profile/${this.$store.state.profile.profileId}`);
                         }
                     })
                     .catch(error => {
@@ -190,7 +195,7 @@ export default {
                     .updateUserProfile(userProfile)
                     .then(response => {
                         if(response.status === 200) {
-                            this.$router.push(`/profile/${this.user_profile.profileId}`)
+                            this.$router.push(`/profile/${this.$store.state.profile.profileId}`)
                         }
                     })
                     .catch(error => {
