@@ -16,6 +16,8 @@ public interface PetDAO {
 	
 	public List<Pet> getPetByProfileId(int profileId);
 	
+	public Pet getAPetByProfileId(int profileId);
+	
 	public Pet getPetByPetId(int petId);
 	
 	public Pet registerPet(Pet newPet);

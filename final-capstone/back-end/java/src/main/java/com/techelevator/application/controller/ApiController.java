@@ -59,9 +59,15 @@ public class ApiController {
 	}
 	
 	// GET all pets by profile ID
-	@RequestMapping(path = "/profile/pet/{profileId}", method=RequestMethod.GET)
+	@RequestMapping(path = "/profile/pets/{profileId}", method=RequestMethod.GET)
 	public List<Pet> getPetByProfileId(@PathVariable(value="profileId")int profileId) {
 		return petDAO.getPetByProfileId(profileId); 
+	}
+	
+	// GET single pet by profile ID
+	@RequestMapping(path = "/profile/pet/{profileId}", method=RequestMethod.GET)
+	public Pet getAPetByProfileId(@PathVariable(value="profileId")int profileId) {
+		return petDAO.getAPetByProfileId(profileId); 
 	}
 	
 	// GET Profile by user id (NOT Profile Id) to display on the user profile page

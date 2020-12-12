@@ -9,7 +9,7 @@
         </div>
         <!-- Pet image/TEMPORARY IMG-->
         <div class="pet-info">   
-            <h1>PetName</h1>
+            <h1>{{pet.petName}}'s Profile</h1>
             <p> Type | Breed | Size </p>
             <p> Age | Gender </p>
             <p> Personality </p>
@@ -49,7 +49,7 @@ export default {
     components: { 
         footerBar
     },
-    props: ["user"],
+    props: ["user"], 
     data() {
         return {
 
@@ -69,9 +69,9 @@ export default {
                     console.log(response)
                 })
         },
-        /*retrievePetProfile() {
+        retrievePetProfile() {
             applicationServices
-                .getPetByProfileId(this.$store.state.profile.profileId)
+                .getAPetByProfileId(this.$store.state.profile.profileId)
                 .then(response => {
                     if(response.status === 200) {
                          this.$store.commit("SET_PET", response.data)
@@ -81,15 +81,18 @@ export default {
                     const response = error.response
                     console.log(response)
                 })
-        }*/
+        }
     },
     created() {
         this.retrieveUserProfile();
-        /*this.retrievePetProfile();*/
+        this.retrievePetProfile();
     },
     computed: {
         profile() {
             return this.$store.state.profile;
+        },
+        pets() {
+            return this.$store.state.pets;
         }
     }
     

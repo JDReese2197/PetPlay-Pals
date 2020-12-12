@@ -31,6 +31,9 @@ export default {
         return http.get(`/pet/${petId}`)
     },
     getPetByProfileId(profileId) {
+        return http.get(`/profile/pets/${profileId}`);
+    },
+    getAPetByProfileId(profileId) {
         return http.get(`/profile/pet/${profileId}`);
     },
     getPostingsWithoutBooking() {

@@ -22,7 +22,8 @@ export default new Vuex.Store({
     user: currentUser || {},
     profile: {},
     playDates: [],
-    pets: {},
+    pet: {},
+    pets:[],
     states: [
       "Alabama", 
       "Alaska",
@@ -95,6 +96,9 @@ export default new Vuex.Store({
     },
     SET_PROFILE(state, profile) {
       state.profile = profile;
+    },
+    SET_PET(state, pet) {
+      state.pet = pet;
     },
     SET_PETS(state, pets) {
       state.pets = pets;
