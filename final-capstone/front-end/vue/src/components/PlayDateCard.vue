@@ -34,7 +34,7 @@ export default {
   methods: {
        getPet() {
            applicationServices
-           .getPetByPetId(1)
+           .getPetByPetId()
            .then(response => {
                if(response.status === 200) {
                    console.log('helpme');
