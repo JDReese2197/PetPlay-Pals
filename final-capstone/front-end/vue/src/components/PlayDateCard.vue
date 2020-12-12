@@ -2,8 +2,8 @@
 <!-- A single playdate card-->
 <div data-aos="fade-up" class="playdate-card"> 
         <img id="pet-img" src="https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"/>
-        <h3>{{this.pet.petName}}</h3>
-        <p> etc </p>
+        <h3>{{playDate.playdateId}}</h3>
+        <p> {{}} </p>
         <p> etc </p>
         <p> etc </p>
     </div>
@@ -14,37 +14,46 @@ import applicationServices from '../services/ApplicationServices';
 export default {
   components: { },
     name: "play-date-card",
+    props: ['playDate'],
   data() { 
       return {
-          pet: {
-            petId: 0,
-            profileId: 0,
-            petImage: '',
-            petName: '',
-            petGender: '',
-            petType: '',
-            petBreed: '',
-            petSize: '',
-            petAge: '',
-            petPersonality: '',
-            petDescription: '',
-          }
+          pet: {},
       }
   },
+  computed: {
+        getPet() {
+            return this.$store.state.pet;
+        },
+  },
   methods: {
-       getPet() {
-           applicationServices
-           .getPetByPetId()
-           .then(response => {
-               if(response.status === 200) {
-                   console.log('helpme');
-                   this.pet = response.data;
-               }
-           })
-           .catch (error => {
-               console.log(error);
-           })
-       }     
+        getPlayDate() {
+            console.log(this.$store.playDates.playdate.playdateId)
+            applicationServices.getPlayDateByPlayDateId(this.$store.playDates.playdate.playdateId)
+            .then(response => {
+                console.log(response)
+                if(response.status === 200) {
+                    this.playdate = response.data;
+                }
+            }) .catch (error => {
+                console.log(error);
+            })
+        }
+    //    getPet() {
+    //        applicationServices
+    //        .getPetByPetId()
+    //        .then(response => {
+    //            if(response.status === 200) {
+    //                console.log('helpme');
+    //                this.pet = response.data;
+    //            }
+    //        })
+    //        .catch (error => {
+    //            console.log(error);
+    //        })
+    //    }     
+  },
+  mounted() {
+      this.getPlayDate();
   }
 }
 </script>
