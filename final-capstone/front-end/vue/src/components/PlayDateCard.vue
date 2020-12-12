@@ -26,12 +26,10 @@ export default {
   computed: {  },
   methods: {
        getPet() {
-           console.log(this.playDate.petPosterId)
            applicationServices
            .getPetByPetId(this.playDate.petPosterId)
            .then(response => {
                if(response.status === 200) {
-                   console.log('helpme');
                    this.pet = response.data;
                }
            })
