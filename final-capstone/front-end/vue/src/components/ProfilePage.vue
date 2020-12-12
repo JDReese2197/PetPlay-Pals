@@ -72,10 +72,10 @@ export default {
         },
         retrievePetProfile() {
             applicationServices
-                .getAPetByProfileId(this.$store.state.profile.profileId)
+                .getPetsByUserId(this.$store.state.user.id)
                 .then(response => {
                     if(response.status === 200) {
-                         this.$store.commit("SET_PET", response.data)
+                         this.$store.commit("SET_PETS", response.data)
                     }
                 })
                 .catch(error => {
@@ -92,7 +92,7 @@ export default {
             return this.$store.state.profile;
         },
         pet() {
-            return this.$store.state.pet;
+            return this.$store.state.pets[0];
         }
     }
     
