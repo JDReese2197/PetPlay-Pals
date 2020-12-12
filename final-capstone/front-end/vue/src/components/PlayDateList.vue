@@ -8,6 +8,7 @@
         </div>
 
         <div class="nav"> <!-- This is the list of nav buttons on the user profile page-->
+            <h1 class="title">Available Playdates</h1>
             <router-link v-bind:to="{name: 'profile-page'}"><button class="nav-btn"><strong>Your Profile</strong></button></router-link>
             <router-link v-bind:to="{name: 'schedule'}"><button class="nav-btn"><strong>Your Schedule</strong></button></router-link>
             <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn"><strong>Register a Pet</strong></button></router-link>
@@ -89,6 +90,9 @@ export default {
     font-size: 15px;
     width: 90%;
     height: 50px;
+    text-align: center;
+}
+.title {
     text-align: center;
 }
 </style>
