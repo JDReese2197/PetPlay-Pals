@@ -6,8 +6,7 @@
             <label>
                 <gmap-autocomplete v-on:place_changed="setPlace">
                 </gmap-autocomplete>
-                <button v-on:click="addMarker">Add</button>
-
+                <button v-on:click="searchParks">Add</button>
             </label>
             <br/>
 
@@ -32,6 +31,7 @@
 
 <script>
 import {gmapApi} from 'vue2-google-maps'
+// import applicationServices from '@/services/ApplicationServices';
 
 export default {
     name: "MapWorkGood",
@@ -100,6 +100,53 @@ export default {
                 }
             })
         },
+        searchParks() {
+            if(this.currentPlace) {
+                const request = {
+                    location: {
+                        lat: this.currentPlace.geometry.location.lat(),
+                        lng: this.currentPlace.geometry.location.lng()
+                    },
+                    radius: 2400,
+                    type: ['park']
+                }
+                console.log(this.$refs.mapRef.$mapObject)
+                console.log(this.google)
+                let service = new this.google.maps.places.PlacesService(this.$refs.mapRef.$mapObject)
+                service.nearbySearch(request, this.callback)
+            }
+        },
+        callback(results, status) {
+            if(status == this.google.maps.places.PlacesServiceStatus.OK) {
+                for(let i = 0; i < results.length; i++) {
+                    console.log(results[i])
+                    let aPlace = {
+                        lat: results[i].geometry.location.lat(), 
+                        lng: results[i].geometry.location.lng()
+                    }
+                    this.setMarker(aPlace)
+                }
+                this.center = {
+                    lat: this.currentPlace.geometry.location.lat(),
+                    lng: this.currentPlace.geometry.location.lng()
+                }
+                this.currentZoom = 13;
+            }
+        },
+        // testGetPets() {
+        //     console.log(this.$store.state.user.id)
+        //     applicationServices
+        //         .getPetsByUserId(this.$store.state.user.id)
+        //         .then(response => {
+        //             console.log(response)
+        //             if(response.status === 200) {
+        //                 this.$store.commit('SET_PETS', response.data)
+        //             }
+        //         })
+        //         .catch(error => {
+        //             console.log(error)
+        //         })
+        // }
     },
     computed: {
         google: gmapApi
@@ -111,6 +158,9 @@ export default {
         this.geolocate();
         this.generatePlaydateMarkers();
     },
+    created() {
+        // this.testGetPets();
+    }
 }
 </script>
 

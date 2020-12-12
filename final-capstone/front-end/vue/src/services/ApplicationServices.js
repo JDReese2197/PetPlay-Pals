@@ -47,5 +47,8 @@ export default {
     },
     displayAcceptedInvite(petId) {
         return http.get(`/display/invites/${petId}`);
-    }
+    },
+    getPetsByUserId(userId) {
+        return http.get(`/${userId}/profile/pets`);
+    },
 }
