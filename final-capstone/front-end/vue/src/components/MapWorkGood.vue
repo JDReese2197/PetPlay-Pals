@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <h1>WARNING! AUTHORIZED PERSONEL ONLY! WARNING!</h1>
+            <h1>WARNING! AUTHORIZED PAIRSUNAIL ONLY! WARNING!</h1>
             <h2>Testing grounds for google maps API</h2>
             <label>
                 <gmap-autocomplete v-on:place_changed="setPlace">
@@ -23,7 +23,7 @@
             v-for="(m, index) in markers"
             :position="m.position"
             :clickable="true"
-            @click="center=m.position"
+            v-on:click="center=m.position"
         ></gmap-marker>
         </gmap-map>
     </div>
@@ -31,7 +31,6 @@
 
 <script>
 import {gmapApi} from 'vue2-google-maps'
-// import applicationServices from '@/services/ApplicationServices';
 
 export default {
     name: "MapWorkGood",
@@ -44,20 +43,19 @@ export default {
             currentZoom: 10,
             userLocation: {},
             playDateLocations: [
-                {lat: 44.500000, lng: -89.500000},
-                {lat: 39.000000, lng: -80.500000},
-                {lat: 44.000000, lng: -72.699997},
-                {lat: 31.000000, lng: -100.000000},
-                {lat: 44.500000, lng: -100.000000},
-                {lat: 41.700001, lng: -71.500000},
-                {lat: 44.000000, lng: -120.500000}
+                {name: "Wisconsin", lat: 44.500000, lng: -89.500000},
+                {name: "West Virginia", lat: 39.000000, lng: -80.500000},
+                {name: "Vermont", lat: 44.000000, lng: -72.699997},
+                {name: "Texas", lat: 31.000000, lng: -100.000000},
+                {name: "South Dakota",lat: 44.500000, lng: -100.000000},
+                {name: "Rhode Island", lat: 41.700001, lng: -71.500000},
+                {name: "Oregon", lat: 44.000000, lng: -120.500000}
             ]
         }
     },
     methods: {
         setPlace(place) {
             this.currentPlace = place;
-            console.log(place)
         },
         addMarker() {
             if(this.currentPlace) {
@@ -69,7 +67,6 @@ export default {
                 this.places.push(this.currentPlace)
                 this.center = marker
             }
-            console.log(this.currentPlace)
         },
         setMarker(place) {
             if(place) {
@@ -81,22 +78,14 @@ export default {
                 this.places.push(place)
             }
         },
-        geolocate: function() {
-            navigator.geolocation.getCurrentPosition(position => {
-                this.center = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-                this.userLocation = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                }
-            })
-        },
         generatePlaydateMarkers() {
-            this.playDateLocations.forEach( pos => {
-                if(pos.lat && pos.lng) {
-                    this.setMarker(pos)
+            this.playDateLocations.forEach( playDate => {
+                if(playDate.lat && playDate.lng) {
+                    this.setMarker(playDate)
+
+                    const distance = this.haversineDistance(playDate, this.markers[0])
+
+                    console.log(`Distance between Columbus and ${playDate.name}: ${distance} miles`)
                 }
             })
         },
@@ -110,43 +99,49 @@ export default {
                     radius: 2400,
                     type: ['park']
                 }
-                console.log(this.$refs.mapRef.$mapObject)
-                console.log(this.google)
+                // console.log(this.$refs.mapRef.$mapObject)
+                // console.log(this.google)
+
                 let service = new this.google.maps.places.PlacesService(this.$refs.mapRef.$mapObject)
-                service.nearbySearch(request, this.callback)
+                service.nearbySearch(request, this.searchServiceCallback)
             }
         },
-        callback(results, status) {
+        searchServiceCallback(results, status) {
             if(status == this.google.maps.places.PlacesServiceStatus.OK) {
                 for(let i = 0; i < results.length; i++) {
+
                     console.log(results[i])
+
                     let aPlace = {
                         lat: results[i].geometry.location.lat(), 
                         lng: results[i].geometry.location.lng()
                     }
+
                     this.setMarker(aPlace)
                 }
+
                 this.center = {
                     lat: this.currentPlace.geometry.location.lat(),
                     lng: this.currentPlace.geometry.location.lng()
                 }
+
                 this.currentZoom = 13;
             }
         },
-        // testGetPets() {
-        //     console.log(this.$store.state.user.id)
-        //     applicationServices
-        //         .getPetsByUserId(this.$store.state.user.id)
-        //         .then(response => {
-        //             console.log(response)
-        //             if(response.status === 200) {
-        //                 this.$store.commit('SET_PETS', response.data)
-        //             }
-        //         })
-        //         .catch(error => {
-        //             console.log(error)
-        //         })
-        // }
+        //  Method to calculate the distance between two points
+        //      Takes a location {lat: number, lng: number} and a marker object {position: {lat: number, lng: number}}
+        haversineDistance(pointA, pointB) {
+            const radius = 2958.8; //   Radius of Earth in miles
+            let rlatA = pointA.lat * (Math.PI/180); // Convert degrees to radians
+            let rlatB = pointB.position.lat * (Math.PI/180); // Convert degrees to radians
+
+            let latDiff = rlatB - rlatA; // Radian difference (latitudes)
+
+            let lngDiff = (pointB.position.lng - pointA.lng) * (Math.PI/180) // Longitudinal difference in Radians
+
+            let distance = 2 * radius * Math.asin(Math.sqrt(Math.sin(latDiff/2)*Math.sin(latDiff/2)+Math.cos(rlatA)*Math.cos(rlatB)*Math.sin(lngDiff/2)*Math.sin(lngDiff/2)));
+            return distance;
+        },
     },
     computed: {
         google: gmapApi
@@ -155,12 +150,9 @@ export default {
         
     },
     mounted() {
-        this.geolocate();
+        this.setMarker({ lat: 40.367474, lng: -82.996216 })
         this.generatePlaydateMarkers();
     },
-    created() {
-        // this.testGetPets();
-    }
 }
 </script>
 
