@@ -9,16 +9,16 @@
         </div>
         <!-- Pet image/TEMPORARY IMG-->
         <div class="pet-info">   
-            <h1>{{this.$store.state.pet.petName}}'s Profile</h1>
+            <h1>{{pet.petName}}'s Profile</h1>
             <p> {{pet.petType}} | {{pet.breed}} | {{pet.size}} </p>
             <p> {{pet.age}} | {{pet.gender}} </p>
             <p> {{pet.personalityType}} </p>
             <p> {{pet.description}} </p>
-            <router-link v-bind:to="{name: 'addPet'}"><button id="edit-profile">Edit Profile</button></router-link>
+            <router-link v-bind:to="{name: 'add-pet'}"><button id="edit-profile">Edit Profile</button></router-link>
         </div> 
 
         <div class="user-info"> <!-- This is the user info section -->
-            <h1>Rudy's Human</h1>
+            <h1>{{pet.petName}}'s Human</h1>
             <p>{{profile.firstName}} {{profile.lastName}}</p>
             <p>{{profile.address1}}, {{profile.address2}}</p>
             <p>{{profile.city}}, {{profile.state}} {{profile.zip}}</p>
@@ -61,7 +61,8 @@ export default {
                 .getProfileById(this.$store.state.user.id)
                 .then(response => {
                     if(response.status === 200) {
-                         this.$store.commit("SET_PROFILE", response.data)
+                        this.$store.commit("SET_PROFILE", response.data);
+                        this.retrievePetProfile();
                     }
                 })
                 .catch(error => {
@@ -84,8 +85,7 @@ export default {
         }
     },
     created() {
-        this.retrieveUserProfile();
-        this.retrievePetProfile();
+        this.retrieveUserProfile(); 
     },
     computed: {
         profile() {

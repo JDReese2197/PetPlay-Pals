@@ -91,11 +91,16 @@ import applicationServices from "@/services/ApplicationServices";
 
 export default {
     name: "add-pet",
+    created() {
+        this.setProfileId();
+        this.setPetId();
+    },
     data() {
         return {
             selectedFile: null,
             pet: {
-                profileId: 1,
+                petId: null,
+                profileId: null,
                 petName: "",
                 age: "",
                 petType: "",
@@ -109,15 +114,26 @@ export default {
         };
     },
     methods: {
+        setProfileId() {
+            this.pet.profileId = this.$store.state.profile.profileId;
+        },
+        setPetId() {
+            if (this.$store.state.pet.petId != null) {
+                this.pet.petId = this.$store.state.pet.petId;
+            }
+            else {
+                this.pet.petId = 0;
+            }
+        },
         submitPetForm() {
             const newPet = this.pet;
-            if (this.pet.profileId === 1) {
+            if (this.pet.petId === 0) {
                 applicationServices
                     .addPet(newPet)
                     .then(response => {
                         if(response.status === 200) {
                             this.$store.commit("SET_PET", response.data);
-                            this.$router.push(`/profile`, newPet);
+                            this.$router.push(`/profile/${this.$store.state.profile.profileId}`);
                         }
                     })
                     .catch(error => {
@@ -140,6 +156,11 @@ export default {
             }
         }
     },
+    computed: {
+        profile() {
+            return this.$store.state.profile;
+        },
+    }
 }
 </script>
 
