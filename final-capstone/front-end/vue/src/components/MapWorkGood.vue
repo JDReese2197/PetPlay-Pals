@@ -1,20 +1,21 @@
 <template>
     <div>
         <div>
-            <h2>Search and add a pin</h2>
+            <h2></h2>
             <label>
                 <gmap-autocomplete v-on:place_changed="setPlace">
                 </gmap-autocomplete>
                 <button v-on:click="addMarker">Add</button>
+
             </label>
             <br/>
 
         </div>
         <br>
         <gmap-map ref="mapRef"
-        :center="center"
-        :zoom="currentZoom"
-        :options="{disableDefaultUi: true}"
+        :center='center'
+        :zoom='currentZoom'
+        :options='{disableDefaultUI: true, zoomControl: true, fullscreenControl: true}'
         style="width:100%;  height: 400px;"
         >
         <gmap-marker
@@ -41,11 +42,21 @@ export default {
             currentPlace: null,
             currentZoom: 10,
             userLocation: {},
+            playDateLocations: [
+                {lat: 44.500000, lng: -89.500000},
+                {lat: 39.000000, lng: -80.500000},
+                {lat: 44.000000, lng: -72.699997},
+                {lat: 31.000000, lng: -100.000000},
+                {lat: 44.500000, lng: -100.000000},
+                {lat: 41.700001, lng: -71.500000},
+                {lat: 44.000000, lng: -120.500000}
+            ]
         }
     },
     methods: {
         setPlace(place) {
             this.currentPlace = place;
+            console.log(place)
         },
         addMarker() {
             if(this.currentPlace) {
@@ -56,6 +67,17 @@ export default {
                 this.markers.push({position: marker})
                 this.places.push(this.currentPlace)
                 this.center = marker
+            }
+            console.log(this.currentPlace)
+        },
+        setMarker(place) {
+            if(place) {
+                const marker = {
+                    lat: place.lat,
+                    lng: place.lng
+                }
+                this.markers.push({position: marker})
+                this.places.push(place)
             }
         },
         geolocate: function() {
@@ -70,6 +92,13 @@ export default {
                 }
             })
         },
+        generatePlaydateMarkers() {
+            this.playDateLocations.forEach( pos => {
+                if(pos.lat && pos.lng) {
+                    this.setMarker(pos)
+                }
+            })
+        },
     },
     computed: {
         google: gmapApi
@@ -79,6 +108,7 @@ export default {
     },
     mounted() {
         this.geolocate();
+        this.generatePlaydateMarkers();
     },
 }
 </script>
