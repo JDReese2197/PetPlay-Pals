@@ -139,6 +139,17 @@ export default {
                     .catch(error => {
                         this.handleErrorResponse(error, "updating");
                     });
+            } else {
+                applicationServices
+                    .updatePetProfile(newPet)
+                    .then(response => {
+                        if(response.status === 200) {
+                            this.$router.push(`/profile/${this.$store.state.profile.profileId}`)
+                        }
+                    })
+                    .catch(error => {
+                        this.handleErrorResponse(error, "Updating")
+                    })
             }
         },
         handleErrorResponse(error, verb) {

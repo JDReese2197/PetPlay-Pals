@@ -125,8 +125,12 @@ public class JDBCPetDAO implements PetDAO {
 	
 	@Override
 	public void updatePet(Pet petToUpdate) {
-		String sqlUpdatePet = "UPDATE pet_profile SET pet_id = ?, profile_id = ?, pet_type = ?, pet_name = ?, age = ?, personality_type = ?";
-		jdbcTemplate.update(sqlUpdatePet, petToUpdate);
+		String sqlUpdatePet = "UPDATE pet_profile SET pet_type = ?, pet_name = ?, "
+				+ "breed = ?, size = ?, gender = ?, description = ?, age = ?, personality_type = ?"
+				+ "WHERE pet_id = ?";
+		jdbcTemplate.update(sqlUpdatePet, petToUpdate.getPetType(), petToUpdate.getPetName(), petToUpdate.getBreed(), 
+				petToUpdate.getSize(), petToUpdate.getGender(), petToUpdate.getDescription(), petToUpdate.getAge(), 
+				petToUpdate.getPersonalityType());
 	}
 	
 	@Override
