@@ -54,7 +54,7 @@ public class ApiController {
 	
 	// GET a pet from by pet ID
 	@RequestMapping(path = "/pet/{petId}", method=RequestMethod.GET)
-	public Pet getPetbyPetId(@RequestParam(value="petId") int petId) {
+	public Pet getPetbyPetId(@PathVariable(value="petId") int petId) {
 		return petDAO.getPetByPetId(petId);
 	}
 	
