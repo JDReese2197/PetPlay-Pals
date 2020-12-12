@@ -52,6 +52,12 @@ public class ApiController {
 		return petDAO.registerPet(petProfile); 
 	}
 	
+	// PUT to update pet information
+	@RequestMapping(path = "/update/pet", method=RequestMethod.PUT)
+	public void updatePetProfile(@RequestBody Pet petProfile) {
+		petDAO.updatePet(petProfile); 
+	}
+	
 	// GET a pet from by pet ID
 	@RequestMapping(path = "/pet/{petId}", method=RequestMethod.GET)
 	public Pet getPetbyPetId(@RequestParam(value="petId") int petId) {
