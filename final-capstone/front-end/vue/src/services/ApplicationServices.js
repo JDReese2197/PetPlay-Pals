@@ -14,6 +14,9 @@ export default {
     addPet(pet) {
         return http.post(`/register/pet`, pet)
     },
+    updatePetProfile(petProfile) {
+        return http.put(`/update/pet`, petProfile)
+    },
     registerUserProfile(userProfile) {
         return http.post(`/register/profile`, userProfile)
     },
