@@ -184,7 +184,7 @@ export default {
                     .registerUserProfile(userProfile)
                     .then(response => {
                         if (response.status === 200) {
-                            this.$router.push(`/profile/${this.$store.state.profile.profileId}`);
+                            this.$router.push(`/addPet`);
                         }
                     })
                     .catch(error => {
