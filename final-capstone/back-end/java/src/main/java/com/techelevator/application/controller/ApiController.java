@@ -111,5 +111,10 @@ public class ApiController {
 	public Playdate getPlaydateByPlaydateId(@PathVariable(value="playdateId") int playdateId) {
 		return playdateDAO.getPlaydateByPlaydateId(playdateId);
 	}
-
+	
+	//	GET pets given user_id
+	@RequestMapping(path = "/{userId}/profile/pets", method = RequestMethod.GET)
+	public Object[] getPetsByUserId(@PathVariable(value="userId") int id) {
+		return petDAO.getPetsByUserId(id);
+	}
 }

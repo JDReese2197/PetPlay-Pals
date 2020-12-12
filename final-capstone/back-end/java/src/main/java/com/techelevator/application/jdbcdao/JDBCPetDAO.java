@@ -135,6 +135,22 @@ public class JDBCPetDAO implements PetDAO {
 		jdbcTemplate.update(sqlDeletePet, petToDelete); // Is update correct here?
 	}
 	
+	@Override
+	public Object[] getPetsByUserId(int id) {
+		List<Pet> petsList = new ArrayList<>();
+		
+		String query = "SELECT * FROM pet_profile as pet "
+					+ "JOIN user_profile as up ON up.profile_id = pet.profile_id "
+					+ "WHERE up.user_id = ?";
+		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, id);
+		while(rowSet.next()) {
+			petsList.add(mapRowToPet(rowSet));
+		}
+		
+		
+		return (petsList.isEmpty() ? null : petsList.toArray());
+	}
+	
 	private int getNextPetId() {
 		String query = "SELECT nextval('seq_pet_id')";
 		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query);
