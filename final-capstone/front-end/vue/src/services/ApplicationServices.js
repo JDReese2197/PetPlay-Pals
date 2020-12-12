@@ -41,5 +41,8 @@ export default {
     },
     getPlaydateByPlaydateId(profileId) {
         return http.get(`/playdate/${profileId}`);
+    },
+    displayAcceptedInvite(id) {
+        return http.get(`/display/invites/${id}`);
     }
 }
