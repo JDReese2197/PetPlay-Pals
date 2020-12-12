@@ -49,10 +49,10 @@ export default {
     components: { 
         footerBar
     },
-    props: ["user"], 
+    props: ['user'],
     data() {
         return {
-
+            
         }
     },
     methods: {

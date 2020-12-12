@@ -1,13 +1,10 @@
 <template>
     <div class="Schedule"> <!-- One div to rule them all -->
 
-        <div class="playdate-info"> <!-- This is the user info section -->
-            <h1>Playdate Schedule</h1>
-            <p>{{this.$store.state.pet.petName}} has a playdate with {{playdate.petBookerId}}</p>
-            <p>On: {{playdate.theDate}} from {{playdate.startTime}} to {{playdate.endTime}}</p>
-            <p>At location: {{playdate.location}}</p>
-            <p>Details: {{playdate.details}}</p>
-            <!--<router-link v-bind:to="{name: 'playdate-form'}"><button id="edit-profile">Button possibly to cancel date</button></router-link> -->
+        <div>
+            <p>Line 1</p>
+            <p>{{profile.firstName}}</p>
+            <!--<profile :profile="profile"></profile>-->
         </div>
 
         <footer-bar class="footer"/>
@@ -19,40 +16,25 @@
 
 <script>
 
+import ProfilePage from '@/components/ProfilePage';
 import applicationServices from '@/services/ApplicationServices';
 import footerBar from '@/components/FooterBar';
 
 export default {
     components: { 
+        'profile': ProfilePage,
         footerBar
     },
-    props: ["Schedule"], 
+    props: ['profile'],
     data() {
         return {
-            playdate: {}
+            petId: {
+                
+            }
         }
     },
     methods: {
-        retrievePlaydate() {
-            applicationServices
-                .displayAcceptedInvite(this.$store.state.pet.petId)
-                .then(response => {
-                    if(response.status === 200) {
-                         this.data.playdate = response.data
-                    }
-                })
-                .catch(error => {
-                    const response = error.response
-                    console.log(response)
-                })
-        }
-        },
-    created() {
-        this.retrievePlaydate();
-    },
-    computed: {
-
-    }
+}
 }
 </script>
 
