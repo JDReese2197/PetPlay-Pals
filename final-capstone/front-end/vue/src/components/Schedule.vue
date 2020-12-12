@@ -1,16 +1,13 @@
 <template>
     <div class="Schedule"> <!-- One div to rule them all -->
 
-        <div class="pet-profile-side-bar"> <!-- This is where the pet profile section goes-->
-        </div>
-
         <div class="playdate-info"> <!-- This is the user info section -->
             <h1>Playdate Schedule</h1>
-            <p>{{this.$store.state.pet.petName}} has a playdate with {{playDate.petBookerId}}</p>
-            <p>On: {{playDate.theDate}} from {{playDate.startTime}} to {{playDate.endTime}}</p>
-            <p>At location: {{playDate.location}}</p>
-            <p>Details: {{playDate.details}}</p>
-            <router-link v-bind:to="{name: 'playdate-form'}"><button id="edit-profile">Button possibly to cancel date</button></router-link>
+            <p>{{this.$store.state.pet.petName}} has a playdate with {{playdate.petBookerId}}</p>
+            <p>On: {{playdate.theDate}} from {{playdate.startTime}} to {{playdate.endTime}}</p>
+            <p>At location: {{playdate.location}}</p>
+            <p>Details: {{playdate.details}}</p>
+            <!--<router-link v-bind:to="{name: 'playdate-form'}"><button id="edit-profile">Button possibly to cancel date</button></router-link> -->
         </div>
 
         <footer-bar class="footer"/>
@@ -29,14 +26,14 @@ export default {
     components: { 
         footerBar
     },
-    props: ["user"], 
+    props: "Schedule", 
     data() {
         return {
 
         }
     },
     methods: {
-        getPlaydateByPlaydateId() {
+        retrievePlayDate() {
             applicationServices
                 .getPlayDateByPlayDateId(this.$store.state.profile.profileId)
                 .then(response => {
@@ -47,14 +44,19 @@ export default {
                 .catch(error => {
                     const response = error.response
                     console.log(response)
+                         console.log(this.$store.state.pet.petName)
+                         console.log(this.$store.state.pet)
+                         console.log(this.$store.state.playdate)
+                         console.log(this.$store.state.playdate.location)
                 })
+        }
         },
     created() {
-        this.retrievePlayDate();
+        this.retrievePlaydate();
     },
     computed: {
         playDate() {
-            return this.$store.state.playDate;
+            return this.$store.state.playdate;
         }
     }
 }

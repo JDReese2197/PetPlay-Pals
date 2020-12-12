@@ -39,7 +39,7 @@ export default {
     getPostingsWithoutBooking() {
         return http.get(`/display/postings`);
     },
-    getPlayDateByPlayDateId(playDateId) {
-        return http.get(`/playdate/${playDateId}`);
+    getPlaydateByPlaydateId(profileId) {
+        return http.get(`/playdate/${profileId}`);
     }
 }
