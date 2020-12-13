@@ -93,6 +93,11 @@ export default new Vuex.Store({
       localStorage.removeItem('user');
       state.token = '';
       state.user = {};
+
+      state.pets = [];
+      state.pet = {};
+      state.profile = {};
+
       axios.defaults.headers.common = {};
     },
     SET_PROFILE(state, profile) {
@@ -103,6 +108,9 @@ export default new Vuex.Store({
     },
     SET_PETS(state, pets) {
       state.pets = pets;
+      if(pets[0]) {
+        state.pet = pets[0]
+      }
     },
     SET_PLAYDATE(state, playDate) {
       state.playDate = playDate;
