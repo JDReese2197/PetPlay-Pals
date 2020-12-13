@@ -2,7 +2,7 @@
 <!-- A single playdate card-->
 <div class="container">
 <div data-aos="fade-up" class="playdate-card"> 
-        <img id="pet-img" src="https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"/>
+        <img id = "pet-img" v-bind:src = "pet.profilePhoto"/>
         <h2>{{pet.petName}}</h2>
         <h4> {{pet.breed}} | {{pet.gender}} | Age {{pet.age}}</h4>
         <h4> At {{playDate.location}} on {{playDate.theDate}} from {{playDate.startTime}} - {{playDate.endTime}} </h4>
