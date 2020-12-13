@@ -7,6 +7,15 @@
                 </gmap-autocomplete>
                 <button v-on:click="generatePlaydateMarkers">Search Nearby PlayDates</button>
             </label>
+            <label for="distance-selector"/>
+            <select id="distance-selector" v-model="searchDistance">
+                <option value="5" >5</option>
+                <option value="10" >10</option>
+                <option value="15" >15</option>
+                <option value="20" >20</option>
+                <option value="25" >25</option>
+                <option value="999999">Unlimited</option>
+            </select>
             <br/>
 
         </div>
@@ -41,14 +50,20 @@ export default {
             currentPlace: null,
             currentZoom: 10,
             userLocation: {},
+            searchDistance: 0,
             playDateLocations: [
-                // {name: "Wisconsin", lat: 44.500000, lng: -89.500000},
-                // {name: "West Virginia", lat: 39.000000, lng: -80.500000},
-                // {name: "Vermont", lat: 44.000000, lng: -72.699997},
-                // {name: "Texas", lat: 31.000000, lng: -100.000000},
-                // {name: "South Dakota",lat: 44.500000, lng: -100.000000},
-                // {name: "Rhode Island", lat: 41.700001, lng: -71.500000},
-                // {name: "Oregon", lat: 44.000000, lng: -120.500000}
+                {name: "Cleveland MetroParks Zoo", lat: 41.4459344, lng: -81.7126134},
+                {name: "Bonnie Park", lat: 41.33319669999999, lng: -81.83356289999999},
+                {name: "Lakewood Park", lat: 41.4948088, lng: -81.7971556},
+                {name: "Peninsula Township", lat: 44.8839492, lng: -85.50972259999999},
+                {name: "Edgewater Park", lat: 41.4902896, lng: -81.73545519999999},
+                {name: "Hilton Head Island", lat: 32.216316, lng: -80.752608},
+                {name: "Jackson Hole Ski Area", lat: 43.5965946, lng: -110.8474344},
+                {name: "Estes Park", lat: 40.3772059, lng: -105.5216651},
+                {name: "Yellowstone National Park", lat: 44.427963, lng: -110.588455},
+                {name: "Schuylkill River Park", lat: 39.9910906, lng: -75.1964947},
+                {name: "Wissahickon Creek", lat: 40.1323551, lng: -75.22288089999999},
+                {name: "Fairmount Park", lat: 39.9857859, lng: -75.21564}
             ]
         }
     },
@@ -78,18 +93,21 @@ export default {
             }
         },
         generatePlaydateMarkers() {
-            this.center = this.currentPlace.geometry.location;
-            this.currentZoom = 16;
+            this.markers = [];
+
+            this.center = {lat: this.currentPlace.geometry.location.lat(), lng: this.currentPlace.geometry.location.lng()};
+            this.currentZoom = 14;
 
             this.playDateLocations.forEach( playDate => {
                 if(playDate.lat && playDate.lng) {
 
                     if(this.currentPlace) {
-                        const distance = this.calculateDistance(playDate, this.currentPlace);
+                        console.log("currentPlace: " + this.currentPlace.geometry.location)
+                        const distance = this.calculateDistance(playDate, this.currentPlace.geometry.location);
 
                         console.log(`Distance between Columbus and ${playDate.name}: ${distance} miles`);
 
-                        if(distance < 20) {
+                        if(distance < this.searchDistance) {
                             this.setMarker(playDate);
                         }
                     }
@@ -145,11 +163,11 @@ export default {
         calculateDistance(pointA, pointB) {
             const radius = 2958.8; //   Radius of Earth in miles
             let rlatA = pointA.lat * (Math.PI/180); // Convert degrees to radians
-            let rlatB = pointB.position.lat * (Math.PI/180); // Convert degrees to radians
+            let rlatB = pointB.lat() * (Math.PI/180); // Convert degrees to radians
 
             let latDiff = rlatB - rlatA; // Radian difference (latitudes)
 
-            let lngDiff = (pointB.position.lng - pointA.lng) * (Math.PI/180) // Longitudinal difference in Radians
+            let lngDiff = (pointB.lng() - pointA.lng) * (Math.PI/180) // Longitudinal difference in Radians
 
             let distance = 2 * radius * Math.asin(Math.sqrt(Math.sin(latDiff/2)*Math.sin(latDiff/2)+Math.cos(rlatA)*Math.cos(rlatB)*Math.sin(lngDiff/2)*Math.sin(lngDiff/2)));
             return distance;
