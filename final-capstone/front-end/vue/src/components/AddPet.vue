@@ -79,6 +79,17 @@
                 v-model="pet.description"
             />
         </div>
+        <div class="field">
+            <label for="image">Profile Photo</label>
+            <vue-dropzone
+                id="dropzone"
+                class="mt-3"
+                v-bind:options="dropzoneOptions"
+                v-on:vdropzone-sending="addFormData"
+                v-on:vdropzone-success="getSuccess"
+                :useCustomDropzoneOptions="true"
+            ></vue-dropzone>
+        </div>
         <div class="actions">
             <button type="submit" v-on:click="submitPetForm">Submit</button>
         </div>
@@ -88,9 +99,15 @@
 
 <script>
 import applicationServices from "@/services/ApplicationServices";
+import vue2Dropzone from "vue2-dropzone";
+import "vue2-dropzone/dist/vue2Dropzone.min.css";
 
 export default {
-    name: "add-pet",
+    //name: "add-pet",
+    name: "upload-photo",
+    components: {
+        vueDropzone: vue2Dropzone
+    },
     created() {
         this.setProfileId();
         this.setPetId();
@@ -108,9 +125,20 @@ export default {
                 size:"",
                 gender: "",
                 personalityType: "",
-                description: ""
+                description: "",
+                profilePhoto: ""
             },
-            errorMessage: ""
+            errorMessage: "",
+            dropzoneOptions: {
+                url: "https://api.cloudinary.com/v1_1/ashdav/image/upload",  
+                thumbnailWidth: 250,
+                thumbnailHeight: 250,
+                maxFilesize: 2.0,
+                acceptedFiles: ".jpg, .jpeg, .png, .gif",
+                uploadMultiple: false,
+                addRemoveLinks: true,
+                dictDefaultMessage: 'Drop files here to upload. </br> Alternatively, click to select a file for upload.',                
+            }, 
         };
     },
     methods: {
@@ -165,7 +193,21 @@ export default {
                 this.errorMsg =                                            
                 "Error " + verb + " card. Request could not be created."; 
             }
-        }
+        },
+        addFormData(file, xhr, formData) {
+            formData.append("api_key", "657265325953443");                // substitute your api key
+            formData.append("upload_preset", "pfjwkuav");   // substitute your upload preset
+            formData.append("timestamp", (Date.now() / 1000) | 0);
+            formData.append("tags", "vue-app");
+        },
+         /******************************************************************************************
+         * The getSuccess method is called when vdropzone-success event is fired
+         ******************************************************************************************/
+        getSuccess(file, response) {
+            const imgUrl = response.secure_url;   // store the url for the uploaded image
+            this.pet.profilePhoto = response.secure_url;
+            this.$emit("image-upload", imgUrl);   // fire custom event with image url in case someone cares
+        },
     },
     computed: {
         profile() {
