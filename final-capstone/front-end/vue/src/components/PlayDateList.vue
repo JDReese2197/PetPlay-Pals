@@ -1,6 +1,7 @@
 <template>
     <!-- This is where we will display a list of playdate cards-->
     <div class="container">
+        <play-date-map v-if="true" />
         <div class = "play-date-cards">
         <play-date-card v-for="playDate in playDateCards"
         v-bind:key="playDate.id" v-bind:playDate = "playDate"/>
@@ -14,16 +15,17 @@
             <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn"><strong>Register a Pet</strong></button></router-link>
             <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn"><strong>Log Out</strong></button></router-link>
         </div>
-
     </div>
 </template>
 
 <script>
-import PlayDateCard from './PlayDateCard.vue'
+import PlayDateCard from './PlayDateCard.vue';
+import PlayDateMap from '@/components/PlayDateMap.vue';
 import applicationServices from '@/services/ApplicationServices';
+
 export default {
     name: "play-date-list", 
-    components: { PlayDateCard },
+    components: { PlayDateCard, PlayDateMap },
     data() {
         return {
             playDateCards: []
