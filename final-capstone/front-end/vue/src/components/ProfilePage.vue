@@ -31,12 +31,21 @@
             <br/>
         </div>
         
-        <div class="user-profile-nav"> <!-- This is the list of nav buttons on the user profile page-->
-            <router-link v-bind:to="{name: 'schedule'}"><button class="nav-btn" id="schedule-btn">Your Schedule</button></router-link>
+        <!-- <div class="user-profile-nav"> This is the list of nav buttons on the user profile page -->
+            <!-- <router-link v-bind:to="{name: 'schedule'}"><button class="nav-btn" id="schedule-btn">Your Schedule</button></router-link>
             <router-link v-bind:to="{name: 'find-a-playdate'}"><button class="nav-btn">Find a Playdate</button></router-link>
             <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn">Register a Pet</button></router-link>
-            <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn">Log Out</button></router-link>
+            <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn">Log Out</button></router-link> -->
+        <!-- </div> -->
+
+        <div class="user-profile-nav"> <!-- This is the list of nav buttons on the user profile page-->
+            <h1 class="title">Available Playdates</h1>
+            <router-link v-bind:to="{name: 'schedule'}"><button class="nav-btn"><strong>Your Schedule</strong></button></router-link>
+            <router-link v-bind:to="{name: 'find-a-playdate'}"><button class="nav-btn"><strong>Find a Playdate</strong></button></router-link>
+            <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn"><strong>Register a Pet</strong></button></router-link>
+            <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn"><strong>Log Out</strong></button></router-link>
         </div>
+
         <footer-bar class="footer"/>
     </div>
 </template>
@@ -104,13 +113,12 @@ export default {
 .user-profile {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 15% 25% 60% ;
     grid-template-areas:
-    "petbar petinfo nav"
-    "petbar userinfo  nav"
-    "footer footer   footer"
+    "nav    petbar    petinfo"
+    "nav    petbar    userinfo"
+    "footer footer    footer"
     ;
-    grid-gap: 25px;
 }
 p {
     font-size: 20px;
@@ -118,6 +126,7 @@ p {
 }
 .user-info {
     grid-area: userinfo;
+    padding-left: 150px;
 }
 
 .footer {
@@ -128,23 +137,41 @@ p {
 
 .user-profile-nav {
     grid-area: nav;
+    padding-top: 25px;
+    padding-bottom: 100px;
     display: flex;
     flex-direction: column;
+    justify-content: stretch;
+    background-color: #96f8fc;
+}
+.nav-btn {
+    border: none;
+    border-radius: 25px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 10px;
+    margin-top: 25px;
+    background-image: linear-gradient(#fd6d68, #dd4b46);
+    color: white;
+    font-size: 15px;
+    width: 90%;
+    height: 50px;
+    text-align: center;
+}
+.title {
+    text-align: center;
+    color: #555555;
 }
 
 .pet-profile-side-bar {
     grid-area: petbar;
-    /*background-color: #D7FEFF;*/
+    padding-left: 125px;
+    padding-top: 25px;
 }
 
 .h2 {
     color: #5CE1E6;
 }
-
-.find-a-friend {
-    background-color: #5CE1E6;
-}
-
 
 .pet-image {
     display: flex;
@@ -194,6 +221,7 @@ p {
 
 .pet-info {
     grid-area: petinfo;
+    padding-left: 150px;
 }
 
 #edit-profile, #edit-play-date-preferences {
@@ -208,18 +236,7 @@ p {
     height: 25px;
     text-align: center;
 }
-.nav-btn {
-    border: none;
-    border-radius: 20px;
-    text-transform: uppercase;
-    margin: 10px;
-    background-color: #e6615c;
-    color: white;
-    font-size: 20px;
-    width: 90%;
-    height: 40px;
-    text-align: center;
-}
+
 #schedule-btn {
     margin-top: 25px;
 }
@@ -234,14 +251,6 @@ p {
     align-content: center;
 }
 
-span {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    color:  #5CE1E6;
-
-}
-
 a:link {
     color: rgb(39, 39, 39);
 }
@@ -249,4 +258,22 @@ a:link {
 h1 {
     color: #e6615c;
 }
+
+/* .find-a-friend {
+    background-color: #5CE1E6;
+} */
+
+/* span {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color:  #5CE1E6;
+
+} */
+
+/* .user-profile-nav {
+    grid-area: nav;
+    display: flex;
+    flex-direction: column;
+} */
 </style>
