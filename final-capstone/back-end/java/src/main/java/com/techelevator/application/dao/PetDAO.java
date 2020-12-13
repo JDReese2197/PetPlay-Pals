@@ -26,5 +26,5 @@ public interface PetDAO {
 	
 	public void deletePet(Pet petToDelete);
 
-	public Object[] getPetsByUserId(int id);
+	public List<Pet> getPetsByUserId(int id);
 }

@@ -142,7 +142,7 @@ public class JDBCPetDAO implements PetDAO {
 	}
 	
 	@Override
-	public Object[] getPetsByUserId(int id) {
+	public List<Pet> getPetsByUserId(int id) {
 		List<Pet> petsList = new ArrayList<>();
 		
 		String query = "SELECT * FROM pet_profile as pet "
@@ -154,7 +154,7 @@ public class JDBCPetDAO implements PetDAO {
 		}
 		
 		
-		return (petsList.isEmpty() ? null : petsList.toArray());
+		return (petsList.isEmpty() ? null : petsList);
 	}
 	
 	private int getNextPetId() {

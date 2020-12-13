@@ -120,7 +120,7 @@ public class ApiController {
 	
 	//	GET pets given user_id
 	@RequestMapping(path = "/{userId}/profile/pets", method = RequestMethod.GET)
-	public Object[] getPetsByUserId(@PathVariable(value="userId") int id) {
+	public List<Pet> getPetsByUserId(@PathVariable(value="userId") int id) {
 		return petDAO.getPetsByUserId(id);
 	}
 }
