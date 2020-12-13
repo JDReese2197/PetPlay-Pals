@@ -1,12 +1,11 @@
 <template>
     <div>
         <div>
-            <h1>WARNING! AUTHORIZED PAIRSUNAIL ONLY! WARNING!</h1>
-            <h2>Testing grounds for google maps API</h2>
             <label>
+                <p>Enter current location: </p>
                 <gmap-autocomplete v-on:place_changed="setPlace">
                 </gmap-autocomplete>
-                <!-- <button v-on:click="searchParks">Add</button> -->
+                <button v-on:click="generatePlaydateMarkers">Search Nearby PlayDates</button>
             </label>
             <br/>
 
@@ -16,7 +15,7 @@
         :center='center'
         :zoom='currentZoom'
         :options='{disableDefaultUI: true, zoomControl: true, fullscreenControl: true}'
-        style="width:600px;  height: 300px;"
+        style="width: 600px;  height: 300px; margin: auto;"
         >
         <gmap-marker
             :key="index"
@@ -33,7 +32,7 @@
 import {gmapApi} from 'vue2-google-maps'
 
 export default {
-    name: "MapWorkGood",
+    name: "PlayDateMap",
     data() {
         return {
             center: { lat: 40.367474, lng: -82.996216 },
@@ -43,13 +42,13 @@ export default {
             currentZoom: 10,
             userLocation: {},
             playDateLocations: [
-                {name: "Wisconsin", lat: 44.500000, lng: -89.500000},
-                {name: "West Virginia", lat: 39.000000, lng: -80.500000},
-                {name: "Vermont", lat: 44.000000, lng: -72.699997},
-                {name: "Texas", lat: 31.000000, lng: -100.000000},
-                {name: "South Dakota",lat: 44.500000, lng: -100.000000},
-                {name: "Rhode Island", lat: 41.700001, lng: -71.500000},
-                {name: "Oregon", lat: 44.000000, lng: -120.500000}
+                // {name: "Wisconsin", lat: 44.500000, lng: -89.500000},
+                // {name: "West Virginia", lat: 39.000000, lng: -80.500000},
+                // {name: "Vermont", lat: 44.000000, lng: -72.699997},
+                // {name: "Texas", lat: 31.000000, lng: -100.000000},
+                // {name: "South Dakota",lat: 44.500000, lng: -100.000000},
+                // {name: "Rhode Island", lat: 41.700001, lng: -71.500000},
+                // {name: "Oregon", lat: 44.000000, lng: -120.500000}
             ]
         }
     },
@@ -79,16 +78,27 @@ export default {
             }
         },
         generatePlaydateMarkers() {
+            this.center = this.currentPlace.geometry.location;
+            this.currentZoom = 16;
+
             this.playDateLocations.forEach( playDate => {
                 if(playDate.lat && playDate.lng) {
-                    this.setMarker(playDate)
 
-                    const distance = this.haversineDistance(playDate, this.markers[0])
+                    if(this.currentPlace) {
+                        const distance = this.calculateDistance(playDate, this.currentPlace);
 
-                    console.log(`Distance between Columbus and ${playDate.name}: ${distance} miles`)
+                        console.log(`Distance between Columbus and ${playDate.name}: ${distance} miles`);
+
+                        if(distance < 20) {
+                            this.setMarker(playDate);
+                        }
+                    }
                 }
             })
         },
+
+        //  Method to search for parks near a set location
+        /*
         searchParks() {
             if(this.currentPlace) {
                 const request = {
@@ -127,10 +137,12 @@ export default {
 
                 this.currentZoom = 13;
             }
-        },
+        }, */
+
+
         //  Method to calculate the distance between two points
         //      Takes a location {lat: number, lng: number} and a marker object {position: {lat: number, lng: number}}
-        haversineDistance(pointA, pointB) {
+        calculateDistance(pointA, pointB) {
             const radius = 2958.8; //   Radius of Earth in miles
             let rlatA = pointA.lat * (Math.PI/180); // Convert degrees to radians
             let rlatB = pointB.position.lat * (Math.PI/180); // Convert degrees to radians
@@ -150,8 +162,6 @@ export default {
         
     },
     mounted() {
-        this.setMarker({ lat: 40.367474, lng: -82.996216 })
-        this.generatePlaydateMarkers();
     },
 }
 </script>
