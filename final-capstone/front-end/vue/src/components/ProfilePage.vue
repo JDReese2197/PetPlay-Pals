@@ -4,7 +4,7 @@
         <div class="pet-profile-side-bar"> <!-- This is where the pet profile section goes-->
             <div class="pet-image">
                 <img id = "pet-pic" v-bind:src = "pet.profilePhoto"/>
-                <!-- <img id = "pet-pic" src = "https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"/> -->
+                <img id = "pet-pic" src = ""/>
             </div>   
         </div>
         <!-- Pet image/TEMPORARY IMG-->
@@ -154,6 +154,7 @@ p {
 }
 
 #pet-pic {
+    background-color: rgba(253, 253, 130, 0.733);
     border-radius: 50%;
     object-fit: cover;
     object-position: center top;
@@ -161,6 +162,34 @@ p {
     height: 300px;
     margin: 15px;
     align-content: center;
+    position: relative;
+}
+
+#pet-pic::after {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: #fff;
+  height: 25px;
+  margin-top: -11px;
+  top: 50%;
+  left: 75px;
+  right: 75px;
+  z-index: 9;
+  border-radius: 20px;
+}
+#pet-pic::before {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: #fff;
+  width: 25px;
+  margin-left: -11px;
+  left: 50%;
+  top: 75px;
+  bottom: 75px;
+  z-index: 9;
+  border-radius: 20px;
 }
 
 .pet-info {
