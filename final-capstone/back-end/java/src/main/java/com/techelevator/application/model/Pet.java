@@ -12,7 +12,14 @@ public class Pet {
 	private String description;
 	private int age;
 	private String personalityType;
+	private String profilePhoto;
 	
+	public String getProfilePhoto() {
+		return profilePhoto;
+	}
+	public void setProfilePhoto(String profilePhoto) {
+		this.profilePhoto = profilePhoto;
+	}
 	public String getBreed() {
 		return breed;
 	}

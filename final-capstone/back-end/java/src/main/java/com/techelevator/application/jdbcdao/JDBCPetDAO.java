@@ -113,10 +113,12 @@ public class JDBCPetDAO implements PetDAO {
 	@Override 
 	public Pet registerPet(Pet newPet) { // profile_id - SELECT user_id FROM users WHERE 
 		String query = "INSERT INTO pet_profile "
-				+ "(pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personality_type) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "(pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personality_type, image_url) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int nextPetId = getNextPetId();
-		jdbcTemplate.update(query, nextPetId, newPet.getProfileId(), newPet.getPetType(), newPet.getPetName(), newPet.getBreed(), newPet.getSize(), newPet.getGender(), newPet.getDescription(), newPet.getAge(), newPet.getPersonalityType());
+		jdbcTemplate.update(query, nextPetId, newPet.getProfileId(), newPet.getPetType(), newPet.getPetName(), newPet.getBreed(), 
+				newPet.getSize(), newPet.getGender(), newPet.getDescription(), newPet.getAge(), newPet.getPersonalityType(),
+				newPet.getProfilePhoto());
 		
 		newPet.setPetId(nextPetId);
 		
@@ -176,6 +178,7 @@ public class JDBCPetDAO implements PetDAO {
 		pet.setDescription(rowSet.getString("description"));
 		pet.setAge(rowSet.getInt("age"));
 		pet.setPersonalityType(rowSet.getString("personality_type"));
+		pet.setProfilePhoto(rowSet.getString("image_url"));
 		return pet;
 	}
 }

@@ -5,14 +5,14 @@
         <!-- there are two custom events the component listens for:                                 -->
         <!--       the vdropzone-sending event which is fired when dropzone is sending an image     -->
         <!--       the vdropzone-success event which is fired when dropzone upload is successful    -->
-        <vue-dropzone
-            id="dropzone"
-            class="mt-3"
-            v-bind:options="dropzoneOptions"
-            v-on:vdropzone-sending="addFormData"
-            v-on:vdropzone-success="getSuccess"
-            :useCustomDropzoneOptions="true"
-        ></vue-dropzone>
+        <!-- <vue-dropzone -->
+            <!-- id="dropzone" -->
+            <!-- class="mt-3" -->
+            <!-- v-bind:options="dropzoneOptions" -->
+            <!-- v-on:vdropzone-sending="addFormData" -->
+            <!-- v-on:vdropzone-success="getSuccess" -->
+            <!-- :useCustomDropzoneOptions="true" -->
+        <!-- ></vue-dropzone> -->
         <div class="main">
             <header>
                 <img id="logo" src="https://res.cloudinary.com/ashdav/image/upload/v1607439755/img/dvcdp1esn3ry9jmbffjg.png" />
@@ -35,13 +35,13 @@
 <script>
 /* eslint-disable */
 import vue2Dropzone from "vue2-dropzone";
-import "vue2-dropzone/dist/vue2Dropzone.min.css";
-import applicationServices from "@/services/ApplicationServices"
+//import "vue2-dropzone/dist/vue2Dropzone.min.css";
+//import applicationServices from "@/services/ApplicationServices"
 
 export default {
     name: "upload-photo",
     components: {
-        vueDropzone: vue2Dropzone
+        //vueDropzone: vue2Dropzone
     },
     created() {
       applicationServices
@@ -61,7 +61,7 @@ export default {
             //-------------------------------------------------------------------------------------
             // TODO: substitute your actual Cloudinary cloud-name where indicated in the URL
             //-------------------------------------------------------------------------------------
-            dropzoneOptions: {
+            /**dropzoneOptions: {
                 url: "https://api.cloudinary.com/v1_1/ashdav/image/upload",  
                 thumbnailWidth: 250,
                 thumbnailHeight: 250,
@@ -70,11 +70,11 @@ export default {
                 uploadMultiple: false,
                 addRemoveLinks: true,
                 dictDefaultMessage: 'Drop files here to upload. </br> Alternatively, click to select a file for upload.',                
-            },      
+            },  */    
         }
     },
 
-    methods:{
+    //methods:{
         /******************************************************************************************
          * The addFormData method is called when vdropzone-sending event is fired
          * it adds additional headers to the request
@@ -83,20 +83,20 @@ export default {
         // TODO: substitute your actual Cloudinary api-key where indicated in the following code
         // TODO: substitute your actual Cloudinary upload preset where indicated in the following code
         //----------------------------------------------------------------------------==---------------   
-        addFormData(file, xhr, formData) {
+    /**    addFormData(file, xhr, formData) {
             formData.append("api_key", "657265325953443");                // substitute your api key
             formData.append("upload_preset", "pfjwkuav");   // substitute your upload preset
             formData.append("timestamp", (Date.now() / 1000) | 0);
             formData.append("tags", "vue-app");
-        },
+        },*/
          /******************************************************************************************
          * The getSuccess method is called when vdropzone-success event is fired
          ******************************************************************************************/
-        getSuccess(file, response) {
+        /** getSuccess(file, response) {
             const imgUrl = response.secure_url;   // store the url for the uploaded image
             this.$emit("image-upload", imgUrl);   // fire custom event with image url in case someone cares
-        },
-    }
+        },*/
+    //}
 }
 </script>
 
@@ -104,7 +104,7 @@ export default {
 <style scoped>
 
 .home {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
 }

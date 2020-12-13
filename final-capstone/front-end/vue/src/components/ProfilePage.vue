@@ -3,8 +3,8 @@
 
         <div class="pet-profile-side-bar"> <!-- This is where the pet profile section goes-->
             <div class="pet-image">
-                <img id = "pet-pic" src = "https://res.cloudinary.com/ashdav/image/upload/v1607530571/img/Rudy_dt7y3q.png"/>
-                <img id = "pet-pic" src = "https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"/> 
+                <img id = "pet-pic" v-bind:src = "pet.profilePhoto"/>
+                <!-- <img id = "pet-pic" src = "https://res.cloudinary.com/ashdav/image/upload/v1607446820/img/vpmojnjrpjcy8nkswgak.jpg"/> -->
             </div>   
         </div>
         <!-- Pet image/TEMPORARY IMG-->
@@ -25,18 +25,19 @@
             <p>{{profile.email}}</p>
             <p>{{profile.phone}}</p>
             <router-link v-bind:to="{name: 'user-profile-form'}"><button id="edit-profile">Edit Profile</button></router-link>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
-
+        
         <div class="user-profile-nav"> <!-- This is the list of nav buttons on the user profile page-->
-            <button class="nav-btn" id="schedule-btn">Your Schedule</button>
+            <router-link v-bind:to="{name: 'schedule'}"><button class="nav-btn" id="schedule-btn">Your Schedule</button></router-link>
             <router-link v-bind:to="{name: 'find-a-playdate'}"><button class="nav-btn">Find a Playdate</button></router-link>
             <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn">Register a Pet</button></router-link>
             <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn">Log Out</button></router-link>
         </div>
         <footer-bar class="footer"/>
-        <div><h6><a href="https://media1.tenor.com/images/c65f4fdd955cdc6614899b0a38b8473e/tenor.gif?itemid=5648271">
-        © 2020 Pet Play Pals. All Rights Reserved</a></h6>
-        </div>
     </div>
 </template>
 
@@ -101,7 +102,7 @@ export default {
 
 <style scoped>
 .user-profile {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-areas:
@@ -122,11 +123,7 @@ p {
 .footer {
     grid-area: footer;
     text-align: center;
-}
-
-.footer > h6 > a {
-    color: #555555;
-    text-decoration: none; 
+    
 }
 
 .user-profile-nav {

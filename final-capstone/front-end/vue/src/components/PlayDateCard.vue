@@ -46,7 +46,8 @@ export default {
 
 <style scoped>
 .container {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #555555;
 }
 
 h2, h4, h5 {

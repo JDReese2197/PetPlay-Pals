@@ -90,9 +90,13 @@
                 :useCustomDropzoneOptions="true"
             ></vue-dropzone>
         </div>
+        <br/>
         <div class="actions">
             <button type="submit" v-on:click="submitPetForm">Submit</button>
         </div>
+        <br/>
+        <br/>
+        <br/>
     </form>
 </div>
 </template>
@@ -219,7 +223,7 @@ export default {
 
 <style scoped>
 #register {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
     grid-template-areas: 

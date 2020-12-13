@@ -1,17 +1,23 @@
 <template>
     <div>
+        <top-home-bar/>
         <h1>Create Profile</h1>
         <user-profile-form />
+        <footer-bar/>
     </div>
 </template>
 
 <script>
 
 import userProfileForm from '@/components/UserProfileForm';
+import TopHomeBar from '../components/TopHomeBar.vue';
+import FooterBar from '../components/FooterBar.vue';
 
 export default {
     components: {
-        userProfileForm
+        userProfileForm,
+        TopHomeBar,
+        FooterBar
     }
 }
 </script>

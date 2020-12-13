@@ -91,7 +91,8 @@ export default {
 
 <style scoped>
 .container {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #555555;
     display: grid;
     grid-template-columns: 15% 85%;
     grid-template-areas:
