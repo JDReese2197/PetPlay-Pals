@@ -125,17 +125,15 @@ INSERT INTO user_profile VALUES (4, 4, 'ashley', 'd', '123 ashley St', '', 'Clev
 INSERT INTO user_profile VALUES (5, 5, 'mel', 'f', '123 mel St', '', 'Cleveland', '12345', 'Ohio', 'mel@email.com', '123-456-7890');
 INSERT INTO user_profile VALUES (6, 6, 'james', 'fanta', '123 james St', '', 'Cleveland', '12345', 'Ohio', 'james@email.com', '123-456-7890');
 
-INSERT INTO pet_profile VALUES (1, 1, 'Dog', 'Rudy', 'Bulldog', 'Medium', 'Male', 'Loves the water', 2, 'loving', 'https://imgur.com/oT5RVVP.jpg');
+INSERT INTO pet_profile VALUES (1, 1, 'Dog', 'Rudy', 'Bulldog', 'Medium', 'Male', 'Loves the water', 2, 'loving', 'https://imgur.com/loDyfuW.jpg');
 INSERT INTO pet_profile VALUES (2, 2, 'Dog', 'Buddy', 'Beagle', 'Medium', 'Male', 'Lazy but loving dog', 3, 'loving', 'https://imgur.com/diIqn2R.jpg');
 INSERT INTO pet_profile VALUES (3, 3, 'Dog', 'Finn', 'Mutt', 'Medium', 'Male', 'Loves playing with big dogs', 4, 'loving', 'https://imgur.com/zNdTVQM.jpg');
 INSERT INTO pet_profile VALUES (4, 4, 'Dog', 'Oslo', 'Greyhound', 'Large', 'Male', 'Lazy but loving dog', 3, 'loving', 'https://imgur.com/Sto0DWi.jpg');
 INSERT INTO pet_profile VALUES (5, 5, 'Dog', 'Precious', 'Beagle', 'Small', 'Female', 'Shy and nice with all dogs', 3, 'loving', 'https://imgur.com/uP2FREV.jpg');
 INSERT INTO pet_profile VALUES (6, 6, 'Dog', 'Holly', 'Pitbull', 'Medium', 'Female', 'Lover of all creatures', 3, 'loving', 'https://imgur.com/FRBUT0s.jpg');
 
-INSERT INTO playdate VALUES (1, 2, NULL, '2020-12-15', '12:00:00', '14:00:00', 'Lakewood Park, Lake Avenue, Lakewood, OH', 'Looking for a male dog to play with my Greyhound');
-INSERT INTO playdate VALUES (2, 1, 2, '2020-12-15', '12:00:00', '14:00:00', 'Lakewood Park, Lake Avenue, Lakewood, OH', 'Have an hour to play');
-
-SELECT * FROM playdate WHERE (pet_poster = 1 OR pet_booker = 1) AND pet_booker IS NOT NULL;
+INSERT INTO playdate VALUES (1, 2, NULL, '2020-12-18', '07:00:00', '09:00:00', 'Fairview Park, Cuyahoga County, OH', 'Looking for friendly dog to play with for 2 hours');
+INSERT INTO playdate VALUES (2, 2, 1, '2020-12-15', '11:00:00', '12:00:00', 'Lakewood Park, Lake Avenue, Lakewood, OH', 'Have an hour to play with another dog');
 
 COMMIT TRANSACTION;
 
