@@ -4,7 +4,7 @@
         <div class="pet-profile-side-bar"> <!-- This is where the pet profile section goes-->
             <div class="pet-image">
                 <img id = "pet-pic" v-bind:src = "pet.profilePhoto"/>
-                <img id = "pet-pic" src = ""/>
+                <div id = "pet-pic" />
             </div>   
         </div>
         <!-- Pet image/TEMPORARY IMG-->
