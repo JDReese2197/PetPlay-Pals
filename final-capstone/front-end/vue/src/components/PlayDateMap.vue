@@ -57,7 +57,6 @@ export default {
                 {name: "Lakewood Park", lat: 41.4948088, lng: -81.7971556},
                 {name: "Peninsula Township", lat: 44.8839492, lng: -85.50972259999999},
                 {name: "Edgewater Park", lat: 41.4902896, lng: -81.73545519999999},
-                {name: "Hilton Head Island", lat: 32.216316, lng: -80.752608},
                 {name: "Jackson Hole Ski Area", lat: 43.5965946, lng: -110.8474344},
                 {name: "Estes Park", lat: 40.3772059, lng: -105.5216651},
                 {name: "Yellowstone National Park", lat: 44.427963, lng: -110.588455},
