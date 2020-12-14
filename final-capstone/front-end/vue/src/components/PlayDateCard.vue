@@ -39,14 +39,18 @@ export default {
            })
        },
        acceptPlaydate() {
-            console.log("Functionality not yet implemented.  Please get devs more coffee if you would like to have access.")
-            //   TODO Create method in application services to join an open playdate.
-            //   TODO edit methods in JDBCPlayDateDAO and apictontroller
-
-            const playDateId = this.playDate.playdateId
-            console.log(`playDateId: ${playDateId}`)
             const userId = this.$store.state.user.id;
-            console.log(`userId: ${userId}`)
+            const petId = this.$store.state.pet.petId
+
+            this.playDate.bookerId = userId;
+            this.playDate.petBookerId = petId;
+
+
+            console.log(this.playDate)
+
+            applicationServices
+                .bookPlaydate(this.playDate)
+
        }
   },
   mounted() {

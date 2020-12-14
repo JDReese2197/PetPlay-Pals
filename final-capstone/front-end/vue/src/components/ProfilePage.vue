@@ -71,7 +71,6 @@ export default {
                 .then(response => {
                     if(response.status === 200) {
                         this.$store.commit("SET_PROFILE", response.data);
-                        this.retrievePetProfile();
                     }
                 })
                 .catch(error => {
@@ -93,8 +92,9 @@ export default {
                 })
         }
     },
-    created() {
+    mounted() {
         this.retrieveUserProfile(); 
+        this.retrievePetProfile();
     },
     computed: {
         profile() {
