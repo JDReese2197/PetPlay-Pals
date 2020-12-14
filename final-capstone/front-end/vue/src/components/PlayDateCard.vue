@@ -39,10 +39,8 @@ export default {
            })
        },
        acceptPlaydate() {
-            const userId = this.$store.state.user.id;
             const petId = this.$store.state.pet.petId
 
-            this.playDate.bookerId = userId;
             this.playDate.petBookerId = petId;
 
 
