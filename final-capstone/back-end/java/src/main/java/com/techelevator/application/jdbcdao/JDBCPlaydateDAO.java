@@ -24,10 +24,12 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 	@Override
 	public Playdate createPosterPlaydate(Playdate posterPlaydate) {
 		String query = "INSERT INTO playdate "
-				+ "(playdate_id, pet_poster, the_date, start_time, end_time, the_location, details, pet_booker) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "(playdate_id, pet_poster, the_date, start_time, end_time, the_location, details, pet_booker, latitude, longitude) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int playdateId = getNextPlaydateId();
-		jdbcTemplate.update(query, playdateId, posterPlaydate.getPetPosterId(), posterPlaydate.getTheDate(), posterPlaydate.getStartTime(), posterPlaydate.getEndTime(), posterPlaydate.getLocation(), posterPlaydate.getDetails(), "NULL");
+		jdbcTemplate.update(query, playdateId, posterPlaydate.getPetPosterId(), posterPlaydate.getTheDate(), posterPlaydate.getStartTime(), 
+				posterPlaydate.getEndTime(), posterPlaydate.getLocation(), posterPlaydate.getDetails(), null, posterPlaydate.getLat(), posterPlaydate.getLng());
+		
 		posterPlaydate.setPlaydateId(playdateId);
 		
 		return posterPlaydate;
