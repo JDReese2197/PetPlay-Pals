@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import PlayDateCard from './PlayDateCard.vue'
+import PlayDateCard from './CalendarCard.vue'
 import applicationServices from '@/services/ApplicationServices';
 export default {
     name: "play-date-list", 
