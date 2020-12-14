@@ -132,7 +132,7 @@ export default {
                 description: "",
                 profilePhoto: ""
             },
-            errorMessage: "",
+            errorMsg: "",
             dropzoneOptions: {
                 url: "https://api.cloudinary.com/v1_1/ashdav/image/upload",  
                 thumbnailWidth: 250,

@@ -151,6 +151,7 @@ export default {
         this.setUserId()
     },
     name: "user-profile-form",
+    errorMsg: "",
     data() {
         return {
             user_profile: {

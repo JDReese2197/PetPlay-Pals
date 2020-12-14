@@ -49,10 +49,10 @@
             <div class="actions">
                 <button type="submit" v-on:click="submitPlaydate">Post</button>
             </div>
+            <br/>
+            <br/>
+            <br/>
         </form>
-        <br/>
-        <br/>
-        <br/>
     </div>
 </template>
 
@@ -61,11 +61,12 @@
 import applicationServices from '@/services/ApplicationServices';
 
 export default {
+    name: "post-playdate",
+    errorMsg: "",
     data() {
         return {
             playdate: {
                 petPoster: null,
-                petBooker: 0,
                 theDate: "",
                 startTime: "",
                 endTime: "",
@@ -85,27 +86,28 @@ export default {
             applicationServices
                 .postPlaydate(this.playdate)
                 .then(response => {
-                    
+                    console.log("got to if statement")
                     if (response.status === 200) {
                         this.$router.push(`/find-a-playdate`);
                     }
                 })
                 .catch(error => {
-                        this.handleErrorResponse(error, "Adding Playdate")
+                        this.handleErrorResponse(error, "Posting Playdate")
                 });
         },
         handleErrorResponse(error, verb) {
+            console.log("error handling")
             if (error.response) {
             this.errorMsg =
-                "Error " + verb + " User Profile. Response received was '" +
+                "Error " + verb + " Post Playdate. Response received was '" +
                 error.response.statusText +
                 "'.";
             } else if (error.request) {
                 this.errorMsg =
-                "Error " + verb + " User Profile. Server could not be reached.";
+                "Error " + verb + " Post Playdate. Server could not be reached.";
             } else {
                 this.errorMsg =
-                "Error " + verb + " User Profile. Request could not be created.";
+                "Error " + verb + " Post Playdate. Request could not be created.";
             }
         }
     }

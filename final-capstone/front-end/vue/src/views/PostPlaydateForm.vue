@@ -3,18 +3,21 @@
         <top-home-bar/>
         <h1>Post a Playdate</h1>
         <post-playdate-form/>
+        <footer-bar/>
     </div>
 </template>
 
 <script>
 
-import postPlaydateForm from '@/components/PostPlaydateForm';
-import topHomeBar from '@/components/TopHomeBar';
+import PostPlaydateForm from '@/components/PostPlaydateForm';
+import TopHomeBar from '@/components/TopHomeBar';
+import FooterBar from '../components/FooterBar.vue';
 
 export default {
     components: {
-        postPlaydateForm,
-        topHomeBar
+        PostPlaydateForm,
+        TopHomeBar,
+        FooterBar
     }
 }
 </script>
