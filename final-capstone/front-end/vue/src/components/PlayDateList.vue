@@ -4,7 +4,7 @@
         <play-date-map v-if="true" v-bind:playDates="playDateCards" />
         <div class = "play-date-cards">
         <play-date-card v-for="playDate in playDateCards"
-        v-bind:key="playDate.id" v-bind:playDate = "playDate"/>
+        v-bind:key="playDate.id" v-bind:playDate = "playDate" />
         <!-- TO DO: make a view card details method and add this above:  v-on:click="viewCardDetails(card.id)"-->
         </div>
 

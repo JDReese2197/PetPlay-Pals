@@ -1,13 +1,15 @@
 <template>
 <!-- A single playdate card-->
 <div class="container">
-<div data-aos="fade-up" class="playdate-card"> 
+<div data-aos="fade-up" class="playdate-card" v-if="!declined"> 
         <img id = "pet-img" v-bind:src = "pet.profilePhoto"/>
         <h2>{{pet.petName}}</h2>
         <h4> {{pet.breed}} | {{pet.gender}} | Age {{pet.age}}</h4>
         <h4> At {{playDate.location}} on {{playDate.theDate}} from {{playDate.startTime}} - {{playDate.endTime}} </h4>
         <h5> Description: {{playDate.details}}</h5>
-        <button v-on:click="acceptPlaydate">Book PlayDate</button>
+
+        <button v-on:click="acceptPlaydate">Book Playdate</button>
+        <button v-on:click="declined = true">Ignore Playdate</button>
     </div>
 </div>
 
@@ -22,6 +24,7 @@ export default {
   data() { 
       return {
           pet: {},
+          declined: false,
       }
   },
   computed: {  },
