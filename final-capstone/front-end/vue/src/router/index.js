@@ -12,6 +12,7 @@ import ProfilePage from '@/views/ProfilePage.vue'
 import MapWorkGood from '@/components/MapWorkGood.vue'
 import PlayDateSearchPage from '@/views/PlayDateSearchPage.vue'
 import Schedule from '@/views/SchedulePage.vue'
+import PostPlaydateForm from '@/views/PostPlaydateForm.vue'
 
 Vue.use(Router)
 
@@ -94,8 +95,12 @@ const router = new Router({
       path: "/schedule",
       name: "schedule",
       component: Schedule
+    },
+    {
+      path:"/postPlaydate",
+      name: "post-playdate",
+      component: PostPlaydateForm
     }
-
   ]
 })
 

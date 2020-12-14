@@ -1,5 +1,5 @@
 <template>
-    <div id="schedule">
+    <div id="post">
         <form v-on:submit.prevent>
             <div class="field">
                 <label for="theDate">Date</label>
@@ -47,7 +47,7 @@
             </div>
             <br/>
             <div class="actions">
-                <button type="submit" v-on:click="submitPlaydate">Submit</button>
+                <button type="submit" v-on:click="submitPlaydate">Post</button>
             </div>
         </form>
         <br/>
@@ -65,7 +65,7 @@ export default {
         return {
             playdate: {
                 petPoster: null,
-                petBooker: null,
+                petBooker: 0,
                 theDate: "",
                 startTime: "",
                 endTime: "",
@@ -83,8 +83,9 @@ export default {
         },
         submitPlaydate() {
             applicationServices
-                .postPlaydate(playdate)
+                .postPlaydate(this.playdate)
                 .then(response => {
+                    
                     if (response.status === 200) {
                         this.$router.push(`/find-a-playdate`);
                     }
@@ -112,5 +113,47 @@ export default {
 </script>
 
 <style scoped>
-
+#post {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-areas: 
+        ". form .";
+}
+form {
+    grid-area: form;
+    line-height: 20px;
+}
+input {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+    color: #555555;
+}
+.field {
+    margin: 5px 0;
+}
+label {
+    font-weight: bold;
+    color: #555555;
+}
+select {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+    color: #555555;
+}
+button {
+    border: none;
+    border-radius: 20px;
+    text-transform: uppercase;
+    background-color: #29d2db;
+    color: white;
+    font-size: 20px;
+    padding: 5px 15px;
+}
 </style>
