@@ -13,6 +13,9 @@ public class Playdate {
 	private Time endTime;
 	private String location;
 	private String details;
+	private double lat;
+	private double lng;
+	
 	public int getPlaydateId() {
 		return playdateId;
 	}
@@ -62,6 +65,17 @@ public class Playdate {
 		this.details = details;
 	}
 	
-	
+	public double getLat() {
+		return this.lat;
+	}
+	public double getLng() {
+		return this.lng;
+	}
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
 	
 }

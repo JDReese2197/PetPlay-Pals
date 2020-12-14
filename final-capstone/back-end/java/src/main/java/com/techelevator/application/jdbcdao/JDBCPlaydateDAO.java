@@ -115,6 +115,8 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 		profile.setEndTime(rs.getTime("end_time"));
 		profile.setLocation(rs.getString("the_location"));
 		profile.setDetails(rs.getString("details"));
+		profile.setLat(rs.getDouble("latitude"));
+		profile.setLng(rs.getDouble("longitude"));
 		
 		return profile;
 	}
