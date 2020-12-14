@@ -83,7 +83,6 @@ export default {
             this.markers = [];
 
             this.center = {lat: this.currentPlace.geometry.location.lat(), lng: this.currentPlace.geometry.location.lng()};
-            this.currentZoom = 14;
 
             this.playDates.forEach( playDate => {
                 if(playDate.lat && playDate.lng) {
@@ -92,9 +91,9 @@ export default {
                         console.log("currentPlace: " + this.currentPlace.geometry.location)
                         const distance = this.calculateDistance(playDate, this.currentPlace.geometry.location);
 
-                        console.log(`Distance between Columbus and ${playDate.location}: ${distance} miles`);
+                        console.log(`Distance between ${this.currentPlace.formatted_address} and ${playDate.location}: ${distance} miles`);
 
-                        if(distance < this.searchDistance) {
+                        if(distance < (this.searchDistance === 0 ? 15 : this.searchDistance)) {
                             this.setMarker(playDate);
                         }
                     }
