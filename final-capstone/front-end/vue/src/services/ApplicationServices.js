@@ -51,7 +51,9 @@ export default {
     getPetsByUserId(userId) {
         return http.get(`/${userId}/profile/pets`);
     },
-
+    postPlaydate(playdate) {
+        return http.post(`/create/playdate`, playdate);
+    },
     bookPlaydate(playdate) {
         return http.put(`/playdate/join`, playdate);
     }

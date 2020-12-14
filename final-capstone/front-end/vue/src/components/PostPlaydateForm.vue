@@ -83,7 +83,29 @@ export default {
         },
         submitPlaydate() {
             applicationServices
-                
+                .postPlaydate(playdate)
+                .then(response => {
+                    if (response.status === 200) {
+                        this.$router.push(`/find-a-playdate`);
+                    }
+                })
+                .catch(error => {
+                        this.handleErrorResponse(error, "Adding Playdate")
+                });
+        },
+        handleErrorResponse(error, verb) {
+            if (error.response) {
+            this.errorMsg =
+                "Error " + verb + " User Profile. Response received was '" +
+                error.response.statusText +
+                "'.";
+            } else if (error.request) {
+                this.errorMsg =
+                "Error " + verb + " User Profile. Server could not be reached.";
+            } else {
+                this.errorMsg =
+                "Error " + verb + " User Profile. Request could not be created.";
+            }
         }
     }
 }
