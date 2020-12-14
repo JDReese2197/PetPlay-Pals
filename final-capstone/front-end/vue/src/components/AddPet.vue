@@ -1,6 +1,6 @@
 <template>
 <div id="register">
-    <form v-on:submit.prevent>
+    <form v-on:submit.prevent="submitPetForm">
         <div class="field">
             <label for="name">Name</label>
             <input 
