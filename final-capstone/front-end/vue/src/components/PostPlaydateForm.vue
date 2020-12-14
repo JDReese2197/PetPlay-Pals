@@ -31,7 +31,7 @@
             <div class="field">
                 <label for="theLocation">Location</label>
                 <input
-                    type="search"
+                    type="text"
                     name="theLocation"
                     v-model="playdate.theLocation"
                     required
@@ -67,9 +67,9 @@ export default {
         return {
             playdate: {
                 petPoster: null,
-                theDate: "",
-                startTime: "",
-                endTime: "",
+                theDate: null,
+                startTime: null,
+                endTime: null,
                 theLocation: "",
                 details: ""
             }
