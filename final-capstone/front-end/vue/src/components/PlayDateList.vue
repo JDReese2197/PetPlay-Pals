@@ -1,7 +1,7 @@
 <template>
     <!-- This is where we will display a list of playdate cards-->
     <div class="container">
-        <play-date-map v-if="true" />
+        <play-date-map v-if="true" v-bind:playDates="playDateCards" />
         <div class = "play-date-cards">
         <play-date-card v-for="playDate in playDateCards"
         v-bind:key="playDate.id" v-bind:playDate = "playDate"/>

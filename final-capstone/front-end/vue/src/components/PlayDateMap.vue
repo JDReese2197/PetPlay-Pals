@@ -7,13 +7,13 @@
                 </gmap-autocomplete>
                 <button v-on:click="generatePlaydateMarkers">Search Nearby PlayDates</button>
             </label>
-            <label for="distance-selector"/>
+            <label for="distance-selector">Distance to search: </label>
             <select id="distance-selector" v-model="searchDistance">
-                <option value="5" >5</option>
-                <option value="10" >10</option>
-                <option value="15" >15</option>
-                <option value="20" >20</option>
-                <option value="25" >25</option>
+                <option value="5" >5 Miles</option>
+                <option value="10" >10 Miles</option>
+                <option value="15" >15 Miles</option>
+                <option value="20" >20 Miles</option>
+                <option value="25" >25 Miles</option>
                 <option value="999999">Unlimited</option>
             </select>
             <br/>
@@ -42,6 +42,7 @@ import {gmapApi} from 'vue2-google-maps'
 
 export default {
     name: "PlayDateMap",
+    props: ['playDates'],
     data() {
         return {
             center: { lat: 40.367474, lng: -82.996216 },
@@ -51,19 +52,6 @@ export default {
             currentZoom: 10,
             userLocation: {},
             searchDistance: 0,
-            playDateLocations: [
-                {name: "Cleveland MetroParks Zoo", lat: 41.4459344, lng: -81.7126134},
-                {name: "Bonnie Park", lat: 41.33319669999999, lng: -81.83356289999999},
-                {name: "Lakewood Park", lat: 41.4948088, lng: -81.7971556},
-                {name: "Peninsula Township", lat: 44.8839492, lng: -85.50972259999999},
-                {name: "Edgewater Park", lat: 41.4902896, lng: -81.73545519999999},
-                {name: "Jackson Hole Ski Area", lat: 43.5965946, lng: -110.8474344},
-                {name: "Estes Park", lat: 40.3772059, lng: -105.5216651},
-                {name: "Yellowstone National Park", lat: 44.427963, lng: -110.588455},
-                {name: "Schuylkill River Park", lat: 39.9910906, lng: -75.1964947},
-                {name: "Wissahickon Creek", lat: 40.1323551, lng: -75.22288089999999},
-                {name: "Fairmount Park", lat: 39.9857859, lng: -75.21564}
-            ]
         }
     },
     methods: {
@@ -97,14 +85,14 @@ export default {
             this.center = {lat: this.currentPlace.geometry.location.lat(), lng: this.currentPlace.geometry.location.lng()};
             this.currentZoom = 14;
 
-            this.playDateLocations.forEach( playDate => {
+            this.playDates.forEach( playDate => {
                 if(playDate.lat && playDate.lng) {
 
                     if(this.currentPlace) {
                         console.log("currentPlace: " + this.currentPlace.geometry.location)
                         const distance = this.calculateDistance(playDate, this.currentPlace.geometry.location);
 
-                        console.log(`Distance between Columbus and ${playDate.name}: ${distance} miles`);
+                        console.log(`Distance between Columbus and ${playDate.location}: ${distance} miles`);
 
                         if(distance < this.searchDistance) {
                             this.setMarker(playDate);
@@ -113,49 +101,6 @@ export default {
                 }
             })
         },
-
-        //  Method to search for parks near a set location
-        /*
-        searchParks() {
-            if(this.currentPlace) {
-                const request = {
-                    location: {
-                        lat: this.currentPlace.geometry.location.lat(),
-                        lng: this.currentPlace.geometry.location.lng()
-                    },
-                    radius: 2400,
-                    type: ['park']
-                }
-                // console.log(this.$refs.mapRef.$mapObject)
-                // console.log(this.google)
-
-                let service = new this.google.maps.places.PlacesService(this.$refs.mapRef.$mapObject)
-                service.nearbySearch(request, this.searchServiceCallback)
-            }
-        },
-        searchServiceCallback(results, status) {
-            if(status == this.google.maps.places.PlacesServiceStatus.OK) {
-                for(let i = 0; i < results.length; i++) {
-
-                    console.log(results[i])
-
-                    let aPlace = {
-                        lat: results[i].geometry.location.lat(), 
-                        lng: results[i].geometry.location.lng()
-                    }
-
-                    this.setMarker(aPlace)
-                }
-
-                this.center = {
-                    lat: this.currentPlace.geometry.location.lat(),
-                    lng: this.currentPlace.geometry.location.lng()
-                }
-
-                this.currentZoom = 13;
-            }
-        }, */
-
 
         //  Method to calculate the distance between two points
         //      Takes a location {lat: number, lng: number} and a marker object {position: {lat: number, lng: number}}
