@@ -67,11 +67,14 @@ export default {
         return {
             playdate: {
                 petPoster: null,
-                theDate: null,
-                startTime: null,
-                endTime: null,
+                petBooker: 0,
+                theDate: "",
+                startTime: "",
+                endTime: "",
                 theLocation: "",
-                details: ""
+                details: "",
+                lat: 0.0,
+                lng: 0.0
             }
         }
     },
