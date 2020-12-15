@@ -14,6 +14,7 @@
                 <label for="startTime">Start Time</label>
                 <input 
                     type="time"
+                    step="1"
                     name="startTime"
                     v-model="playdate.startTime"
                     required
@@ -23,6 +24,7 @@
                 <label for="endTime">End Time</label>
                 <input
                     type="time"
+                    step="1"
                     name="endTime"
                     v-model="playdate.endTime"
                     required
@@ -67,14 +69,11 @@ export default {
         return {
             playdate: {
                 petPoster: null,
-                petBooker: 0,
                 theDate: "",
                 startTime: "",
                 endTime: "",
                 theLocation: "",
-                details: "",
-                lat: 0.0,
-                lng: 0.0
+                details: ""
             }
         }
     },
@@ -86,6 +85,7 @@ export default {
             this.playdate.petPoster = this.$store.state.user.id;
         },
         submitPlaydate() {
+            console.log("got to submit playdate function")
             applicationServices
                 .postPlaydate(this.playdate)
                 .then(response => {
