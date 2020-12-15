@@ -28,7 +28,7 @@
         >
         <gmap-marker
             :key="index"
-            v-for="(m, index) in filterPlaydates"
+            v-for="(m, index) in markers"
             :position="{lat: m.lat, lng: m.lng}"
             :clickable="true"
             v-on:click="center=m.position"
@@ -105,6 +105,8 @@ export default {
         //      Takes a location {lat: number, lng: number} and a marker object {position: {lat: number, lng: number}}
         calculateDistance(pointA, pointB) {
             const radius = 2958.8; //   Radius of Earth in miles
+            console.log('a')
+            console.log(pointA)
             let rlatA = pointA.lat * (Math.PI/180); // Convert degrees to radians
             let rlatB = pointB.lat() * (Math.PI/180); // Convert degrees to radians
 
@@ -118,31 +120,6 @@ export default {
     },
     computed: {
         google: gmapApi,
-        //  Method to filter through each playdate and determine which will be displayed on the map
-        filterPlaydates() {
-
-            // this.center = {lat: this.currentPlace.geometry.location.lat(), lng: this.currentPlace.geometry.location.lng()};
-
-            return this.playDates.filter(playdate => {
-                //  Check to see if a place has been selected and the playdate has coordinates
-                console.log(playdate)
-                console.log(this.currentPlace)
-                if(this.currentPlace && playdate.lat && playdate.lng) {
-                    //  Determine distance between playdate and user-selected location
-                    const distance = this.calculateDistance(this.playDate, this.currentPlace.geometry.location);
-                    console.log(distance)
-
-                    //  if search-distance is set to unlimited, or distance is less than the search-distance
-                        //  return true
-                    if(this.searchDistance == 0 || distance < this.searchDistance) {
-                        console.log(true)
-                        return true
-                    }
-                }
-                console.log(false)
-                return false;
-            })
-        },
     },
     components: {
         
