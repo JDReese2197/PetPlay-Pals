@@ -14,7 +14,7 @@
                 <option value="15" >15 Miles</option>
                 <option value="20" >20 Miles</option>
                 <option value="25" >25 Miles</option>
-                <option value="999999">Unlimited</option>
+                <option value="0">Unlimited</option>
             </select>
             <br/>
 
@@ -93,7 +93,7 @@ export default {
 
                         console.log(`Distance between ${this.currentPlace.formatted_address} and ${playDate.location}: ${distance} miles`);
 
-                        if(distance < (this.searchDistance === 0 ? 15 : this.searchDistance)) {
+                        if(distance < this.searchDistance || this.searchDistance == 0) {
                             this.setMarker(playDate);
                         }
                     }

@@ -25,6 +25,8 @@ export default new Vuex.Store({
     pet: {},
     pets:[],
     playDate: {},
+    petFilter: {},
+    distanceFilter: 0,
     states: [
       "Alabama", 
       "Alaska",
@@ -79,6 +81,12 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
+    SET_PET_FILTER(state, filter) {
+      state.petFilter = filter;
+    },
+    SET_DISTANCE_FILTER(state, distance) {
+      state.distanceFilter = distance;
+    },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
       localStorage.setItem('token', token);
@@ -97,6 +105,8 @@ export default new Vuex.Store({
       state.pets = [];
       state.pet = {};
       state.profile = {};
+      state.petFilter = {};
+      state.distanceFilter = 0;
 
       axios.defaults.headers.common = {};
     },

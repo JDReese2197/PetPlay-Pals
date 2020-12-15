@@ -10,10 +10,41 @@
 
         <div class="nav"> <!-- This is the list of nav buttons on the user profile page-->
             <h1 class="title">Available Playdates</h1>
-            <router-link v-bind:to="{name: 'profile-page'}"><button class="nav-btn"><strong>Your Profile</strong></button></router-link>
+            <!-- <router-link v-bind:to="{name: 'profile-page'}"><button class="nav-btn"><strong>Your Profile</strong></button></router-link>
             <router-link v-bind:to="{name: 'schedule'}"><button class="nav-btn"><strong>Your Schedule</strong></button></router-link>
             <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn"><strong>Register a Pet</strong></button></router-link>
-            <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn"><strong>Log Out</strong></button></router-link>
+            <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn"><strong>Log Out</strong></button></router-link> -->
+
+            <label for="pet-type-select">Pet Type</label>
+            <select id="pet-type-select" v-model="petFilter.petType">
+                <option value="Dog">Dog</option>
+                <option value="Cat">Cat</option>
+                <option value="Bird">Bird</option>
+                <option value="Reptile">Reptile</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="personality">Personality</label>
+            <select id="personality" name="personality" placeholder="Personality" v-on:change="changeFilter" v-model="petFilter.personalityType">
+                <option value="" disabled selected hidden>Personality</option>
+                <option value="Shy, Timid">Shy, Timid</option>
+                <option value="Friendly, Sweet">Friendly, Sweet</option>
+                <option value="loving">loving</option> 
+                <option value="Curious, Adventurous">Curious, Adventurous</option>
+                <option value="Gentle, Laidback">Gentle, Laidback</option>
+                <option value="Active, Playful">Active, Playful</option>
+                <option value="Confident, String-Willed">Confident, String-Willed</option>
+            </select>
+
+            <label for="distance-selector">Distance to search: </label>
+            <select id="distance-selector" v-on:change="changeFilter" v-model="distanceFilter">
+                <option value="5" >5 Miles</option>
+                <option value="10" >10 Miles</option>
+                <option value="15" >15 Miles</option>
+                <option value="20" >20 Miles</option>
+                <option value="25" >25 Miles</option>
+                <option value="0">Unlimited</option>
+            </select>
         </div>
     </div>
 </template>
@@ -28,7 +59,12 @@ export default {
     components: { PlayDateCard, PlayDateMap },
     data() {
         return {
-            playDateCards: []
+            playDateCards: [],
+            petFilter: {
+                petType: this.$store.state.petFilter.petType,
+                personalityType: this.$store.state.petFilter.personalityType
+            },
+            distanceFilter: 0,
         }
 },
     methods: {
@@ -44,9 +80,16 @@ export default {
                 console.log(error);
             })
         },
+
+        changeFilter() {
+            this.$store.commit('SET_PET_FILTER', this.petFilter)
+        }
+
     },
     mounted() {
         this.getAllOpenPlayDates()
+    },
+    computed: {
     }
 }
 

@@ -1,12 +1,14 @@
 <template>
 <!-- A single playdate card-->
 <div class="container">
-<div data-aos="fade-up" class="playdate-card" v-if="!declined"> 
+<div data-aos="fade-up" class="playdate-card" v-if="!declined && passesFilter"> 
         <img id = "pet-img" v-bind:src = "pet.profilePhoto"/>
         <h2>{{pet.petName}}</h2>
-        <h4> {{pet.breed}} | {{pet.gender}} | Age {{pet.age}}</h4>
-        <h4> At {{playDate.location}} on {{playDate.theDate}} from {{playDate.startTime}} - {{playDate.endTime}} </h4>
-        <h5> Description: {{playDate.details}}</h5>
+        <h3>{{pet.breed}} | {{pet.gender}} | Age {{pet.age}}</h3>
+        <h4>{{playDate.location}}</h4>
+        <h4>{{playDate.theDate}}</h4>
+        <h4>{{playDate.startTime}} - {{playDate.endTime}}</h4>
+        <p>Description: {{playDate.details}}</p>
 
         <button v-on:click="acceptPlaydate">Book Playdate</button>
         <button v-on:click="declined = true">Ignore Playdate</button>
@@ -17,17 +19,33 @@
 
 <script>
 import applicationServices from '../services/ApplicationServices';
+
 export default {
-  components: { },
+    components: { },
     name: "play-date-card",
     props: ['playDate'],
-  data() { 
+    data() { 
       return {
           pet: {},
           declined: false,
+        //   passes: this.passesFilter()
+      }
+    },
+  computed: {
+      passesFilter() {
+            let passes = true;
+            const petFilter = this.$store.state.petFilter;
+
+            if(petFilter.petType) {
+                passes = this.pet.petType == petFilter.petType ? passes : false
+            }
+            if(petFilter.personalityType) {
+                passes = this.pet.personalityType == petFilter.personalityType ? passes : false
+            }
+
+            return passes;
       }
   },
-  computed: {  },
   methods: {
        getPet() {
            applicationServices
@@ -56,7 +74,7 @@ export default {
   },
   mounted() {
       this.getPet();
-  }
+  },
 }
 </script>
 
