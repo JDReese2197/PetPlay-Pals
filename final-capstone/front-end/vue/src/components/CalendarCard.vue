@@ -2,11 +2,30 @@
 <!-- A single playdate on calendar card-->
 <div class="container">
 <div data-aos="fade-up" class="playdate-card"> 
+
+    <div class="pet-poster">
         <img id = "pet-img" v-bind:src = "pet.profilePhoto"/>
         <h2>{{pet.petName}}</h2>
-        <h4> {{pet.breed}} | {{pet.gender}} | Age {{pet.age}}</h4>
+        <h4>{{pet.gender}}</h4>
+        <h4>{{pet.breed}}</h4>
+    </div>
+
+    <div class="pet-booker">
+        <img id = "pet-img" v-bind:src = "secondPet.profilePhoto"/>
+        <h2>{{secondPet.petName}}</h2>
+        <h4>{{secondPet.gender}}</h4>
+        <h4>{{secondPet.breed}}</h4>
+    </div>
+
+    <div class="playdate">
         <h4> At {{playDate.location}} on {{playDate.theDate}} from {{playDate.startTime}} - {{playDate.endTime}} </h4>
         <h5> Description: {{playDate.details}}</h5>
+    </div>
+
+    <div class="message">
+        <input type="text" name="message"/>
+    </div>
+
     </div>
 </div>
 
@@ -21,6 +40,7 @@ export default {
   data() { 
       return {
           pet: {},
+          secondPet: {}
       }
   },
   computed: {  },
@@ -36,10 +56,23 @@ export default {
            .catch (error => {
                console.log(error);
            })
-       }     
-  },
+       },     
+  getSecondPet() {
+           applicationServices
+           .getPetByPetId(this.playDate.petBookerId)
+           .then(response => {
+               if(response.status === 200) {
+                   this.secondPet = response.data;
+               }
+           })
+           .catch (error => {
+               console.log(error);
+           })
+  }
+       },     
   mounted() {
       this.getPet();
+      this.getSecondPet();
   }
 }
 </script>
@@ -50,10 +83,34 @@ export default {
     color: #555555;
 }
 
+.pet-poster {
+    grid-area: poster;
+}
+
+.pet-booker {
+    grid-area: booker;
+}
+
+.playdate {
+    grid-area: footer;
+}
+
+.message {
+    grid-area: message;
+}
+
+input {
+    resize: horizontal;
+    width: 200px;
+    height: 200px;
+    text-align: unset start;
+}
+
 h2, h4, h5 {
     white-space:pre-wrap;
-    margin: 10px;
+    margin: 2px;
 }
+
 .playdate-card {
     width: 250px;
     height: auto !important;
@@ -63,6 +120,16 @@ h2, h4, h5 {
     margin: 15px;
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "poster booker"
+    "footer footer"
+    "message message"
+    ;
+        grid-gap: 0px 30px;
 }
 
 #pet-img {
