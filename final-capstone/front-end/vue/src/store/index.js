@@ -12,6 +12,10 @@ Vue.use(Vuex)
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user')); // username
 
+const currentProfile = localStorage.getItem('profile');
+const currentPet = (localStorage.getItem('pet') ? {} : JSON.parse(localStorage.getItem('pet')));
+const currentPetFilter = localStorage.getItem('petFilter')
+
 if(currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
 }
@@ -20,12 +24,12 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    profile: {},
+    profile: currentProfile || {},
     playDates: [],
-    pet: {},
+    pet: currentPet || {},
     pets:[],
     playDate: {},
-    petFilter: {},
+    petFilter: currentPetFilter || {},
     distanceFilter: 0,
     states: [
       "Alabama", 
@@ -83,6 +87,7 @@ export default new Vuex.Store({
   mutations: {
     SET_PET_FILTER(state, filter) {
       state.petFilter = filter;
+      localStorage.setItem('petFilter', filter)
     },
     SET_DISTANCE_FILTER(state, distance) {
       state.distanceFilter = distance;
@@ -102,6 +107,8 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
 
+      localStorage.removeItem('profile')
+      localStorage.removeItem('pet')
       state.pets = [];
       state.pet = {};
       state.profile = {};
@@ -112,9 +119,11 @@ export default new Vuex.Store({
     },
     SET_PROFILE(state, profile) {
       state.profile = profile;
+      localStorage.setItem('profile',profile);
     },
     SET_PET(state, pet) {
       state.pet = pet;
+      localStorage.setItem('pet', JSON.stringify(pet))
     },
     SET_PETS(state, pets) {
       state.pets = pets;
