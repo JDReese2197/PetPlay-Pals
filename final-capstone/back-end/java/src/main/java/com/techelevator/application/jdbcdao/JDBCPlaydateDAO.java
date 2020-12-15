@@ -26,11 +26,11 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 		String query = "INSERT INTO playdate "
 				+ "(playdate_id, pet_poster, the_date, start_time, end_time, the_location, details, pet_booker, latitude, longitude) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		int playdateId = getNextPlaydateId();
-		jdbcTemplate.update(query, playdateId, posterPlaydate.getPetPosterId(), posterPlaydate.getTheDate(), posterPlaydate.getStartTime(), 
+		int nextPlaydateId = getNextPlaydateId();
+		jdbcTemplate.update(query, nextPlaydateId, posterPlaydate.getPetPosterId(), posterPlaydate.getTheDate(), posterPlaydate.getStartTime(), 
 				posterPlaydate.getEndTime(), posterPlaydate.getLocation(), posterPlaydate.getDetails(), null, posterPlaydate.getLat(), posterPlaydate.getLng());
 		
-		posterPlaydate.setPlaydateId(playdateId);
+		posterPlaydate.setPlaydateId(nextPlaydateId);
 		
 		return posterPlaydate;
 	}
