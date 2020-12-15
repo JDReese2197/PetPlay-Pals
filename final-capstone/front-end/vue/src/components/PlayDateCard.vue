@@ -28,7 +28,6 @@ export default {
       return {
           pet: {},
           declined: false,
-        //   passes: this.passesFilter()
       }
     },
   computed: {

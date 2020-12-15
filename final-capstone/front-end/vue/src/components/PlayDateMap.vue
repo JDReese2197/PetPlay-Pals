@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>
+        <!-- <div>
             <label>
                 <p>Enter current location: </p>
                 <gmap-autocomplete v-on:place_changed="setPlace">
@@ -18,7 +18,7 @@
             </select>
             <br/>
 
-        </div>
+        </div> -->
         <br>
         <gmap-map ref="mapRef"
         :center='center'
@@ -28,8 +28,8 @@
         >
         <gmap-marker
             :key="index"
-            v-for="(m, index) in markers"
-            :position="m.position"
+            v-for="(m, index) in filterPlaydates"
+            :position="{lat: m.lat, lng: m.lng}"
             :clickable="true"
             v-on:click="center=m.position"
         ></gmap-marker>
@@ -48,10 +48,10 @@ export default {
             center: { lat: 40.367474, lng: -82.996216 },
             markers: [],
             places: [],
-            currentPlace: null,
+            currentPlace: this.$store.state.location,
             currentZoom: 10,
             userLocation: {},
-            searchDistance: 0,
+            searchDistance: this.$store.state.distanceFilter,
         }
     },
     methods: {
@@ -117,12 +117,38 @@ export default {
         },
     },
     computed: {
-        google: gmapApi
+        google: gmapApi,
+        //  Method to filter through each playdate and determine which will be displayed on the map
+        filterPlaydates() {
+
+            // this.center = {lat: this.currentPlace.geometry.location.lat(), lng: this.currentPlace.geometry.location.lng()};
+
+            return this.playDates.filter(playdate => {
+                //  Check to see if a place has been selected and the playdate has coordinates
+                console.log(playdate)
+                console.log(this.currentPlace)
+                if(this.currentPlace && playdate.lat && playdate.lng) {
+                    //  Determine distance between playdate and user-selected location
+                    const distance = this.calculateDistance(this.playDate, this.currentPlace.geometry.location);
+                    console.log(distance)
+
+                    //  if search-distance is set to unlimited, or distance is less than the search-distance
+                        //  return true
+                    if(this.searchDistance == 0 || distance < this.searchDistance) {
+                        console.log(true)
+                        return true
+                    }
+                }
+                console.log(false)
+                return false;
+            })
+        },
     },
     components: {
         
     },
     mounted() {
+        // this.generatePlaydateMarkers();
     },
 }
 </script>
