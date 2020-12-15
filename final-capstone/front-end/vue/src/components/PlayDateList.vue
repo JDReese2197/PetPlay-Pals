@@ -25,11 +25,11 @@
             </select>
 
             <label for="personality">Personality</label>
-            <select id="personality" name="personality" placeholder="Personality" v-model="petFilter.personalityType">
+            <select id="personality" name="personality" placeholder="Personality" v-on:change="changeFilter" v-model="petFilter.personalityType">
                 <option value="" disabled selected hidden>Personality</option>
                 <option value="Shy, Timid">Shy, Timid</option>
                 <option value="Friendly, Sweet">Friendly, Sweet</option>
-                <option value="Loving, Affectionate">Loving, Affectionate</option> 
+                <option value="loving">loving</option> 
                 <option value="Curious, Adventurous">Curious, Adventurous</option>
                 <option value="Gentle, Laidback">Gentle, Laidback</option>
                 <option value="Active, Playful">Active, Playful</option>
@@ -37,7 +37,7 @@
             </select>
 
             <label for="distance-selector">Distance to search: </label>
-            <select id="distance-selector" v-model="distanceFilter">
+            <select id="distance-selector" v-on:change="changeFilter" v-model="distanceFilter">
                 <option value="5" >5 Miles</option>
                 <option value="10" >10 Miles</option>
                 <option value="15" >15 Miles</option>
@@ -61,8 +61,8 @@ export default {
         return {
             playDateCards: [],
             petFilter: {
-                petType: null,
-                personalityType: null
+                petType: this.$store.state.petFilter.petType,
+                personalityType: this.$store.state.petFilter.personalityType
             },
             distanceFilter: 0,
         }
@@ -81,7 +81,9 @@ export default {
             })
         },
 
-        
+        changeFilter() {
+            this.$store.commit('SET_PET_FILTER', this.petFilter)
+        }
 
     },
     mounted() {

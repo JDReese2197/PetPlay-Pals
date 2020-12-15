@@ -23,7 +23,7 @@ import applicationServices from '../services/ApplicationServices';
 export default {
     components: { },
     name: "play-date-card",
-    props: ['playDate', 'petFilter'],
+    props: ['playDate'],
     data() { 
       return {
           pet: {},
@@ -37,10 +37,10 @@ export default {
             const petFilter = this.$store.state.petFilter;
 
             if(petFilter.petType) {
-                passes = this.pet.petType == this.petFilter.petType ? true : false
+                passes = this.pet.petType == petFilter.petType ? passes : false
             }
             if(petFilter.personalityType) {
-                passes = this.pet.personalityType == this.petFilter.personalityType ? true : false
+                passes = this.pet.personalityType == petFilter.personalityType ? passes : false
             }
 
             return passes;
