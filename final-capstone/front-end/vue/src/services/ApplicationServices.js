@@ -56,5 +56,8 @@ export default {
     },
     bookPlaydate(playdate) {
         return http.put(`/playdate/join`, playdate);
+    },
+    updateChat(userMessage) {
+        return http.put(`/playdate/message`, userMessage)
     }
 }

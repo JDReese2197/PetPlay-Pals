@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.application.jdbcdao.JDBCPetDAO;
@@ -122,5 +121,11 @@ public class ApiController {
 	@RequestMapping(path = "/{userId}/profile/pets", method = RequestMethod.GET)
 	public List<Pet> getPetsByUserId(@PathVariable(value="userId") int id) {
 		return petDAO.getPetsByUserId(id);
+	}
+	
+	// PUT for user to message their playdate
+	@RequestMapping(path = "/playdate/message", method=RequestMethod.PUT)
+	public void updateChat(@RequestBody Playdate playdate) {
+		playdateDAO.updateChat(playdate);
 	}
 }

@@ -39,7 +39,7 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 	@Override
 	public void joinPlaydate(Playdate bookerPlaydate) {
 		String query = "UPDATE playdate "
-				+ "SET pet_booker = ? "
+				+ "SET pet_booker = ? user_chat = 'Update this with a message you want to send to your matched playmate.'"
 				+ "WHERE playdate_id = ?";
 		jdbcTemplate.update(query, bookerPlaydate.getPetBookerId(), bookerPlaydate.getPlaydateId());
 	}
@@ -51,6 +51,14 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 				+ "SET pet_booker = NULL "
 				+ "WHERE playdate_id = ?";
 		jdbcTemplate.update(query, bookerPlaydate.getPlaydateId());
+	}
+	
+	@Override
+	public void updateChat(Playdate playdate) {
+		String query = "UPDATE playdate "
+				+ "SET user_chat = ? "
+				+ "WHERE playdate_id = ?";
+		jdbcTemplate.update(query, playdate.getUserMessage(), playdate.getPlaydateId());
 	}
 	
 	//Method to display (GET) a single playdate listing by playdate_id
@@ -119,6 +127,7 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 		profile.setDetails(rs.getString("details"));
 		profile.setLat(rs.getDouble("latitude"));
 		profile.setLng(rs.getDouble("longitude"));
+		profile.setUserMessage(rs.getString("user_chat"));
 		
 		return profile;
 	}

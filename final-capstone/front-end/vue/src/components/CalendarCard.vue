@@ -23,7 +23,8 @@
     </div>
 
     <div class="message">
-        <input type="text" name="message" cols="50" rows="5" maxlength="500" />
+        <textarea v-model="playDate.userMessage" cols="30" rows="15" :placeholder="this.$store.state.playDate.userMessage"></textarea>
+        <button type="submit" v-on:click="displayMessage">Send A Message</button>
     </div>
 
     </div>
@@ -40,7 +41,8 @@ export default {
   data() { 
       return {
           pet: {},
-          secondPet: {}
+          secondPet: {},
+          playDate: {}
       }
   },
   computed: {  },
@@ -66,6 +68,19 @@ export default {
                }
            })
            .catch (error => {
+               console.log(error);
+           })
+  },
+  displayMessage() {
+      applicationServices
+      .updateChat(this.playDate)
+      .then(response => {
+          if(response.status === 200) {
+              this.playDate.userMessage = response.data;
+              window.location.reload();
+          }
+      })
+        .catch (error => {
                console.log(error);
            })
   }
@@ -97,13 +112,11 @@ export default {
 
 .message {
     grid-area: message;
+       resize: none;
 }
 
-input {
-    resize: horizontal;
-    width: 200px;
-    height: 200px;
-
+textarea {
+   resize: none;
 }
 
 h2, h4, h5 {
@@ -123,7 +136,7 @@ h2, h4, h5 {
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 100%;
     grid-template-areas: 
     "poster booker"
     "footer footer"

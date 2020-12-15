@@ -18,6 +18,6 @@ public interface PlaydateDAO {
 
 	List<Playdate> displayPostings();
 	
-	
+	void updateChat(Playdate playdate);
 
 }

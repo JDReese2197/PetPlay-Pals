@@ -15,6 +15,7 @@ public class Playdate {
 	private String details;
 	private double lat;
 	private double lng;
+	private String userMessage;
 	
 	public int getPlaydateId() {
 		return playdateId;
@@ -76,6 +77,12 @@ public class Playdate {
 	}
 	public void setLng(double lng) {
 		this.lng = lng;
+	}
+	public String getUserMessage() {
+		return userMessage;
+	}
+	public void setUserMessage(String userMessage) {
+		this.userMessage = userMessage;
 	}
 	
 }
