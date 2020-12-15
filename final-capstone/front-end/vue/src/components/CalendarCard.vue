@@ -23,7 +23,7 @@
     </div>
 
     <div class="message">
-        <textarea v-model="playDate.userMessage" cols="30" rows="15" :placeholder="this.$store.state.playDate.userMessage"></textarea>
+        <textarea v-model="playDate.userMessage" cols="30" rows="15" :placeholder="playDate.userMessage"></textarea>
         <button type="submit" v-on:click="displayMessage">Send A Message</button>
     </div>
 
