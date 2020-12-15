@@ -32,24 +32,28 @@ DROP SEQUENCE IF EXISTS playdate_id;
 DROP SEQUENCE IF EXISTS seq_playdate_id;
 
 CREATE SEQUENCE seq_user_id
+  START WITH 10
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
 
 CREATE SEQUENCE seq_profile_id
+  START WITH 10
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
   
 CREATE SEQUENCE seq_pet_id
+  START WITH 10
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
   
  CREATE SEQUENCE seq_playdate_id
+   START WITH 10
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
@@ -113,12 +117,12 @@ CREATE TABLE playdate (
 );
 
 
-INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
-INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
-INSERT INTO users (username,password_hash,role) VALUES ('brian','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
-INSERT INTO users (username,password_hash,role) VALUES ('ashley','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
-INSERT INTO users (username,password_hash,role) VALUES ('mel','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
-INSERT INTO users (username,password_hash,role) VALUES ('james','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (user_id, username,password_hash,role) VALUES (1, 'user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (user_id, username,password_hash,role) VALUES (2, 'admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+INSERT INTO users (user_id, username,password_hash,role) VALUES (3, 'brian','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (user_id, username,password_hash,role) VALUES (4, 'ashley','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (user_id, username,password_hash,role) VALUES (5, 'mel','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (user_id, username,password_hash,role) VALUES (6, 'james','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 
 INSERT INTO user_profile VALUES (1, 1, 'Kelly', 'Brucker', '123 Address St', '', 'Cleveland', '12345', 'Ohio', 'kelly@email.com', '123-456-7890');
 INSERT INTO user_profile VALUES (2, 2, 'Frank', 'Fella', '123 Address St', '', 'Cleveland', '67890', 'Ohio', 'frank@email.com', '123-456-7890');
