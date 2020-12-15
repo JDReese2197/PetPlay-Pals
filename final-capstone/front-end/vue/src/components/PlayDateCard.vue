@@ -1,7 +1,7 @@
 <template>
 <!-- A single playdate card-->
 <div class="container">
-<div data-aos="fade-up" class="playdate-card" v-if="!declined"> 
+<div data-aos="fade-up" class="playdate-card" v-if="!declined && passesFilter"> 
         <img id = "pet-img" v-bind:src = "pet.profilePhoto"/>
         <h2>{{pet.petName}}</h2>
         <h3>{{pet.breed}} | {{pet.gender}} | Age {{pet.age}}</h3>
@@ -23,14 +23,29 @@ import applicationServices from '../services/ApplicationServices';
 export default {
     components: { },
     name: "play-date-card",
-    props: ['playDate'],
+    props: ['playDate', 'petFilter'],
     data() { 
       return {
           pet: {},
           declined: false,
+        //   passes: this.passesFilter()
       }
     },
-  computed: {  },
+  computed: {
+      passesFilter() {
+            let passes = true;
+            const petFilter = this.$store.state.petFilter;
+
+            if(petFilter.petType) {
+                passes = this.pet.petType == this.petFilter.petType ? true : false
+            }
+            if(petFilter.personalityType) {
+                passes = this.pet.personalityType == this.petFilter.personalityType ? true : false
+            }
+
+            return passes;
+      }
+  },
   methods: {
        getPet() {
            applicationServices
@@ -59,7 +74,7 @@ export default {
   },
   mounted() {
       this.getPet();
-  }
+  },
 }
 </script>
 
