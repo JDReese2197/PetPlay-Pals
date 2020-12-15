@@ -23,7 +23,7 @@
     </div>
 
     <div class="message">
-        <input type="text" name="message"/>
+        <input type="text" name="message" cols="50" rows="5" maxlength="500" />
     </div>
 
     </div>
@@ -103,7 +103,7 @@ input {
     resize: horizontal;
     width: 200px;
     height: 200px;
-    text-align: unset start;
+
 }
 
 h2, h4, h5 {
