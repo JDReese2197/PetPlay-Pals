@@ -17,7 +17,7 @@
         <h4>{{secondPet.breed}}</h4>
     </div>
 
-    <div class="playdate">
+    <div class="playdateFooter">
         <h4> At {{playDate.location}} on {{playDate.theDate}} from {{playDate.startTime}} - {{playDate.endTime}} </h4>
         <h5> Description: {{playDate.details}}</h5>
     </div>
@@ -105,7 +105,7 @@ export default {
     grid-area: booker;
 }
 
-.playdate {
+.playdateFooter {
     grid-area: footer;
 }
 
