@@ -139,10 +139,10 @@ INSERT INTO pet_profile VALUES (4, 4, 'Dog', 'Oslo', 'Greyhound', 'Large', 'Male
 INSERT INTO pet_profile VALUES (5, 5, 'Dog', 'Precious', 'Beagle', 'Small', 'Female', 'Shy and nice with all dogs', 3, 'loving', 'https://imgur.com/uP2FREV.jpg');
 INSERT INTO pet_profile VALUES (6, 6, 'Dog', 'Holly', 'Pitbull', 'Medium', 'Female', 'Lover of all creatures', 3, 'loving', 'https://imgur.com/FRBUT0s.jpg');
 
-INSERT INTO playdate VALUES (1, 4, NULL, '2020-12-18', '07:00:00', '09:00:00', 'Fairview Park, Cuyahoga County, OH', 'Looking for friendly dog to play with for 2 hours', 0.0, 0.0, 'Update this with a message you want to send to your matched playmate.');
-INSERT INTO playdate VALUES (3, 5, NULL, '2020-12-18', '08:00:00', '10:00:00', 'Madison Park, Lakewood, OH', 'Looking for friendly dog to play with for 2 hours', 0.0, 0.0, 'Update this with a message you want to send to your matched playmate.');
-INSERT INTO playdate VALUES (2, 2, 1, '2020-12-15', '11:00:00', '12:00:00', 'Lakewood Park, Lakewood, OH', 'Have an hour to play with another dog', 0.0, 0.0, 'Update this with a message you want to send to your matched playmate.');
-INSERT INTO playdate VALUES (4, 6, NULL, '2020-12-20', '06:00:00', '07:00:00', 'Madison Park, Lakewood, OH', 'Early morning playdate! :)', 0.0, 0.0, 'Update this with a message you want to send to your matched playmate.');
+INSERT INTO playdate VALUES (1, 4, NULL, '2020-12-18', '07:00:00', '09:00:00', 'Fairview Park, Cuyahoga County, OH', 'Looking for friendly dog to play with for 2 hours', 41.4414366, -81.8643039, 'Update this with a message you want to send to your matched playmate.');
+INSERT INTO playdate VALUES (3, 5, NULL, '2020-12-18', '08:00:00', '10:00:00', 'Madison Park, Lakewood, OH', 'Looking for friendly dog to play with for 2 hours', 41.4750027, -81.7807527, 'Update this with a message you want to send to your matched playmate.');
+INSERT INTO playdate VALUES (2, 2, 1, '2020-12-15', '11:00:00', '12:00:00', 'Lakewood Park, Lakewood, OH', 'Have an hour to play with another dog', 41.4948088, -81.7971556, 'Update this with a message you want to send to your matched playmate.');
+INSERT INTO playdate VALUES (4, 6, NULL, '2020-12-20', '06:00:00', '07:00:00', 'Fairview Park, Lakewood, OH', 'Early morning playdate! :)', 41.4414366, -81.8643039, 'Update this with a message you want to send to your matched playmate.');
 
 COMMIT TRANSACTION;
 

@@ -105,7 +105,7 @@ export default {
         //  Method to set and save a location to be searched around
         setPlace(place) {
             this.location = place;
-            console.log(place)
+            console.log(`${place.geometry.location.lat()}, ${place.geometry.location.lng()}`)
             this.$store.commit('SET_LOCATION', this.location);
         }
     },
