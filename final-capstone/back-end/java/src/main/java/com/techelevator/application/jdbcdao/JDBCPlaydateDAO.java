@@ -39,7 +39,7 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 	@Override
 	public void joinPlaydate(Playdate bookerPlaydate) {
 		String query = "UPDATE playdate "
-				+ "SET pet_booker = ? user_chat = ?"
+				+ "SET pet_booker = ?, user_chat = ?"
 				+ "WHERE playdate_id = ?";
 		jdbcTemplate.update(query, bookerPlaydate.getPetBookerId(), "Update this with a message you want to send to your matched playmate.",bookerPlaydate.getPlaydateId());
 	}
