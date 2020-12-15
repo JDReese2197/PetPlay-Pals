@@ -28,7 +28,8 @@ export default {
     components: { PlayDateCard, PlayDateMap },
     data() {
         return {
-            playDateCards: []
+            playDateCards: [],
+            petFilter: {},
         }
 },
     methods: {
@@ -47,6 +48,8 @@ export default {
     },
     mounted() {
         this.getAllOpenPlayDates()
+    },
+    computed: {
     }
 }
 
