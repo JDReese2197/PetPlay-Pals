@@ -26,7 +26,9 @@ export default {
     components: { PlayDateCard },
     data() {
         return {
-            playDateCards: []
+            playDateCards: [],
+            pet: {},
+            profile: {}
         }
 },
     methods: {

@@ -1,7 +1,7 @@
 <template>
 <!-- A single playdate on calendar card-->
 <div class="container">
-<div data-aos="fade-up" class="playdate-card"> 
+<div data-aos="fade-up" class="calendar-card"> 
 
     <div class="pet-poster">
         <img id = "pet-img" v-bind:src = "pet.profilePhoto"/>
@@ -123,7 +123,7 @@ h2, h4, h5 {
     margin: 2px;
 }
 
-.playdate-card {
+.calendar-card {
     width: 250px;
     height: auto !important;
     border-radius: 25px;
