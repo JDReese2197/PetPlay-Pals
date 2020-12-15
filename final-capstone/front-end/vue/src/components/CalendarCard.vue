@@ -41,8 +41,7 @@ export default {
   data() { 
       return {
           pet: {},
-          secondPet: {},
-          playDate: {}
+          secondPet: {}
       }
   },
   computed: {  },
