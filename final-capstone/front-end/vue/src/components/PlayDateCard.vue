@@ -1,7 +1,7 @@
 <template>
 <!-- A single playdate card-->
 <div class="container">
-<div data-aos="fade-up" class="playdate-card" v-if="!declined && passesFilter"> 
+<div data-aos="fade-up" class="playdate-card" v-if="!declined && passesFilter && passesDistance"> 
         <img id = "pet-img" v-bind:src = "pet.profilePhoto"/>
         <h2>{{pet.petName}}</h2>
         <h3>{{pet.breed}} | {{pet.gender}} | Age {{pet.age}}</h3>
@@ -31,7 +31,7 @@ export default {
       }
     },
   computed: {
-      passesFilter() {
+        passesFilter() {
             let passes = true;
             const petFilter = this.$store.state.petFilter;
 
@@ -43,7 +43,33 @@ export default {
             }
 
             return passes;
-      }
+        },
+
+        passesDistance() {
+            let playdate = this.playDate
+            let searchDistance = this.getDistance;
+
+            if(this.getLocation.geometry && playdate.lat && playdate.lng) {
+                const distance = this.calculateDistance(playdate, this.getLocation.geometry.location);
+
+                if(searchDistance == 0 || searchDistance > distance) {
+                    return true;
+                }
+            }
+            else if(!this.getLocation.geometry) {
+                return true
+            }
+
+            return false;
+        },
+
+        getLocation() {
+            console.log(this.$store.state.location)
+            return this.$store.state.location
+        },
+        getDistance() {
+            return this.$store.state.distanceFilter;
+        }
   },
   methods: {
        getPet() {
@@ -69,7 +95,22 @@ export default {
             applicationServices
                 .bookPlaydate(this.playDate)
 
-       }
+       },
+
+        //Calculate straight line distance between 2 points
+        calculateDistance(pointA, pointB) {
+            const radius = 2958.8; //   Radius of Earth in miles
+
+            let rlatA = pointA.lat * (Math.PI/180); // Convert degrees to radians
+            let rlatB = pointB.lat() * (Math.PI/180); // Convert degrees to radians
+
+            let latDiff = rlatB - rlatA; // Radian difference (latitudes)
+
+            let lngDiff = (pointB.lng() - pointA.lng) * (Math.PI/180) // Longitudinal difference in Radians
+
+            let distance = 2 * radius * Math.asin(Math.sqrt(Math.sin(latDiff/2)*Math.sin(latDiff/2)+Math.cos(rlatA)*Math.cos(rlatB)*Math.sin(lngDiff/2)*Math.sin(lngDiff/2)));
+            return distance;
+        },
   },
   mounted() {
       this.getPet();
