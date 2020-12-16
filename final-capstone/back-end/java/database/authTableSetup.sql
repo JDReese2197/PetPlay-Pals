@@ -32,28 +32,28 @@ DROP SEQUENCE IF EXISTS playdate_id;
 DROP SEQUENCE IF EXISTS seq_playdate_id;
 
 CREATE SEQUENCE seq_user_id
-  START WITH 10
+  START WITH 100
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
 
 CREATE SEQUENCE seq_profile_id
-  START WITH 10
+  START WITH 100
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
   
 CREATE SEQUENCE seq_pet_id
-  START WITH 10
+  START WITH 100
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
   
  CREATE SEQUENCE seq_playdate_id
-   START WITH 10
+   START WITH 100
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
@@ -127,10 +127,10 @@ INSERT INTO users (user_id, username,password_hash,role) VALUES (6, 'james','$2a
 
 INSERT INTO user_profile VALUES (1, 1, 'Kelly', 'Brucker', '123 Address St', '', 'Cleveland', '12345', 'Ohio', 'kelly@email.com', '123-456-7890');
 INSERT INTO user_profile VALUES (2, 2, 'Frank', 'Fella', '123 Address St', '', 'Cleveland', '67890', 'Ohio', 'frank@email.com', '123-456-7890');
-INSERT INTO user_profile VALUES (3, 3, 'brian', 'k', '123 brian St', '', 'Philadelphia', '12345', 'Pennsylvania', 'brian@email.com', '123-456-7890');
-INSERT INTO user_profile VALUES (4, 4, 'ashley', 'd', '123 ashley St', '', 'Cleveland', '12345', 'Ohio', 'ashley@email.com', '123-456-7890');
-INSERT INTO user_profile VALUES (5, 5, 'mel', 'f', '123 mel St', '', 'Cleveland', '12345', 'Ohio', 'mel@email.com', '123-456-7890');
-INSERT INTO user_profile VALUES (6, 6, 'james', 'reese', '123 james St', '', 'Strongsville', '12345', 'Ohio', 'james@email.com', '123-456-7890');
+INSERT INTO user_profile VALUES (3, 3, 'Brian', 'K', '123 Brian St', '', 'Philadelphia', '12345', 'Pennsylvania', 'brian@email.com', '123-456-7890');
+INSERT INTO user_profile VALUES (4, 4, 'Ashley', 'D', '123 Ashley St', '', 'Cleveland', '12345', 'Ohio', 'ashley@email.com', '123-456-7890');
+INSERT INTO user_profile VALUES (5, 5, 'Mel', 'F', '123 Mel St', '', 'Cleveland', '12345', 'Ohio', 'mel@email.com', '123-456-7890');
+INSERT INTO user_profile VALUES (6, 6, 'James', 'Reese', '123 James St', '', 'Strongsville', '12345', 'Ohio', 'james@email.com', '123-456-7890');
 
 INSERT INTO pet_profile VALUES (1, 1, 'Dog', 'Rudy', 'Bulldog', 'Medium', 'Male', 'Loves the water', 2, 'loving', 'https://imgur.com/loDyfuW.jpg');
 INSERT INTO pet_profile VALUES (2, 2, 'Dog', 'Buddy', 'Beagle', 'Medium', 'Male', 'Lazy but loving dog', 3, 'loving', 'https://imgur.com/diIqn2R.jpg');
