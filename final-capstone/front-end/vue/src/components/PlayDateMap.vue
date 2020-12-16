@@ -3,15 +3,21 @@
         <br>
             <gmap-map class="map" ref="mapRef"
             :center='center'
-            :zoom='currentZoom'
+            :zoom='10'
             :options='{disableDefaultUI: true, zoomControl: true, fullscreenControl: true}'
             >
+                <gmap-info-window
+                    :options="infoOptions"
+                    :position="infoWindowPos"
+                    v-on:click="toggleInfoWindow(m, index)"
+                >
+                </gmap-info-window>
                 <gmap-marker
                     :key="index"
                     v-for="(m, index) in filteredPlaydates"
                     :position="{lat: m.lat, lng: m.lng}"
                     :clickable="true"
-                    v-on:click="center=m.position"
+                    v-on:click="center={lat: m.lat, lng: m.lng}, markerIndex=index, toggleInfo(m, index)"
                 ></gmap-marker>
         </gmap-map>
     </div>
@@ -25,10 +31,8 @@ export default {
     props: ['playDates'],
     data() {
         return {
+            markerIndex: null,  //  Marker index will start at 1, making it 1 higher than it's index in the array of playdates
             center: {lat: 41.49932, lng: -81.6943605},
-            markers: [],
-            places: [],
-            currentZoom: 10,
             userLocation: {},
         }
     },
@@ -108,26 +112,7 @@ export default {
 
                 return false;
             })
-        },
-        // filterMarker(place) {
-        //     console.log(place)
-        //     const playdate = place;
-        //     let location = this.getLocation;
-        //     let searchDistance = this.getDistance;
-
-        //     if(location && playdate.lat && playdate.lng) {
-        //         const distance = this.calculateDistance(playdate, location.geometry.location);
-
-        //         if(searchDistance === 0 || searchDistance < distance) {
-        //             return true;
-        //         }
-        //     }
-        //     else if(!location) {
-        //         return true
-        //     }
-
-        //     return false;
-        // },
+        }
     },
 }
 </script>
