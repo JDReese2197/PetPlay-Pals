@@ -61,6 +61,12 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 		jdbcTemplate.update(query, playdate.getUserMessage(), playdate.getPlaydateId());
 	}
 	
+	@Override
+	public void deletePlaydate(Playdate playdate) {
+		String query = "DELETE FROM playdate WHERE playdate_id = ?";
+				jdbcTemplate.update(query, playdate.getPlaydateId());
+	}
+	
 	//Method to display (GET) a single playdate listing by playdate_id
 	@Override
 	public Playdate getPlaydateByPlaydateId(int playdateId) {

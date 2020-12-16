@@ -12,19 +12,16 @@ Vue.use(Vuex)
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user')); // username
 
-let currentPet; let userPets;
+let currentPet = {}; let userPets = []; let currentProfile = {};
 try {
   currentPet = JSON.parse(localStorage.getItem('pet'))
-}
-catch(e) {
-  console.log(e)
-}
+} catch(e) { console.log(e); }
 try {
-  userPets = JSON.parse(localStorage.getItem('pets'))
-}
-catch(e) {
-  console.log(e)
-}
+  userPets = JSON.parse(localStorage.getItem('pets'));
+} catch(e) { console.log(e); }
+try {
+  currentProfile = JSON.parse(localStorage.getItem('profile'));
+} catch(e) { console.log(e); }
 
 
 if(currentToken != null) {
@@ -35,10 +32,10 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    profile: {},
+    profile: currentProfile,
     playDates: [],
-    pet: currentPet || {},
-    pets: userPets || [],
+    pet: currentPet,
+    pets: userPets,
     playDate: {},
 
     petFilter: {
@@ -127,6 +124,7 @@ export default new Vuex.Store({
 
       localStorage.removeItem('profile')
       localStorage.removeItem('pet')
+      localStorage.removeItem('pets')
       state.pets = [];
       state.pet = {};
       state.profile = {};
@@ -137,6 +135,7 @@ export default new Vuex.Store({
     },
     SET_PROFILE(state, profile) {
       state.profile = profile;
+      localStorage.setItem('profile', JSON.stringify(profile))
     },
     SET_PET(state, pet) {
       state.pet = pet;
