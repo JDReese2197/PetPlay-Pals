@@ -124,6 +124,7 @@ export default new Vuex.Store({
 
       localStorage.removeItem('profile')
       localStorage.removeItem('pet')
+      localStorage.removeItem('pets')
       state.pets = [];
       state.pet = {};
       state.profile = {};
