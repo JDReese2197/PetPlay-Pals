@@ -32,12 +32,13 @@
             </div>
             <div class="field">
                 <label for="theLocation">Location</label>
-                <input
+                <!-- <input
                     type="text"
                     name="theLocation"
                     v-model="playdate.theLocation"
                     required
-                />
+                /> -->
+                <gmap-autocomplete name="theLocation" v-on:place_changed="setPlace"></gmap-autocomplete>
             </div>
             <div class="field">
                 <label for="details">Additional Details</label>
@@ -68,12 +69,14 @@ export default {
     data() {
         return {
             playdate: {
-                petPoster: null,
+                petPosterId: null,
                 theDate: "",
                 startTime: "",
                 endTime: "",
-                theLocation: "",
-                details: ""
+                location: "",
+                details: "",
+                lat: 0,
+                lng: 0,
             }
         }
     },
@@ -81,8 +84,13 @@ export default {
         this.setPosterId();
     },
     methods: {
+        setPlace(place) {
+            this.playdate.location = place.name;
+            this.playdate.lat = place.geometry.location.lat();
+            this.playdate.lng = place.geometry.location.lng();
+        },
         setPosterId() {
-            this.playdate.petPoster = this.$store.state.user.id;
+            this.playdate.petPosterId = this.$store.state.user.id;
         },
         submitPlaydate() {
             console.log("got to submit playdate function")
@@ -100,6 +108,7 @@ export default {
         },
         handleErrorResponse(error, verb) {
             console.log("error handling")
+            console.log(error)
             if (error.response) {
             this.errorMsg =
                 "Error " + verb + " Post Playdate. Response received was '" +

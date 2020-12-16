@@ -24,7 +24,7 @@ export default new Vuex.Store({
     profile: {},
     playDates: [],
     pet: {},
-    pets:[],
+    pets: [],
     playDate: {},
 
     petFilter: {

@@ -9,6 +9,12 @@
         </div>
 
         <div class="nav"> <!-- This is the list of nav buttons on the user profile page-->
+            <h2>Select Current Pet</h2>
+            <select>
+                <option :value="pet" v-for="pet in getAllPets" v-bind:key="pet.petId">{{pet.petName}}</option>
+            </select>
+
+
             <h1 class="title">Available Playdates</h1>
             <!-- <router-link v-bind:to="{name: 'profile-page'}"><button class="nav-btn"><strong>Your Profile</strong></button></router-link>
             <router-link v-bind:to="{name: 'schedule'}"><button class="nav-btn"><strong>Your Schedule</strong></button></router-link>
@@ -72,6 +78,7 @@ export default {
     components: { PlayDateCard, PlayDateMap },
     data() {
         return {
+            petIndex: 0,
             playDateCards: [],
             petFilter: {
                 petType: this.$store.state.petFilter.petType || "",
@@ -104,14 +111,23 @@ export default {
 
         //  Method to set and save a location to be searched around
         setPlace(place) {
+            console.log(`${place.geometry.location.lat()}, ${place.geometry.location.lng()}`)
             this.location = place;
             this.$store.commit('SET_LOCATION', this.location);
+        },
+
+        //  Change current pet in the store
+        setPet(i) {
+            this.$store.commit('SET_PET', this.getAllPets[i]);
         }
     },
     mounted() {
         this.getAllOpenPlayDates()
     },
     computed: {
+        getAllPets() {
+            return this.$store.state.pets;
+        }
     }
 }
 
