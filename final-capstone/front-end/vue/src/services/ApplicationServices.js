@@ -59,5 +59,8 @@ export default {
     },
     updateChat(userMessage) {
         return http.put(`/playdate/message`, userMessage)
+    },
+    declinePlaydate(playdateId) {
+        return http.put(`/playdate/decline`, playdateId)
     }
 }
