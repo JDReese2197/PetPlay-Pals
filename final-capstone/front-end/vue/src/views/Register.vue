@@ -1,5 +1,8 @@
 <template>
   <div id="register" class="text-center">
+    <div class="header">
+      <router-link v-bind:to="{name: 'homepage'}"><img id="logo" src="https://res.cloudinary.com/ashdav/image/upload/v1608076755/img/6_uhrhmd.png"/></router-link>
+    </div>
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
@@ -47,11 +50,13 @@
 </template>
 
 <script>
+import TopHomeBar from '../components/TopHomeBar.vue';
 import authService from '../services/AuthService';
 
 export default {
   name: 'register',
   components: {
+    TopHomeBar
   },
   data() {
     return {
@@ -108,17 +113,26 @@ export default {
 </script>
 
 <style scoped>
+#logo {
+  grid-area: logo;
+    width:150px;
+    height: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
 h1 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     color: #29d2db;
 }
 #register {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
     grid-template-areas: 
-      ". form .";
+        "header header header"
+        ". form .";
 }
 form {
     grid-area: form;

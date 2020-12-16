@@ -1,5 +1,8 @@
 <template>
   <div id="login" class="text-center">
+    <div class="header">
+      <router-link v-bind:to="{name: 'homepage'}"><img id="logo" src="https://res.cloudinary.com/ashdav/image/upload/v1608076755/img/6_uhrhmd.png"/></router-link>
+    </div>
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
@@ -87,16 +90,25 @@ export default {
 </script>
 
 <style scoped>
+#logo {
+  grid-area: logo;
+    width:150px;
+    height: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
 h1 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     color: #29d2db;
 }
 #login {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
     grid-template-areas: 
+        "header header header"
         ". form .";
 }
 form {
