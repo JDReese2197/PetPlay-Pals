@@ -1,9 +1,6 @@
 <template>
     <!-- This is where we will display a list of playdate cards-->
     <div class="container">
-        <div class="nav-map">
-        <play-date-map v-if="true" v-bind:playDates="playDateCards"/>
-        </div>
         <div class = "play-date-cards">
         <play-date-card v-for="playDate in playDateCards"
         v-bind:key="playDate.id" v-bind:playDate = "playDate"/>
@@ -15,11 +12,9 @@
             <select>
                 <option :value="pet" v-for="pet in getAllPets" v-bind:key="pet.petId">{{pet.petName}}</option>
             </select>
+            <br/>
+            <router-link class="link" v-bind:to="{name: 'post-playdate'}"><button id="post-playdate">Post a Playdate</button></router-link>
 
-            <!-- <router-link v-bind:to="{name: 'profile-page'}"><button class="nav-btn"><strong>Your Profile</strong></button></router-link>
-            <router-link v-bind:to="{name: 'schedule'}"><button class="nav-btn"><strong>Your Schedule</strong></button></router-link>
-            <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn"><strong>Register a Pet</strong></button></router-link>
-            <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn"><strong>Log Out</strong></button></router-link> -->
             <h3 class="title">Filter</h3>
 
             <div class="field">
@@ -64,6 +59,7 @@
                     <option value="25" >25 Miles</option>
                 </select>
             </div>
+            <play-date-map v-if="true" v-bind:playDates="playDateCards"/>
         </div>
     </div>
 </template>
@@ -141,13 +137,32 @@ export default {
     grid-template-columns: 25% 75%;
     grid-template-areas:
     "nav     petSearch"
-    "nav-map petSearch"
     ;
 }
 h3 {
     color: #ff5757;
     text-transform: uppercase;
 }
+.link{
+    text-decoration: none;
+}
+button {
+    border: none;
+    border-radius: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 5px 15px;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+}
+#post-playdate {
+    background-color: #5ce1e6;
+}
+#post-playdate:hover {
+    background-color: #ffe473;
+}
+
 input {
     width: 100%;
     padding: 5px 5px;
@@ -190,20 +205,5 @@ select {
 }
 .nav-map {
     grid-area: nav-map;
-    width: 200px;
-}
-.nav-btn {
-    border: none;
-    border-radius: 25px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin: 10px;
-    margin-top: 25px;
-    background-image: linear-gradient(#fd6d68, #dd4b46);
-    color: white;
-    font-size: 15px;
-    width: 90%;
-    height: 50px;
-    text-align: center;
 }
 </style>

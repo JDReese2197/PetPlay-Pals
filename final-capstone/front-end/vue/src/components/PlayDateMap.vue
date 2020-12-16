@@ -1,11 +1,10 @@
 <template>
     <div>
         <br>
-            <gmap-map ref="mapRef"
+            <gmap-map class="map" ref="mapRef"
             :center='center'
             :zoom='currentZoom'
             :options='{disableDefaultUI: true, zoomControl: true, fullscreenControl: true}'
-            style="width: 300px;  height: 300px; margin: auto;"
             >
                 <gmap-marker
                     :key="index"
@@ -134,5 +133,9 @@ export default {
 </script>
 
 <style scoped>
-
+.map {
+    width: auto;  
+    height: 300px; 
+    margin: auto;
+}
 </style>
