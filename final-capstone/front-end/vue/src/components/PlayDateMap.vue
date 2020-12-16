@@ -9,15 +9,19 @@
                 <gmap-info-window
                     :options="infoOptions"
                     :position="infoWindowPos"
-                    v-on:click="toggleInfoWindow(m, index)"
+                    :opened="infoOpen"
+                    v-on:click="toggleInfo(m, index)"
                 >
+                    <div v-html="infoContent"></div>
                 </gmap-info-window>
+
                 <gmap-marker
                     :key="index"
                     v-for="(m, index) in filteredPlaydates"
                     :position="{lat: m.lat, lng: m.lng}"
                     :clickable="true"
-                    v-on:click="center={lat: m.lat, lng: m.lng}, markerIndex=index, toggleInfo(m, index)"
+                    v-on:click="markerIndex=index, toggleInfo(m, index)"
+                    v-on:closeclick="infoOpen=false"
                 ></gmap-marker>
         </gmap-map>
     </div>
@@ -32,11 +36,49 @@ export default {
     data() {
         return {
             markerIndex: null,  //  Marker index will start at 1, making it 1 higher than it's index in the array of playdates
-            center: {lat: 41.49932, lng: -81.6943605},
+            center: {
+                lat: 41.49932, 
+                lng: -81.6943605
+            },
+            infoContent: '',
             userLocation: {},
+            infoWindowPos: {
+                lat: 0,
+                lng: 0
+            },
+            infoOpen: false,
+            infoOptions: {
+                pixelOffset: {
+                    width: 0,
+                    height: -35
+                }
+            }
         }
     },
     methods: {
+
+        //  Toggle info window on map.
+        toggleInfo: function(playdate, index) {
+            this.infoWindowPos = {lat: playdate.lat, lng: playdate.lng};
+            console.log(playdate)
+            this.infoContent = this.getInfoWindowContent(playdate);
+
+            if(this.markerIndex == index) {
+                this.infoOpen = !this.infoOpen;
+            }
+            else {
+                this.infoOpen = true;
+                this.markerIndex = index;
+            }
+        },
+
+        //  Sets content for displaying in info window
+        getInfoWindowContent: function (playdate) {
+            return (`<div>
+                        <h3>${playdate.details}</h3>
+                    </div>`)
+        },
+
         setPlace(place) {
             this.currentPlace = place;
         },
