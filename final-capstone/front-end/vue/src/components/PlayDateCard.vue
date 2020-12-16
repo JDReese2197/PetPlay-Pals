@@ -5,6 +5,7 @@
         <img id = "pet-img" v-bind:src = "pet.profilePhoto"/>
         <h2>{{pet.petName}}</h2>
         <h3>{{pet.breed}} | {{pet.gender}} | Age {{pet.age}}</h3>
+        <h4>{{pet.description}}</h4>
         <h4>{{playDate.location}}</h4>
         <h4>{{playDate.theDate}}</h4>
         <h4>{{playDate.startTime}} - {{playDate.endTime}}</h4>
@@ -124,10 +125,20 @@ export default {
     color: #555555;
 }
 
-h2, h4, h5 {
+h2 {
     white-space:pre-wrap;
-    margin: 10px;
+    margin-top: 5px;
+    
 }
+
+h3 {
+    margin-top: -15px;
+}
+
+ h4, h5 {
+     white-space:pre-wrap;
+    margin: 10px;
+ }
 .playdate-card {
     width: 250px;
     height: auto !important;

@@ -65,8 +65,8 @@
                 <option value="Friendly, Sweet">Friendly, Sweet</option>
                 <option value="Loving, Affectionate">Loving, Affectionate</option> 
                 <option value="Curious, Adventurous">Curious, Adventurous</option>
-                <option value="Gentle, Laidback">Gentle, Laidback</option>
-                <option value="Active, Playful">Active, Playful</option>
+                <option value="Calm, Laidback">Calm, Laidback</option>
+                <option value="Energetic, Playful">Energetic, Playful</option>
                 <option value="Confident, String-Willed">Confident, Strong-Willed</option>
             </select>
         </div>
