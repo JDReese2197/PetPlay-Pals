@@ -20,6 +20,6 @@ public interface PlaydateDAO {
 	
 	void updateChat(Playdate playdate);
 
-	void deletePlaydate(Playdate playdate);
+	void deletePlaydate(int playdateId);
 
 }

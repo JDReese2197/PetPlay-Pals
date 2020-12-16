@@ -62,5 +62,8 @@ export default {
     },
     declinePlaydate(playdateId) {
         return http.put(`/playdate/decline`, playdateId)
+    },
+    deletePlaydate(playdateId) {
+        return http.delete(`/playdate/delete/${playdateId}`)
     }
 }
