@@ -26,6 +26,6 @@ export default {
 h1 {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    color: #29d2db;
+    color: #ff5757;
 }
 </style>

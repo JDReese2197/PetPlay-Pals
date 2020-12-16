@@ -91,9 +91,7 @@
             ></vue-dropzone>
         </div>
         <br/>
-        <div class="actions">
-            <button type="submit" v-on:click="submitPetForm">Submit</button>
-        </div>
+        <button type="submit" class="button" v-on:click="submitPetForm">Submit</button>
         <br/>
         <br/>
         <br/>
@@ -257,12 +255,15 @@ select {
     color: #555555;
 }
 button {
+    background-color: #ff5757;
     border: none;
     border-radius: 20px;
     text-transform: uppercase;
-    background-color: #29d2db;
     color: white;
     font-size: 20px;
     padding: 5px 15px;
+}
+button:hover {
+    background-image: linear-gradient(to right, #5ce1e6, #ff5757, #ffe473);
 }
 </style>

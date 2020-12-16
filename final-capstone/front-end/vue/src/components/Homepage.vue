@@ -161,7 +161,7 @@ h1 {
     padding: 5px 15px;
 }
 .button:hover {
-    background-image: linear-gradient(to left,rgb(253, 253, 130) , #e6615c, #29d2db);
+    background-image: linear-gradient(to right, #5ce1e6, #ff5757, #ffe473);
 }
 body {
     display: grid;

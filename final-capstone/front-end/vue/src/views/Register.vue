@@ -122,7 +122,7 @@ export default {
 h1 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
-    color: #29d2db;
+    color: #ff5757;
 }
 #register {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -158,12 +158,15 @@ select {
     font-size: 15px;
 }
 button {
+    background-color: #ff5757;
     border: none;
     border-radius: 20px;
     text-transform: uppercase;
-    background-color: #29d2db;
     color: white;
     font-size: 20px;
     padding: 5px 15px;
+}
+button:hover {
+    background-image: linear-gradient(to right, #5ce1e6, #ff5757, #ffe473);
 }
 </style>
