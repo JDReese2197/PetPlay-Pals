@@ -16,7 +16,7 @@ export default {
 <style scoped>
 footer {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: linear-gradient(to right, #29d2db, #e6615c, rgb(253, 253, 130));
+    background-image: linear-gradient(to right, #5ce1e6, #ff5757, #ffe473);
     color: white;
     text-align: center;
     font-size: 12px;

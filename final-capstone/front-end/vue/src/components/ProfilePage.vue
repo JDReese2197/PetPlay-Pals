@@ -4,8 +4,11 @@
         <div class="pet-profile-side-bar"> <!-- This is where the pet profile section goes-->
             <div class="pet-image">
                 <img id = "pet-pic" v-bind:src = "pet.profilePhoto"/>
-                <div id = "pet-pic" />
-            </div>   
+                <router-link v-bind:to="{name: 'add-pet'}"><div id = "pet-pic"></div></router-link>
+            </div> 
+            <br/>
+            <br/>
+            <br/>  
         </div>
         <!-- Pet image/TEMPORARY IMG-->
         <div class="pet-info">   
@@ -14,7 +17,7 @@
             <p> {{pet.age}} | {{pet.gender}} </p>
             <p> {{pet.personalityType}} </p>
             <p> {{pet.description}} </p>
-            <router-link v-bind:to="{name: 'add-pet'}"><button id="edit-profile">Edit Profile</button></router-link>
+            <router-link class="link" v-bind:to="{name: 'add-pet'}"><button id="edit-pet-profile">Edit Profile</button></router-link>
         </div> 
 
         <div class="user-info"> <!-- This is the user info section -->
@@ -24,11 +27,7 @@
             <p>{{profile.city}}, {{profile.state}} {{profile.zip}}</p>
             <p>{{profile.email}}</p>
             <p>{{profile.phone}}</p>
-            <router-link v-bind:to="{name: 'user-profile-form'}"><button id="edit-profile">Edit Profile</button></router-link>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+            <router-link class="link" v-bind:to="{name: 'user-profile-form'}"><button id="edit-user-profile">Edit Profile</button></router-link>
         </div>
         
         <!-- <div class="user-profile-nav"> This is the list of nav buttons on the user profile page -->
@@ -37,26 +36,15 @@
             <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn">Register a Pet</button></router-link>
             <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn">Log Out</button></router-link> -->
         <!-- </div> -->
-
-        <div class="user-profile-nav"> <!-- This is the list of nav buttons on the user profile page-->
-            <router-link v-bind:to="{name: 'schedule'}"><button class="nav-btn"><strong>Your Schedule</strong></button></router-link>
-            <router-link v-bind:to="{name: 'find-a-playdate'}"><button class="nav-btn"><strong>Find a Playdate</strong></button></router-link>
-            <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn"><strong>Register a Pet</strong></button></router-link>
-            <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn"><strong>Log Out</strong></button></router-link>
-        </div>
-
-        <footer-bar class="footer"/>
     </div>
 </template>
 
 <script>
 
 import applicationServices from '@/services/ApplicationServices';
-import footerBar from '@/components/FooterBar';
 
 export default {
     components: { 
-        footerBar
     },
     props: ['user'],
     data() {
@@ -112,11 +100,11 @@ export default {
 .user-profile {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: grid;
-    grid-template-columns: 15% 25% 60% ;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
-    "nav    petbar    petinfo"
-    "nav    petbar    userinfo"
-    "footer footer    footer"
+    "petbar petinfo userinfo"
+    "petbar .       ."
+    "footer footer  footer"
     ;
 }
 p {
@@ -125,51 +113,17 @@ p {
 }
 .user-info {
     grid-area: userinfo;
-    padding-left: 150px;
+    margin-top: 20px;
 }
-
-.footer {
-    grid-area: footer;
-    text-align: center;
-    
-}
-
-.user-profile-nav {
-    grid-area: nav;
-    padding-top: 25px;
-    padding-bottom: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-    background-color: #96f8fc;
-}
-.nav-btn {
-    border: none;
-    border-radius: 25px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin: 10px;
-    margin-top: 25px;
-    background-image: linear-gradient(#fd6d68, #dd4b46);
-    color: white;
-    font-size: 15px;
-    width: 90%;
-    height: 50px;
-    text-align: center;
-}
-.title {
-    text-align: center;
-    color: #555555;
+.pet-info {
+    grid-area: petinfo;
+    margin-top: 20px;
+    margin-left: 12%;
 }
 
 .pet-profile-side-bar {
     grid-area: petbar;
-    padding-left: 125px;
     padding-top: 25px;
-}
-
-.h2 {
-    color: #5CE1E6;
 }
 
 .pet-image {
@@ -180,7 +134,7 @@ p {
 }
 
 #pet-pic {
-    background-color: rgba(253, 253, 130, 0.733);
+    background-color: #ffe473;
     border-radius: 50%;
     object-fit: cover;
     object-position: center top;
@@ -189,6 +143,7 @@ p {
     margin: 15px;
     align-content: center;
     position: relative;
+    box-shadow: 0 4px 8px 0 #ffe473, 0 6px 20px 0 #ffe473;
 }
 
 #pet-pic::after {
@@ -218,44 +173,35 @@ p {
   border-radius: 20px;
 }
 
-.pet-info {
-    grid-area: petinfo;
-    padding-left: 150px;
-}
-
-#edit-profile, #edit-play-date-preferences {
+button {
     border: none;
     border-radius: 20px;
     text-transform: uppercase;
     font-weight: bold;
     margin: 10px;
-    background-color: #e6615c;
     color: white;
     width: 150px;
     height: 25px;
     text-align: center;
 }
-
-#schedule-btn {
-    margin-top: 25px;
+#edit-pet-profile {
+    background-color: #ff5757;
 }
-#find-a-friend  {
-    border: none;
-    border-radius: 20px;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin: 10px;
-    background-color: #5CE1E6;
-    color: white;
-    align-content: center;
+#edit-user-profile {
+    background-color: #5ce1e6;
+}
+#edit-pet-profile:hover {
+    background-color: #ffe473;
+}
+#edit-user-profile:hover {
+    background-color: #ffe473;  
 }
 
-a:link {
-    color: rgb(39, 39, 39);
+.pet-info h1 {
+    color: #e6615c; 
 }
-
-h1 {
-    color: #e6615c;
+.user-info h1 {
+    color: #5ce1e6;
 }
 
 /* .find-a-friend {
