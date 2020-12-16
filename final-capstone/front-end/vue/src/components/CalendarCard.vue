@@ -18,13 +18,16 @@
     </div>
 
     <div class="playdateFooter">
-        <h4> At {{playDate.location}} on {{playDate.theDate}} from {{playDate.startTime}} - {{playDate.endTime}} </h4>
-        <h5> Description: {{playDate.details}}</h5>
+        <h4><u>Location:</u> {{playDate.location}}</h4>
+        <h4><u>Date:</u> {{playDate.theDate}}</h4>
+        <h4><u>Time:</u> {{playDate.startTime}} - {{playDate.endTime}}</h4>
+        <h4><u>Description:</u> {{playDate.details}}</h4>
     </div>
 
     <div class="message">
         <textarea v-model="playDate.userMessage" cols="30" rows="15" :placeholder="playDate.userMessage"></textarea>
         <button type="submit" v-on:click="displayMessage">Send A Message</button>
+        <button type="submit" v-on:click="declinePlaydate">Decline Playdate</button>
     </div>
 
     </div>
@@ -82,6 +85,19 @@ export default {
         .catch (error => {
                console.log(error);
            })
+  },
+  declinePlaydate() {
+      applicationServices
+      .declinePlaydate(this.playDate)
+      .then(response => {
+          if(response.status === 200) {
+              //this.playDate.userMessage = response.data;
+              window.location.reload();
+          }
+      })
+        .catch (error => {
+               console.log(error);
+           })
   }
        },     
   mounted() {
@@ -99,14 +115,22 @@ export default {
 
 .pet-poster {
     grid-area: poster;
+        margin-bottom: 15px;
 }
 
 .pet-booker {
     grid-area: booker;
+        margin-bottom: 15px;
 }
 
 .playdateFooter {
     grid-area: footer;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+h5 {
+    padding-top: 20px;
 }
 
 .message {
@@ -153,5 +177,19 @@ h2, h4, h5 {
     margin: 5px;
     align-content: center;
     
+}
+
+button {
+    border: none;
+    border-radius: 25px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+    background-image: linear-gradient(#fd6d68, #dd4b46);
+    color: white;
+    font-size: 15px;
+    width: 90%;
+    height: 30px;
+    text-align: center;
 }
 </style>

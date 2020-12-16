@@ -73,12 +73,7 @@ export default {
         this.retrieveUserProfile(); 
     },
     computed: {
-        profile() {
-            return this.$store.state.profile;
-        },
-        pet() {
-            return this.$store.state.pet;
-        }
+        
     }
 }
 

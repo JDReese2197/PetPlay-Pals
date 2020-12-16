@@ -1,38 +1,19 @@
 <template>
     <div>
-        <!-- <div>
-            <label>
-                <p>Enter current location: </p>
-                <gmap-autocomplete v-on:place_changed="setPlace">
-                </gmap-autocomplete>
-                <button v-on:click="generatePlaydateMarkers">Search Nearby PlayDates</button>
-            </label>
-            <label for="distance-selector">Distance to search: </label>
-            <select id="distance-selector" v-model="searchDistance">
-                <option value="5" >5 Miles</option>
-                <option value="10" >10 Miles</option>
-                <option value="15" >15 Miles</option>
-                <option value="20" >20 Miles</option>
-                <option value="25" >25 Miles</option>
-                <option value="0">Unlimited</option>
-            </select>
-            <br/>
-
-        </div> -->
         <br>
-        <gmap-map ref="mapRef"
-        :center='center'
-        :zoom='currentZoom'
-        :options='{disableDefaultUI: true, zoomControl: true, fullscreenControl: true}'
-        style="width: 600px;  height: 300px; margin: auto;"
-        >
-        <gmap-marker
-            :key="index"
-            v-for="(m, index) in markers"
-            :position="{lat: m.lat, lng: m.lng}"
-            :clickable="true"
-            v-on:click="center=m.position"
-        ></gmap-marker>
+            <gmap-map ref="mapRef"
+            :center='center'
+            :zoom='currentZoom'
+            :options='{disableDefaultUI: true, zoomControl: true, fullscreenControl: true}'
+            style="width: 600px;  height: 300px; margin: auto;"
+            >
+                <gmap-marker
+                    :key="index"
+                    v-for="(m, index) in playDates"
+                    :position="{lat: m.lat, lng: m.lng}"
+                    :clickable="true"
+                    v-on:click="center=m.position"
+                ></gmap-marker>
         </gmap-map>
     </div>
 </template>
@@ -45,13 +26,11 @@ export default {
     props: ['playDates'],
     data() {
         return {
-            center: { lat: 40.367474, lng: -82.996216 },
+            center: {lat: 41.49932, lng: -81.6943605},
             markers: [],
             places: [],
-            currentPlace: this.$store.state.location,
             currentZoom: 10,
             userLocation: {},
-            searchDistance: this.$store.state.distanceFilter,
         }
     },
     methods: {
@@ -79,34 +58,13 @@ export default {
                 this.places.push(place)
             }
         },
-        generatePlaydateMarkers() {
-            this.markers = [];
-
-            this.center = {lat: this.currentPlace.geometry.location.lat(), lng: this.currentPlace.geometry.location.lng()};
-
-            this.playDates.forEach( playDate => {
-                if(playDate.lat && playDate.lng) {
-
-                    if(this.currentPlace) {
-                        console.log("currentPlace: " + this.currentPlace.geometry.location)
-                        const distance = this.calculateDistance(playDate, this.currentPlace.geometry.location);
-
-                        console.log(`Distance between ${this.currentPlace.formatted_address} and ${playDate.location}: ${distance} miles`);
-
-                        if(distance < this.searchDistance || this.searchDistance == 0) {
-                            this.setMarker(playDate);
-                        }
-                    }
-                }
-            })
-        },
 
         //  Method to calculate the distance between two points
         //      Takes a location {lat: number, lng: number} and a marker object {position: {lat: number, lng: number}}
-        calculateDistance(pointA, pointB) {
+        calculateDistance(pointA, pointBPlace) {
             const radius = 2958.8; //   Radius of Earth in miles
-            console.log('a')
-            console.log(pointA)
+            const pointB = pointBPlace.geometry.location
+
             let rlatA = pointA.lat * (Math.PI/180); // Convert degrees to radians
             let rlatB = pointB.lat() * (Math.PI/180); // Convert degrees to radians
 
@@ -120,12 +78,57 @@ export default {
     },
     computed: {
         google: gmapApi,
-    },
-    components: {
-        
-    },
-    mounted() {
-        // this.generatePlaydateMarkers();
+
+        //  Methods being used to filter markers to only those that are within range
+
+        // getLocation() {
+        //     return this.$store.state.location
+        // },
+        // getDistance() {
+        //     return this.$store.state.distanceFilter
+        // },
+        // filteredPlaydates() {
+        //     const playdates = this.playDates;
+        //     let location = (this.$store.state.location ? null : this.getLocation);
+        //     let searchDistance = this.getDistance;
+
+        //     console.log(location)
+        //     console.log(searchDistance)
+
+        //     return playdates.filter(playdate => {
+        //         if(location && playdate.lat && playdate.lng) {
+        //             const distance = this.calculateDistance(playdate, location);
+
+        //             if(searchDistance === 0 || searchDistance < distance) {
+        //                 return true;
+        //             }
+        //         }
+        //         else if(!location) {
+        //             return true;
+        //         }
+
+        //         return false;
+        //     })
+        // },
+        // filterMarker(place) {
+        //     console.log(place)
+        //     const playdate = place;
+        //     let location = this.getLocation;
+        //     let searchDistance = this.getDistance;
+
+        //     if(location && playdate.lat && playdate.lng) {
+        //         const distance = this.calculateDistance(playdate, location.geometry.location);
+
+        //         if(searchDistance === 0 || searchDistance < distance) {
+        //             return true;
+        //         }
+        //     }
+        //     else if(!location) {
+        //         return true
+        //     }
+
+        //     return false;
+        // },
     },
 }
 </script>
