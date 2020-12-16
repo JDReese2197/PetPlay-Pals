@@ -8,7 +8,7 @@
             >
                 <gmap-marker
                     :key="index"
-                    v-for="(m, index) in playDates"
+                    v-for="(m, index) in filteredPlaydates"
                     :position="{lat: m.lat, lng: m.lng}"
                     :clickable="true"
                     v-on:click="center=m.position"
@@ -80,35 +80,35 @@ export default {
 
         //  Methods being used to filter markers to only those that are within range
 
-        // getLocation() {
-        //     return this.$store.state.location
-        // },
-        // getDistance() {
-        //     return this.$store.state.distanceFilter
-        // },
-        // filteredPlaydates() {
-        //     const playdates = this.playDates;
-        //     let location = (this.$store.state.location ? null : this.getLocation);
-        //     let searchDistance = this.getDistance;
+        getLocation() {
+            return this.$store.state.location
+        },
+        getDistance() {
+            return this.$store.state.distanceFilter
+        },
+        filteredPlaydates() {
+            const playdates = this.playDates;
+            let location = this.getLocation
+            let searchDistance = this.getDistance;
 
-        //     console.log(location)
-        //     console.log(searchDistance)
+            console.log(location)
+            console.log(searchDistance)
 
-        //     return playdates.filter(playdate => {
-        //         if(location && playdate.lat && playdate.lng) {
-        //             const distance = this.calculateDistance(playdate, location);
+            return playdates.filter(playdate => {
+                if(location.geometry && playdate.lat && playdate.lng) {
+                    const distance = this.calculateDistance(playdate, location);
 
-        //             if(searchDistance === 0 || searchDistance < distance) {
-        //                 return true;
-        //             }
-        //         }
-        //         else if(!location) {
-        //             return true;
-        //         }
+                    if(searchDistance == 0 || searchDistance > distance) {
+                        return true;
+                    }
+                }
+                else if(!location.geometry) {
+                    return true;
+                }
 
-        //         return false;
-        //     })
-        // },
+                return false;
+            })
+        },
         // filterMarker(place) {
         //     console.log(place)
         //     const playdate = place;
