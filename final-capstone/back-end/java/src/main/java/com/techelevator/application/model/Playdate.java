@@ -8,9 +8,9 @@ public class Playdate {
 	private int playdateId;
 	private int petPosterId;
 	private int petBookerId;
-	private Date theDate;
-	private Time startTime;
-	private Time endTime;
+	private String theDate;
+	private String startTime;
+	private String endTime;
 	private String location;
 	private String details;
 	private double lat;
@@ -35,22 +35,22 @@ public class Playdate {
 	public void setPetBookerId(int petBookerId) {
 		this.petBookerId = petBookerId;
 	}
-	public Date getTheDate() {
+	public String getTheDate() {
 		return theDate;
 	}
-	public void setTheDate(Date theDate) {
+	public void setTheDate(String theDate) {
 		this.theDate = theDate;
 	}
-	public Time getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
-	public void setStartTime(Time startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
-	public Time getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(Time endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 	public String getLocation() {
