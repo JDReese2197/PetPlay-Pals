@@ -14,10 +14,6 @@
             <!-- :useCustomDropzoneOptions="true" -->
         <!-- ></vue-dropzone> -->
         <div class="main">
-            <header>
-                <img id="logo" src="https://res.cloudinary.com/ashdav/image/upload/v1607439755/img/dvcdp1esn3ry9jmbffjg.png" />
-                <router-link v-bind:to="{name: 'login'}"><button class="button" id="login">Login</button></router-link>
-            </header>
             <section class="greeting">
                 <h1>Welcome</h1>
                 <button @click="$router.push({name: 'register'})" class="button" id="signup">Sign Up</button>
@@ -26,9 +22,6 @@
         <body>
             <img id="home-graphic" src="https://res.cloudinary.com/ashdav/image/upload/v1607434478/img/b9wguibeb6nzbug8zrob.png"/>
         </body>
-        <footer> 
-            <p>© 2020 Pet Play Pals. All Rights Reserved</p>
-        </footer>
     </div>
 </template>
 
@@ -162,7 +155,7 @@ h1 {
 }
 #signup {
     /*background-color: #29d2db;*/
-    background-image: linear-gradient(to right, #29d2db, #e6615c);
+    background-color: #5ce1e6;
     color: white;
     font-size: 20px;
     padding: 5px 15px;

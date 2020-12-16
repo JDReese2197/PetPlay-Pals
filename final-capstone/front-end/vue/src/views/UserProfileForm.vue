@@ -24,7 +24,7 @@ export default {
 
 <style scoped>
 h1 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     color: #29d2db;
 }

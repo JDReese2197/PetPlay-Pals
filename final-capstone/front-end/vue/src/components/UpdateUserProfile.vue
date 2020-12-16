@@ -77,7 +77,7 @@ export default {
             this.user_profile.userId = this.$store.state.user.id
         },
         setProfileId() {
-            this.user_profile.profileId = 1;
+            this.user_profile.profileId = this.$store.state.profile.profileId;
         },
         updateProfile() {
             applicationServices

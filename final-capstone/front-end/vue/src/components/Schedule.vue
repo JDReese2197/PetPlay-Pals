@@ -1,18 +1,11 @@
 <template>
     <!-- This is where we will display a list of playdate cards-->
     <div class="container">
+        <h1>My Schedule</h1>
         <div class = "play-date-cards">
         <play-date-card v-for="playDate in playDateCards"
         v-bind:key="playDate.id" v-bind:playDate = "playDate"/>
         <!-- TO DO: make a view card details method and add this above:  v-on:click="viewCardDetails(card.id)"-->
-        </div>
-
-        <div class="nav"> <!-- This is the list of nav buttons on the user profile page-->
-            <h1 class="title">Schedule Page</h1>
-            <router-link v-bind:to="{name: 'profile-page'}"><button class="nav-btn"><strong>Your Profile</strong></button></router-link>
-            <router-link v-bind:to="{name: 'find-a-playdate'}"><button class="nav-btn"><strong>Find a Playdate</strong></button></router-link>
-            <router-link v-bind:to="{name: 'add-pet'}"><button class="nav-btn"><strong>Register a Pet</strong></button></router-link>
-            <router-link v-bind:to="{name: 'logout'}"><button class="nav-btn"><strong>Log Out</strong></button></router-link>
         </div>
 
     </div>
@@ -90,11 +83,11 @@ export default {
 .container {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #555555;
-    display: grid;
-    grid-template-columns: 15% 85%;
-    grid-template-areas:
-    "nav petSearch"
-    ;
+    
+}
+h1 {
+    color: #ff5757;
+    text-align: center;
 }
 
 .play-date-cards {
