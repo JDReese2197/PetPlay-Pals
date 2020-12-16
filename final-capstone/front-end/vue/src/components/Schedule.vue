@@ -26,7 +26,9 @@ export default {
     components: { PlayDateCard },
     data() {
         return {
-            playDateCards: []
+            playDateCards: [],
+            pet: {},
+            profile: {}
         }
 },
     methods: {
@@ -78,12 +80,7 @@ export default {
         this.retrieveUserProfile(); 
     },
     computed: {
-        profile() {
-            return this.$store.state.profile;
-        },
-        pet() {
-            return this.$store.state.pet;
-        }
+        
     }
 }
 

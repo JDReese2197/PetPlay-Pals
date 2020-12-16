@@ -41,7 +41,7 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 		String query = "UPDATE playdate "
 				+ "SET pet_booker = ?, user_chat = ?"
 				+ "WHERE playdate_id = ?";
-		jdbcTemplate.update(query, bookerPlaydate.getPetBookerId(), "Update this with a message you want to send to your matched playmate.",bookerPlaydate.getPlaydateId());
+		jdbcTemplate.update(query, bookerPlaydate.getPetBookerId(), "Update this with a message you want to send to your matched playmate. (500 chars max)",bookerPlaydate.getPlaydateId());
 	}
 	
 	//Method to decline (PUT) playdate with a matched pet by removing pet_booker (id) (ie. Booker has selected a playdate, but Poster can remove it)
