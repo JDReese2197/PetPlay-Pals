@@ -7,15 +7,15 @@ INSERT INTO users (user_id, username, password_hash, role)
 INSERT INTO users (user_id, username, password_hash, role) 
         VALUES (9, 'gabbo' ,'$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
 INSERT INTO users (username, password_hash, role) 
-        VALUES ('john' ,'$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+        VALUES (10, 'john' ,'$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
 INSERT INTO users (username, password_hash, role) 
-        VALUES ('bri' ,'$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+        VALUES (11, 'bri' ,'$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
 INSERT INTO users (username, password_hash, role) 
-        VALUES ('doug' ,'$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+        VALUES (12, 'doug' ,'$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
 INSERT INTO users (username, password_hash, role) 
-        VALUES ('amanda' ,'$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+        VALUES (13, 'amanda' ,'$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
 INSERT INTO users (username, password_hash, role) 
-        VALUES ('jess' ,'$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+        VALUES (14, 'jess' ,'$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
 
 SELECT * FROM users;
 
