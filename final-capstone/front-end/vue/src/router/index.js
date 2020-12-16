@@ -9,7 +9,6 @@ import store from '../store/index'
 import AddPetForm from '@/views/AddPetForm.vue'
 import Homepage from '@/views/Homepage.vue'
 import ProfilePage from '@/views/ProfilePage.vue'
-import MapWorkGood from '@/components/MapWorkGood.vue'
 import PlayDateSearchPage from '@/views/PlayDateSearchPage.vue'
 import Schedule from '@/views/SchedulePage.vue'
 import PostPlaydateForm from '@/views/PostPlaydateForm.vue'
@@ -85,11 +84,6 @@ const router = new Router({
       path: "/find-a-playdate",
       name: "find-a-playdate",
       component: PlayDateSearchPage
-    },
-    {
-      path: "/map-work-good",
-      name: "map-work-good",
-      component: MapWorkGood
     },
     {
       path: "/schedule",

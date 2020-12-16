@@ -5,7 +5,7 @@
             :center='center'
             :zoom='currentZoom'
             :options='{disableDefaultUI: true, zoomControl: true, fullscreenControl: true}'
-            style="width: 600px;  height: 300px; margin: auto;"
+            style="width: 300px;  height: 300px; margin: auto;"
             >
                 <gmap-marker
                     :key="index"
