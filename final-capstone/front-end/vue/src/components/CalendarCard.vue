@@ -27,6 +27,7 @@
     <div class="message">
         <textarea v-model="playDate.userMessage" cols="30" rows="15" :placeholder="playDate.userMessage"></textarea>
         <button type="submit" v-on:click="displayMessage">Send A Message</button>
+        <button type="submit" v-on:click="declinePlaydate">Decline Playdate</button>
     </div>
 
     </div>
@@ -78,6 +79,19 @@ export default {
       .then(response => {
           if(response.status === 200) {
               this.playDate.userMessage = response.data;
+              window.location.reload();
+          }
+      })
+        .catch (error => {
+               console.log(error);
+           })
+  },
+  declinePlaydate() {
+      applicationServices
+      .declinePlaydate(this.playDate)
+      .then(response => {
+          if(response.status === 200) {
+              //this.playDate.userMessage = response.data;
               window.location.reload();
           }
       })
