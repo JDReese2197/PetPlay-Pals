@@ -50,13 +50,11 @@
 </template>
 
 <script>
-import TopHomeBar from '../components/TopHomeBar.vue';
 import authService from '../services/AuthService';
 
 export default {
   name: 'register',
   components: {
-    TopHomeBar
   },
   data() {
     return {
