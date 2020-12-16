@@ -1,4 +1,4 @@
-START TRANSACTION;                      //      SETUP TEST DATA FOR USERS
+START TRANSACTION;
 
 INSERT INTO users (user_id, username, password_hash, role) 
         VALUES (7, 'bose' ,'$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
