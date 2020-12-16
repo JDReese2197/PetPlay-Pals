@@ -28,6 +28,7 @@
         <textarea v-model="playDate.userMessage" cols="30" rows="15" :placeholder="playDate.userMessage"></textarea>
         <button type="submit" v-on:click="displayMessage">Send A Message</button>
         <button type="submit" v-on:click="declinePlaydate">Decline Playdate</button>
+        <button type="submit" v-on:click="deletePlaydate">Delete Playdate</button>
     </div>
 
     </div>
@@ -91,13 +92,30 @@ export default {
       .declinePlaydate(this.playDate)
       .then(response => {
           if(response.status === 200) {
-              //this.playDate.userMessage = response.data;
               window.location.reload();
           }
       })
         .catch (error => {
                console.log(error);
            })
+  },
+  deletePlaydate() {
+      if(this.playDate.petPosterId === this.$store.state.pet.petId) {
+          applicationServices
+      .deletePlaydate(this.playDate.playdateId)
+      .then(response => {
+          if(response.status === 200) {
+              window.location.reload();
+          }
+      })
+      .catch (error => {
+               console.log(error);
+           })
+      }
+      else {
+          console.log("you do not have access to delete this");
+      }
+      
   }
        },     
   mounted() {
