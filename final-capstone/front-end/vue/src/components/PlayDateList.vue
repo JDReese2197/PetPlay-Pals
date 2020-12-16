@@ -42,7 +42,7 @@
                     <option value="">Any</option>
                     <option value="Shy, Timid">Shy, Timid</option>
                     <option value="Friendly, Sweet">Friendly, Sweet</option>
-                    <option value="Loving, Affectionate">Loving, Affectionate</option> 
+                    <option value="loving">Loving, Affectionate</option> 
                     <option value="Curious, Adventurous">Curious, Adventurous</option>
                     <option value="Calm, Laidback">Calm, Laidback</option>
                     <option value="Energetic, Playful">Energetic, Playful</option>

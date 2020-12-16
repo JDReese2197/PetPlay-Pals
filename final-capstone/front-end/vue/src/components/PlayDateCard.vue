@@ -3,13 +3,14 @@
 <div class="container">
 <div data-aos="fade-up" class="playdate-card" v-if="!declined && passesFilter && passesDistance"> 
         <img id = "pet-img" v-bind:src = "pet.profilePhoto"/>
-        <h2>{{pet.petName}}</h2>
-        <h3>{{pet.breed}} | {{pet.gender}} | Age {{pet.age}}</h3>
-        <h4>{{pet.description}}</h4>
+        <h2 class="pet-info">{{pet.petName}}</h2>
+        <h3 class="pet-info">{{pet.breed}} | {{pet.gender}} | Age {{pet.age}}</h3>
+        <p class="pet-info" id="pet-description"><strong>About {{pet.petName}}: {{pet.description}}</strong></p>
+        <br/>
         <h4>{{playDate.location}}</h4>
         <h4>{{playDate.theDate}}</h4>
         <h4>{{playDate.startTime}} - {{playDate.endTime}}</h4>
-        <p>Description: {{playDate.details}}</p>
+        <p>Details: {{playDate.details}}</p>
 
         <button v-on:click="acceptPlaydate">Book Playdate</button>
         <button v-on:click="declined = true">Ignore Playdate</button>
@@ -127,24 +128,28 @@ export default {
 
 h2 {
     white-space:pre-wrap;
-    margin-top: 5px;
-    
+    margin: 5px;
 }
 
 h3 {
-    margin-top: -15px;
+    white-space:pre-wrap;
+    margin-top: -5px;
 }
 
- h4, h5 {
-     white-space:pre-wrap;
+h4 {
+    white-space:pre-wrap;
     margin: 10px;
- }
+}
+.pet-info {
+    color: #ff5757;
+}
+
 .playdate-card {
     width: 250px;
     height: auto !important;
     border-radius: 25px;
-    padding: 5px;
-    margin: 15px;
+    padding: 15px;
+    margin: 25px;
     text-align: center;
     box-shadow: 0 4px 8px 0 #ffe473, 0 6px 20px 0 #ffe473;
 }
@@ -157,6 +162,5 @@ h3 {
     height: 100px;
     margin: 5px;
     align-content: center;
-    
 }
 </style>
