@@ -132,11 +132,10 @@ h2, h4, h5 {
     width: 250px;
     height: auto !important;
     border-radius: 25px;
-    background-image: linear-gradient(rgb(243, 243, 138), #5be1e6);
     padding: 5px;
     margin: 15px;
     text-align: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 #ffe473, 0 6px 20px 0 #ffe473;
 }
 
 #pet-img {

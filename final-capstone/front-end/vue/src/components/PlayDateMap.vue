@@ -1,6 +1,5 @@
 <template>
     <div>
-        <button v-on:click="testMethod">I probly do something</button>
         <br>
             <gmap-map ref="mapRef"
             :center='center'
@@ -35,9 +34,6 @@ export default {
         }
     },
     methods: {
-        testMethod() {
-            console.log(this)
-        },
         setPlace(place) {
             this.currentPlace = place;
         },
