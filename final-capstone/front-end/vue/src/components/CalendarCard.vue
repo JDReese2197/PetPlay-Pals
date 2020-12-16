@@ -28,7 +28,9 @@
         <textarea v-model="playDate.userMessage" cols="30" rows="15" :placeholder="playDate.userMessage"></textarea>
         <button type="submit" v-on:click="displayMessage">Send A Message</button>
         <button type="submit" v-on:click="declinePlaydate">Decline Playdate</button>
-        <button type="submit" v-on:click="deletePlaydate">Delete Playdate</button>
+        <div id="delete-button">
+            <button type="submit" v-on:click="deletePlaydate">Delete Playdate</button>
+        </div>
     </div>
 
     </div>
@@ -116,11 +118,21 @@ export default {
           console.log("you do not have access to delete this");
       }
       
-  }
+  }/*,
+  hideDeleteButton() {
+      if(this.playDate.petPosterId != this.$store.state.pet.petId) {
+          console.log(this.playDate.petPosterId);
+          console.log(this.playDate.petBookerId);
+          console.log(this.$store.state.pet.petId);
+            let v = document.getElementById("delete-button");
+            v.style.display = "none";
+      }
+  }*/
        },     
   mounted() {
       this.getPet();
       this.getSecondPet();
+      //this.hideDeleteButton();
   }
 }
 </script>
