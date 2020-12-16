@@ -7,16 +7,23 @@
         v-bind:key="playDate.id" v-bind:playDate = "playDate"/>
         <!-- TO DO: make a view card details method and add this above:  v-on:click="viewCardDetails(card.id)"-->
         </div>
-
+        <div class="map">
+            <play-date-map v-if="true" v-bind:playDates="playDateCards"/>
+        </div>
     </div>
 </template>
 
 <script>
 import PlayDateCard from './CalendarCard.vue'
+import PlayDateMap from '@/components/PlayDateMap.vue';
 import applicationServices from '@/services/ApplicationServices';
+
 export default {
     name: "play-date-list", 
-    components: { PlayDateCard },
+    components: { 
+        PlayDateCard,
+        PlayDateMap
+    },
     data() {
         return {
             playDateCards: [],
@@ -83,13 +90,21 @@ export default {
 .container {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #555555;
-    
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-areas: 
+        ". header"
+        "map petSearch";   
+}
+.map {
+    grid-area: map;
+    margin-top: 15px;
 }
 h1 {
+    grid-area: header;
     color: #ff5757;
-    text-align: center;
+    margin-left: 42px;
 }
-
 .play-date-cards {
     grid-area: petSearch;
     display: flex;
@@ -98,31 +113,5 @@ h1 {
     justify-content: flex-start;
     padding: 5px;
     margin: 15px;
-}
-.nav {
-    grid-area: nav;
-    padding-top: 25px;
-    padding-bottom: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-    background-color: #96f8fc;
-}
-.nav-btn {
-    border: none;
-    border-radius: 25px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin: 10px;
-    margin-top: 25px;
-    background-image: linear-gradient(#fd6d68, #dd4b46);
-    color: white;
-    font-size: 15px;
-    width: 90%;
-    height: 50px;
-    text-align: center;
-}
-.title {
-    text-align: center;
 }
 </style>
