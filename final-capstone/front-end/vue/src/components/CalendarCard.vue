@@ -184,7 +184,6 @@ button {
     border-radius: 25px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin: 10px;
     margin-top: 10px;
     background-image: linear-gradient(#fd6d68, #dd4b46);
     color: white;
