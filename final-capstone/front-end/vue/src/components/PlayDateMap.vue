@@ -50,13 +50,12 @@ export default {
             infoOptions: {
                 pixelOffset: {
                     width: 0,
-                    height: -35
+                    height: -20
                 }
             }
         }
     },
     methods: {
-
         //  Toggle info window on map.
         toggleInfo: function(playdate, index) {
             this.infoWindowPos = {lat: playdate.lat, lng: playdate.lng};
@@ -75,7 +74,9 @@ export default {
         //  Sets content for displaying in info window
         getInfoWindowContent: function (playdate) {
             return (`<div>
-                        <h3>${playdate.details}</h3>
+                        <h4>${playdate.theDate}</h4>
+                        <h4>${playdate.startTime} - ${playdate.endTime}</h4>
+                        <h5>${playdate.details}</h5>
                     </div>`)
         },
 
@@ -132,6 +133,7 @@ export default {
         getDistance() {
             return this.$store.state.distanceFilter
         },
+        //  Filters playdats to be displayed on map
         filteredPlaydates() {
             const playdates = this.playDates;
             let location = this.getLocation
