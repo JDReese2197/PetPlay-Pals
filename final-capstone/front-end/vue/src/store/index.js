@@ -37,8 +37,8 @@ export default new Vuex.Store({
     user: currentUser || {},
     profile: {},
     playDates: [],
-    pet: {},
-    pets: [],
+    pet: currentPet || {},
+    pets: userPets || [],
     playDate: {},
 
     petFilter: {
