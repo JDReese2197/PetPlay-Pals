@@ -1,7 +1,8 @@
 <template>
     <div>
         <top-home-bar/>
-        <h1>Create Profile</h1>
+        <h1 v-if="!this.$store.state.profile.profileId">Create Profile</h1>
+        <h1 v-else>Update Profile</h1>
         <user-profile-form />
         <footer-bar/>
     </div>
@@ -26,6 +27,6 @@ export default {
 h1 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
-    color: #29d2db;
+    color: #ff5757;
 }
 </style>
