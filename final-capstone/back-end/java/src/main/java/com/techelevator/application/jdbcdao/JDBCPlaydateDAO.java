@@ -64,9 +64,7 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 	//Method to display (GET) a single playdate listing by playdate_id
 	@Override
 	public Playdate getPlaydateByPlaydateId(int playdateId) {
-		String query = "SELECT playdate_id, pet_poster, pet_booker, to_char(the_date, 'MM/DD/YYYY') AS the_date, "
-				+ "to_char(start_time, 'hh:mi AM') AS start_time, to_char(end_time, 'hh:mi AM') AS end_time, the_location,"
-				+ "details, latitude, longitude, user_chat FROM playdate WHERE playdate_id = ?";
+		String query = "SELECT * FROM playdate WHERE playdate_id = ?";
 		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, playdateId);
 		if(rowSet.next()) {
 			return mapRowToPlaydate(rowSet);
@@ -79,9 +77,7 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 	@Override
 	public List<Playdate> displayAcceptedInvite(int petId) {
 		List<Playdate> displayedPlaydates = new ArrayList<>();
-		String query = "SELECT playdate_id, pet_poster, pet_booker, to_char(the_date, 'MM/DD/YYYY') AS the_date, "
-				+ "to_char(start_time, 'hh:mi AM') AS start_time, to_char(end_time, 'hh:mi AM') AS end_time, the_location, "
-				+ "details, latitude, longitude, user_chat FROM playdate WHERE (pet_poster = ? OR pet_booker = ?) AND pet_booker IS NOT NULL";
+		String query = "SELECT * FROM playdate WHERE (pet_poster = ? OR pet_booker = ?) AND pet_booker IS NOT NULL";
 		
 		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query, petId, petId);
 		
@@ -96,9 +92,7 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 	@Override
 	public List<Playdate> displayPostings() {
 		List<Playdate> displayedPlaydates = new ArrayList<>();
-		String query = "SELECT playdate_id, pet_poster, pet_booker, to_char(the_date, 'MM/DD/YYYY') AS the_date, "
-				+ "to_char(start_time, 'hh:mi AM') AS start_time, to_char(end_time, 'hh:mi AM') AS end_time, the_location, "
-				+ "details, latitude, longitude, user_chat FROM playdate WHERE pet_booker IS NULL";
+		String query = "SELECT * FROM playdate WHERE pet_booker IS NULL";
 		
 		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(query);
 		
@@ -126,9 +120,9 @@ public class JDBCPlaydateDAO implements PlaydateDAO {
 		profile.setPlaydateId(rs.getInt("playdate_id"));
 		profile.setPetPosterId(rs.getInt("pet_poster"));
 		profile.setPetBookerId(rs.getInt("pet_booker"));
-		profile.setTheDate(rs.getString("the_date"));
-		profile.setStartTime(rs.getString("start_time"));
-		profile.setEndTime(rs.getString("end_time"));
+		profile.setTheDate(rs.getDate("the_date"));
+		profile.setStartTime(rs.getTime("start_time"));
+		profile.setEndTime(rs.getTime("end_time"));
 		profile.setLocation(rs.getString("the_location"));
 		profile.setDetails(rs.getString("details"));
 		profile.setLat(rs.getDouble("latitude"));
