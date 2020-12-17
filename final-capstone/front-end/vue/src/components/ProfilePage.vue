@@ -14,20 +14,20 @@
         <!-- Pet image/TEMPORARY IMG-->
         <div class="pet-info">   
             <h1>{{pet.petName}}'s Profile</h1>
-            <p> {{pet.petType}} | {{pet.breed}} | {{pet.size}} </p>
-            <p> {{pet.age}} | {{pet.gender}} </p>
-            <p> {{pet.personalityType}} </p>
-            <p> {{pet.description}} </p>
+            <p> {{pet.petType}} | {{pet.breed}} | {{pet.size}} 
+            <br/> {{pet.age}} | {{pet.gender}}
+            <br/> {{pet.personalityType}}
+            <br/> {{pet.description}} </p>
             <router-link class="link" v-bind:to="{name: 'registerpet'}"><button id="edit-pet-profile">Edit Profile</button></router-link>
         </div> 
 
         <div class="user-info"> <!-- This is the user info section -->
             <h1>{{pet.petName}}'s Human</h1>
-            <p>{{profile.firstName}} {{profile.lastName}}</p>
-            <p>{{profile.address1}}, {{profile.address2}}</p>
-            <p>{{profile.city}}, {{profile.state}} {{profile.zip}}</p>
-            <p>{{profile.email}}</p>
-            <p>{{profile.phone}}</p>
+            <p>{{profile.firstName}} {{profile.lastName}}
+            <br/>{{profile.address1}}, {{profile.address2}}
+            <br/>{{profile.city}}, {{profile.state}} {{profile.zip}}
+            <br/>{{profile.email}}
+            <br/>{{profile.phone}}</p>
             <router-link class="link" v-bind:to="{name: 'user-profile-form'}"><button id="edit-user-profile">Edit Profile</button></router-link>
         </div>
         
@@ -117,6 +117,7 @@ export default {
 p {
     font-size: 20px;
     color: #555555;
+    line-height: 2;
 }
 .user-info {
     grid-area: userinfo;
@@ -206,29 +207,10 @@ button {
 #edit-user-profile:hover {
     background-color: #ffe473;  
 }
-
 .pet-info h1 {
     color: #e6615c; 
 }
 .user-info h1 {
     color: #5ce1e6;
 }
-
-/* .find-a-friend {
-    background-color: #5CE1E6;
-} */
-
-/* span {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    color:  #5CE1E6;
-
-} */
-
-/* .user-profile-nav {
-    grid-area: nav;
-    display: flex;
-    flex-direction: column;
-} */
 </style>

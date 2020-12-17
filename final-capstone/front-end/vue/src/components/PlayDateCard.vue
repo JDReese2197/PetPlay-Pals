@@ -6,10 +6,10 @@
         <h2 class="pet-info">{{pet.petName}}</h2>
         <h3 class="pet-info">{{pet.breed}} | {{pet.gender}} | Age {{pet.age}}</h3>
         <p class="pet-info" id="pet-description"><strong>{{pet.description}}</strong></p>
-        <p>{{playDate.location}}</p>
-        <p>{{playDate.theDate}}</p>
-        <p>{{playDate.startTime}} - {{playDate.endTime}}</p>
-        <p>{{playDate.details}}</p>
+        <p>{{playDate.location}}
+        <br/>{{playDate.theDate}}
+        <br/>{{playDate.startTime}} - {{playDate.endTime}}
+        <br/>{{playDate.details}}</p>
 
         <div class="button-block">
             <img class="button" src="https://res.cloudinary.com/ashdav/image/upload/v1608235617/img/12_yzebmg.png" alt="Book Playdate" title="Book Playdate" v-on:click="acceptPlaydate" />
@@ -149,6 +149,9 @@ h3 {
 h4 {
     line-height: 0.5;
     color: #555555;
+}
+p {
+    line-height: 1.5;
 }
 .playdate-card {
     width: 250px;

@@ -15,10 +15,10 @@
 
     <div class="playdate-info">
         <h2>{{pet.petName}} + {{secondPet.petName}}</h2>
-        <p>{{playDate.location}}</p>
-        <p>{{playDate.theDate}}</p>
-        <p>{{playDate.startTime}} - {{playDate.endTime}}</p>
-        <p>{{playDate.details}}</p>
+        <p>{{playDate.location}}
+        <br/>{{playDate.theDate}}
+        <br/>{{playDate.startTime}} - {{playDate.endTime}}
+        <br/>{{playDate.details}}</p>
     </div>
 
     <div class="message">
@@ -170,10 +170,10 @@ export default {
     box-shadow: 0 4px 8px 0 #ffe473, 0 6px 20px 0 #ffe473;
 }
 p {
-    line-height: 0.5;
+    line-height: 1.5;
 }
 h4 {
-    line-height: 0;
+    line-height: 0.5;
 }
 h2{
     color: #ff5757;
