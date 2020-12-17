@@ -1,6 +1,6 @@
 <template>
 <div id="register">
-    <form v-on:submit.prevent="submitPetForm">
+    <form>
         <div class="field">
             <label for="name">Name</label>
             <input 
@@ -91,7 +91,7 @@
             ></vue-dropzone>
         </div>
         <br/>
-        <button type="submit" class="button" v-on:click="submitPetForm">Submit</button>
+        <button type="submit" class="button" v-on:click.prevent="submitPetForm">Submit</button>
         <br/>
         <br/>
         <br/>
