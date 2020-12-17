@@ -132,7 +132,7 @@ INSERT INTO user_profile VALUES (4, 4, 'Ashley', 'D', '123 Ashley St', '', 'Clev
 INSERT INTO user_profile VALUES (5, 5, 'Mel', 'F', '123 Mel St', '', 'Cleveland', '12345', 'Ohio', 'mel@email.com', '123-456-7890');
 INSERT INTO user_profile VALUES (6, 6, 'James', 'Reese', '123 James St', '', 'Strongsville', '12345', 'Ohio', 'james@email.com', '123-456-7890');
 
-INSERT INTO pet_profile VALUES (1, 1, 'Dog', 'Rudy', 'Bulldog', 'Medium', 'Male', 'Loves the water', 2, 'loving', 'https://imgur.com/loDyfuW.jpg');
+INSERT INTO pet_profile VALUES (1, 1, 'Dog', 'Rudy', 'Boxer', 'Medium', 'Male', 'Loves the snow', 2, 'loving', 'https://imgur.com/loDyfuW.jpg');
 INSERT INTO pet_profile VALUES (2, 2, 'Dog', 'Buddy', 'Beagle', 'Medium', 'Male', 'Lazy but loving dog', 3, 'loving', 'https://imgur.com/diIqn2R.jpg');
 INSERT INTO pet_profile VALUES (3, 3, 'Dog', 'Finn', 'Mutt', 'Medium', 'Male', 'Loves playing with big dogs', 4, 'loving', 'https://imgur.com/zNdTVQM.jpg');
 INSERT INTO pet_profile VALUES (4, 4, 'Dog', 'Oslo', 'Greyhound', 'Large', 'Male', 'Lazy but loving dog', 3, 'loving', 'https://imgur.com/Sto0DWi.jpg');

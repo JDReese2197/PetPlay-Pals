@@ -3,7 +3,8 @@
 
         <div class="pet-profile-side-bar"> <!-- This is where the pet profile section goes-->
             <div class="pet-image">
-                <img id = "pet-pic" v-bind:src = "pet.profilePhoto"/>
+                <img v-for="pet in pets" v-bind:key="pet.petId"
+                id = "pet-pic" v-bind:src = "pet.profilePhoto" v-on:click="changePet(pet)"/>
                 <router-link v-bind:to="{name: 'add-pet'}"><div id = "pet-pic"></div></router-link>
             </div> 
             <br/>
@@ -53,6 +54,9 @@ export default {
         }
     },
     methods: {
+        changePet(pet) {
+            this.$store.commit('SET_PET', pet);
+        },
         retrieveUserProfile() {
             applicationServices
                 .getProfileById(this.$store.state.user.id)
@@ -89,7 +93,10 @@ export default {
             return this.$store.state.profile;
         },
         pet() {
-            return this.$store.state.pets[0];
+            return this.$store.state.pet;
+        },
+        pets() {
+            return this.$store.state.pets;
         }
     }
     
