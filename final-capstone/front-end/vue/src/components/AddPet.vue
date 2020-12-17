@@ -67,7 +67,7 @@
                 <option value="Curious, Adventurous">Curious, Adventurous</option>
                 <option value="Calm, Laidback">Calm, Laidback</option>
                 <option value="Energetic, Playful">Energetic, Playful</option>
-                <option value="Confident, String-Willed">Confident, Strong-Willed</option>
+                <option value="Confident, Strong-Willed">Confident, Strong-Willed</option>
             </select>
         </div>
         <div class="field">
