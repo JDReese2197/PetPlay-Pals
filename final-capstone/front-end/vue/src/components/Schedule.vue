@@ -27,39 +27,11 @@ export default {
     data() {
         return {
             playDateCards: [],
-            pet: {},
-            profile: {}
+            pet: this.$store.state.pet,
+            profile: this.$store.state.profile
         }
 },
     methods: {
-        retrieveUserProfile() {
-            applicationServices
-                .getProfileById(this.$store.state.user.id)
-                .then(response => {
-                    if(response.status === 200) {
-                        this.$store.commit("SET_PROFILE", response.data);
-                        this.retrievePetProfile();
-                    }
-                })
-                .catch(error => {
-                    const response = error.response
-                    console.log(response)
-                })
-        },
-        retrievePetProfile() {
-            applicationServices
-                .getAPetByProfileId(this.$store.state.profile.profileId)
-                .then(response => {
-                    if(response.status === 200) {
-                         this.$store.commit("SET_PET", response.data)
-                         this.getAllOpenPlayDates();
-                    }
-                })
-                .catch(error => {
-                    const response = error.response
-                    console.log(response)
-                })
-        },
         getAllOpenPlayDates() {
             applicationServices
             .displayAcceptedInvite(this.$store.state.pet.petId)
@@ -76,12 +48,6 @@ export default {
     mounted() {
         this.getAllOpenPlayDates()
     },
-    created() {
-        this.retrieveUserProfile(); 
-    },
-    computed: {
-        
-    }
 }
 
 </script>
