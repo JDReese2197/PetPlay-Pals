@@ -1,7 +1,7 @@
 <template>
 <!-- A single playdate card-->
 <div class="container">
-<div data-aos="fade-up" class="playdate-card" v-if="!declined && passesFilter && passesDistance"> 
+<div data-aos="fade-up" class="playdate-card" v-if="!declined && passesFilter && passesDistance && !isBooked"> 
         <img id = "pet-img" v-bind:src = "pet.profilePhoto"/>
         <h2 class="pet-info">{{pet.petName}}</h2>
         <h3 class="pet-info">{{pet.breed}} | {{pet.gender}} | Age {{pet.age}}</h3>
@@ -33,9 +33,10 @@ export default {
       }
     },
   computed: {
-      getStorePet() {
-          return this.$store.state.pet;
-      },
+        getStorePet() {
+            return this.$store.state.pet;
+        },
+        //  Returns true if the playdate matches the pet type and personality of filter
         passesFilter() {
             let passes = true;
             const petFilter = this.$store.state.petFilter;
@@ -50,6 +51,7 @@ export default {
             return passes;
         },
 
+        //  Returns true if the playdate is within this distance being filtered by
         passesDistance() {
             let playdate = this.playDate
             let searchDistance = this.getDistance;
@@ -66,6 +68,11 @@ export default {
             }
 
             return false;
+        },
+
+        //  Returns true if the playdate has been booked
+        isBooked() {
+            return this.playDate.petBookerId;
         },
 
         getLocation() {
