@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import PlayDateCard from './CalendarCard.vue'
+import PlayDateCard from './ScheduleCard.vue'
 import PlayDateMap from '@/components/PlayDateMap.vue';
 import applicationServices from '@/services/ApplicationServices';
 
@@ -108,7 +108,7 @@ h1 {
 .play-date-cards {
     grid-area: petSearch;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: flex-start;
     padding: 5px;
