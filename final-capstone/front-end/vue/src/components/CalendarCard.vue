@@ -187,7 +187,7 @@ h2, h4, h5 {
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 100%;
+    grid-template-rows: 1fr 1fr auto;
     grid-template-areas: 
     "poster booker"
     "footer footer"
