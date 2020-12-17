@@ -1,7 +1,7 @@
 <template>
 <!-- A single playdate card-->
 <div class="container">
-<div data-aos="fade-up" class="playdate-card" v-if="!declined && passesFilter && passesDistance && !isBooked"> 
+<div class="playdate-card" v-if="!declined && passesFilter && passesDistance && !isBooked"> 
         <img id = "pet-img" v-bind:src = "pet.profilePhoto"/>
         <h2 class="pet-info">{{pet.petName}}</h2>
         <h3 class="pet-info">{{pet.breed}} | {{pet.gender}} | Age {{pet.age}}</h3>
@@ -168,12 +168,10 @@ h2 {
 }
 
 h3 {
-    line-height: 0.5;
     color: #555555;
 }
 
 h4 {
-    line-height: 0.5;
     color: #555555;
 }
 p {
