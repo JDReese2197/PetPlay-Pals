@@ -13,7 +13,7 @@
                 <option :value="pet" v-for="pet in getAllPets" v-bind:key="pet.petId">{{pet.petName}}</option>
             </select>
             <br/>
-            <router-link class="link" v-bind:to="{name: 'post-playdate'}"><button id="post-playdate">Post a Playdate</button></router-link>
+            <router-link class="link" v-bind:to="{name: 'post-playdate'}"><button id="post-playdate">Create Playdate</button></router-link>
 
             <h3 class="title">Filter</h3>
 
@@ -200,6 +200,7 @@ select {
 }
 .nav {
     grid-area: nav;
+    padding-left: 15px;
     padding-top: 25px;
     padding-bottom: 100px;
     display: flex;

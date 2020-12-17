@@ -1,7 +1,7 @@
 <template>
     <div>
         <top-home-bar/>
-        <h1>Post a Playdate</h1>
+        <h1>Create Playdate</h1>
         <post-playdate-form/>
         <footer-bar/>
     </div>

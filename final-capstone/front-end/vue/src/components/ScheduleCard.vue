@@ -24,11 +24,9 @@
     <div class="message">
         <textarea style="resize: none" v-model="playDate.userMessage" cols="40" rows="5" :placeholder="playDate.userMessage"></textarea>
         <br/>
-        <button type="submit" v-on:click="displayMessage">Send A Message</button>
-        <button type="submit" v-on:click="declinePlaydate">Decline Playdate</button>
-        <div id="delete-button">
-            <button type="submit" v-if="canDelete" v-on:click="deletePlaydate">Delete Playdate</button>
-        </div>
+        <img class="button" src="https://res.cloudinary.com/ashdav/image/upload/v1608235617/img/15_vclcaz.png" alt="Send a Message" title="Send a Message" v-on:click="displayMessage"/>
+        <img class="button" src="https://res.cloudinary.com/ashdav/image/upload/v1608235617/img/13_e4js9m.png" alt="Cancel Playdate" title="Cancel Playdate" v-on:click="declinePlaydate"/>
+        <img class="button" id="delete-button" src="https://res.cloudinary.com/ashdav/image/upload/v1608237729/img/trash_pb7gg2.png" alt="Delete Playdate" title="Delete Playdate" type="submit" v-if="canDelete" v-on:click="deletePlaydate"/>
     </div>
     </div>
 </div>
@@ -179,5 +177,10 @@ h4 {
 }
 h2{
     color: #ff5757;
+}
+.button {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
 }
 </style>

@@ -5,14 +5,16 @@
         <img id = "pet-img" v-bind:src = "pet.profilePhoto"/>
         <h2 class="pet-info">{{pet.petName}}</h2>
         <h3 class="pet-info">{{pet.breed}} | {{pet.gender}} | Age {{pet.age}}</h3>
-        <p class="pet-info" id="pet-description"><strong>About {{pet.petName}}: {{pet.description}}</strong></p>
-        <h4>{{playDate.location}}</h4>
-        <h4>{{playDate.theDate}}</h4>
-        <h4>{{playDate.startTime}} - {{playDate.endTime}}</h4>
+        <p class="pet-info" id="pet-description"><strong>{{pet.description}}</strong></p>
+        <p>{{playDate.location}}</p>
+        <p>{{playDate.theDate}}</p>
+        <p>{{playDate.startTime}} - {{playDate.endTime}}</p>
         <p>{{playDate.details}}</p>
 
-        <button v-on:click="acceptPlaydate">Book Playdate</button>
-        <button v-on:click="declined = true">Ignore Playdate</button>
+        <div class="button-block">
+            <img class="button" src="https://res.cloudinary.com/ashdav/image/upload/v1608235617/img/12_yzebmg.png" alt="Book Playdate" title="Book Playdate" v-on:click="acceptPlaydate" />
+            <img class="button" src="https://res.cloudinary.com/ashdav/image/upload/v1608235617/img/13_e4js9m.png" alt="Ignore Playdate" title="Ignore Playdate" v-on:click="declined = true"/>
+        </div>
     </div>
 </div>
 
@@ -137,17 +139,14 @@ export default {
 
 h2 {
     line-height: 0.5;
-    white-space:pre-wrap;
 }
 
 h3 {
     line-height: 0.5;
-    white-space:pre-wrap;
 }
 
 h4 {
     line-height: 0.5;
-    white-space:pre-wrap;
 }
 .pet-info {
     color: #ff5757;
@@ -171,5 +170,10 @@ h4 {
     height: 150px;
     margin: 5px;
     align-content: center;
+}
+.button {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
 }
 </style>
