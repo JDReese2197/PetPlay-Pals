@@ -59,5 +59,40 @@ INSERT INTO pet_profile (pet_id, profile_id, pet_type, pet_name, breed, size, ge
 INSERT INTO pet_profile (pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personality_type, image_url)
         VALUES (11,9,'Cat','Simon','Shorthair','Small','Male','Asshole, loves trash', 2, 'Curious, Adventurous', 'https://i.imgur.com/CaP27tL.jpg');
 INSERT INTO pet_profile (pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personality_type, image_url)
-        VALUES (12,9,'Cat','Linus','Longhair','Small','Male','Dopey, lovey, silly', 1, 'Curious, Adventurous', 'https://i.imgur.com/CaP27tL.jpg');
-        
+        VALUES (12,9,'Cat','Linus','Longhair','Small','Male','Dopey, lovey, silly', 1, 'Loving, Affectionate', 'https://i.imgur.com/7auvokY.jpg');
+INSERT INTO pet_profile (pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personality_type, image_url)
+        VALUES (13,10,'Cat','Penny','Norwegian Forest Cat','Medium','Female','Big gray cat', 8, 'Friendly, Sweet', 'https://i.imgur.com/3mpEkG1.jpg');
+INSERT INTO pet_profile (pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personality_type, image_url)
+        VALUES (14,11,'Cat','Bell','Domestic Shorthaired Cat','Medium','Male','Gray with white paws and underbelly', 4, 'Confident, Strong-Willed', 'https://i.imgur.com/KmFxbYL.jpg');
+INSERT INTO pet_profile (pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personality_type, image_url)
+        VALUES (15,12,'Dog','Padme','Victorian Bulldog','Large','Female','She is a chunky love potato', 6, 'Loving, Affectionate', 'https://i.imgur.com/nBfzCM7.png');
+INSERT INTO pet_profile (pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personality_type, image_url)
+        VALUES (16,13,'Dog','Prim','Morkie','Small','Female','Tiny dog who loves food and cuddles', 9, 'Friendly, Sweet', 'https://i.imgur.com/QeEQsgY.jpg');
+INSERT INTO pet_profile (pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personality_type, image_url)
+        VALUES (17,14,'Cat','Scooter','Domestic Shorthair','Medium','Male','Still acts like a playful kitten', 8, 'Energetic, Playful', 'https://i.imgur.com/qKpdIXF.jpg');
+INSERT INTO pet_profile (pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personality_type, image_url)
+        VALUES (18,14,'Cat','Princess','Domestic Shorthair','Medium','Female','Loving feral cats', 6, 'Loving, Affectionate', 'https://i.imgur.com/OsCSQCT.jpg');
+INSERT INTO pet_profile (pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personality_type, image_url)
+        VALUES (19,5,'Cat','Cake','Snowshoe','Small','Female','She is dumb, she smells, but also, she screams', 4, 'Shy, Timid', 'https://i.imgur.com/DJRO2NB.jpg');
+INSERT INTO pet_profile (pet_id, profile_id, pet_type, pet_name, breed, size, gender, description, age, personality_type, image_url)
+        VALUES (20,6,'Reptile','Echo','Bearded Dragon','Medium','Male','Medium sized beardy with a strong appetite for anything that moves. Loves sitting out in the sun', 2, 'Calm, Laidback', 'https://i.imgur.com/N1gSUsZ.png');
+
+SELECT * FROM pet_profile;
+
+ROLLBACK;
+COMMIT;
+
+START TRANSACTION;
+
+INSERT INTO playdate (playdate_id, pet_poster, pet_booker, the_date, start_time, end_time, the_location, details, latitude, longitude, user_chat)
+        VALUES (5, 19, NULL, '2020-12-20', '10:00:00', '12:00:00', 'Lakewood Park, Lakewood, OH', 'Looking for another cat to do a fun cat Christmas photoshoot!:)', 
+        41.4948088, -81.7971556, 'Update this with a message you want to send to your matched playmate.');
+INSERT INTO playdate (playdate_id, pet_poster, pet_booker, the_date, start_time, end_time, the_location, details, latitude, longitude, user_chat)
+        VALUES (6, 11, NULL, '2020-12-22', '11:00:00', '12:00:00', 'Madison Park, Lakewood, OH', 'NE1 wanna go to park n eat trash wit me?', 
+        41.4750027, -81.7807527, 'Update this with a message you want to send to your matched playmate.');   
+INSERT INTO playdate (playdate_id, pet_poster, pet_booker, the_date, start_time, end_time, the_location, details, latitude, longitude, user_chat)
+        VALUES (7, 15, NULL, '2020-12-19', '06:00:00', '08:00:00', 'Lakewood Park, Lakewood, OH', 'Looking for another chonky pupper to go on a morning walk!', 
+        41.4948088, -81.7971556, 'Update this with a message you want to send to your matched playmate.');
+
+ROLLBACK;
+COMMIT;
