@@ -4,7 +4,7 @@
       <schedule/>
         <!-- We need a filter bar -->
         <!-- We need to display all cards based on the filter -- should show ALL until user filters -->
-      <footer-bar/>
+        <footer-bar/>
     </div>
 </template>
 
@@ -23,5 +23,6 @@ export default {
 </script>
 
 <style scoped>
+
 
 </style>
