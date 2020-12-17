@@ -18,7 +18,7 @@
             <p> {{pet.age}} | {{pet.gender}} </p>
             <p> {{pet.personalityType}} </p>
             <p> {{pet.description}} </p>
-            <router-link class="link" v-bind:to="{name: 'add-pet'}"><button id="edit-pet-profile">Edit Profile</button></router-link>
+            <router-link class="link" v-bind:to="{name: 'registerpet'}"><button id="edit-pet-profile">Edit Profile</button></router-link>
         </div> 
 
         <div class="user-info"> <!-- This is the user info section -->
