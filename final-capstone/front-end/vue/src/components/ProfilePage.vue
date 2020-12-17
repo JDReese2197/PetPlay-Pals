@@ -24,7 +24,7 @@
         <div class="user-info"> <!-- This is the user info section -->
             <h1>{{pet.petName}}'s Human</h1>
             <p>{{profile.firstName}} {{profile.lastName}}
-            <br/>{{profile.address1}}, {{profile.address2}}
+            <br/>{{profile.address1}} {{profile.address2}}
             <br/>{{profile.city}}, {{profile.state}} {{profile.zip}}
             <br/>{{profile.email}}
             <br/>{{profile.phone}}</p>
