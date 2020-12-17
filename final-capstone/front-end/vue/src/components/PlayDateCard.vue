@@ -138,20 +138,18 @@ export default {
 }
 
 h2 {
-    line-height: 0.5;
+    color: #ff5757;
 }
 
 h3 {
     line-height: 0.5;
+    color: #555555;
 }
 
 h4 {
     line-height: 0.5;
+    color: #555555;
 }
-.pet-info {
-    color: #ff5757;
-}
-
 .playdate-card {
     width: 250px;
     height: auto;
@@ -175,5 +173,8 @@ h4 {
     width: 50px;
     height: 50px;
     margin: 5px;
+}
+.button:hover {
+    transform: scale(1.1);
 }
 </style>

@@ -99,6 +99,7 @@ export default {
 .map {
     grid-area: map;
     margin-top: 15px;
+    margin-left: 15px;
 }
 h1 {
     grid-area: header;

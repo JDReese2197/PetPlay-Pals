@@ -22,7 +22,7 @@
     </div>
 
     <div class="message">
-        <textarea style="resize: none" v-model="playDate.userMessage" cols="40" rows="5" :placeholder="playDate.userMessage"></textarea>
+        <textarea style="resize: none" v-model="playDate.userMessage" cols="45" rows="5" :placeholder="playDate.userMessage"></textarea>
         <br/>
         <img class="button" src="https://res.cloudinary.com/ashdav/image/upload/v1608235617/img/15_vclcaz.png" alt="Send a Message" title="Send a Message" v-on:click="displayMessage"/>
         <img class="button" src="https://res.cloudinary.com/ashdav/image/upload/v1608235617/img/13_e4js9m.png" alt="Cancel Playdate" title="Cancel Playdate" v-on:click="declinePlaydate"/>
@@ -182,5 +182,8 @@ h2{
     width: 50px;
     height: 50px;
     margin: 5px;
+}
+.button:hover {
+    transform: scale(1.1);
 }
 </style>

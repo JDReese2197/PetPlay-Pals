@@ -179,6 +179,9 @@ p {
   z-index: 9;
   border-radius: 20px;
 }
+#pet-pic:hover {
+    transform: scale(1.1);
+}
 
 button {
     border: none;
