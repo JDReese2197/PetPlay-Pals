@@ -49,8 +49,8 @@ export default {
             infoOpen: false,
             infoOptions: {
                 pixelOffset: {
-                    width: 0,
-                    height: -20
+                    width: -10,
+                    height: 25
                 }
             }
         }
@@ -74,9 +74,10 @@ export default {
         //  Sets content for displaying in info window
         getInfoWindowContent: function (playdate) {
             return (`<div>
-                        <h4>${playdate.theDate}</h4>
-                        <h4>${playdate.startTime} - ${playdate.endTime}</h4>
-                        <h5>${playdate.details}</h5>
+                        <h2 style="color:#ff5757; text-align: center;">${playdate.location}</h2>
+                        <h4 style="color:#555555; line-height: 0.1; text-align: center;">Date: ${playdate.theDate}</h4>
+                        <h4 style="color:#555555; line-height: 0.05; text-align: center;">Time: ${playdate.startTime} - ${playdate.endTime}</h4>
+                        <h4 style="color:#555555; text-align: center; white-space: pre-wrap;"><em>${playdate.details}</em></h4>
                     </div>`)
         },
 
