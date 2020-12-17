@@ -94,5 +94,16 @@ INSERT INTO playdate (playdate_id, pet_poster, pet_booker, the_date, start_time,
         VALUES (7, 15, NULL, '2020-12-19', '06:00:00', '08:00:00', 'Lakewood Park, Lakewood, OH', 'Looking for another chonky pupper to go on a morning walk!', 
         41.4948088, -81.7971556, 'Update this with a message you want to send to your matched playmate.');
 
+// This is the second round of playdate test data. Please run this if you have not yet.
+INSERT INTO playdate (playdate_id, pet_poster, pet_booker, the_date, start_time, end_time, the_location, details, latitude, longitude, user_chat)
+        VALUES (8, 16, 1, '2020-12-19', '07:00:00', '09:00:00', 'Springfield Lake Park, Akron, OH', 'Seeking a pampered pup for a morning walk.', 
+        41.03461710000001, -81.4457415, 'Update this with a message you want to send to your matched playmate.');
+INSERT INTO playdate (playdate_id, pet_poster, pet_booker, the_date, start_time, end_time, the_location, details, latitude, longitude, user_chat)
+        VALUES (9, 20, 9, '2020-12-19', '07:00:00', '09:00:00', 'Springfield Lake Park, Akron, OH', 'Want another scaly boi to eat some crickets and sun bathe with. No bathing suit required', 
+        41.03461710000001, -81.4457415, 'Update this with a message you want to send to your matched playmate.');
+
+
+SELECT * FROM playdate;
+
 ROLLBACK;
 COMMIT;
