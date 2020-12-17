@@ -33,6 +33,9 @@ export default {
       }
     },
   computed: {
+      getStorePet() {
+          return this.$store.state.pet;
+      },
         passesFilter() {
             let passes = true;
             const petFilter = this.$store.state.petFilter;
@@ -87,7 +90,7 @@ export default {
            })
        },
        acceptPlaydate() {
-            const petId = this.$store.state.pet.petId
+            let petId = this.getStorePet.petId
 
             this.playDate.petBookerId = petId;
 
