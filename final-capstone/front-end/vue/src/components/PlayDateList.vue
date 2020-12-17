@@ -9,7 +9,7 @@
 
         <div class="nav"> <!-- This is the list of nav buttons on the user profile page-->
             <h3>Select Current Pet</h3>
-            <select>
+            <select v-model="currentPet" v-on:change="setPet">
                 <option :value="pet" v-for="pet in getAllPets" v-bind:key="pet.petId">{{pet.petName}}</option>
             </select>
             <br/>
@@ -74,7 +74,7 @@ export default {
     components: { PlayDateCard, PlayDateMap },
     data() {
         return {
-            petIndex: 0,
+            currentPet: this.$store.state.pet,
             playDateCards: [],
             petFilter: {
                 petType: this.$store.state.petFilter.petType || "",
@@ -113,8 +113,8 @@ export default {
         },
 
         //  Change current pet in the store
-        setPet(i) {
-            this.$store.commit('SET_PET', this.getAllPets[i]);
+        setPet() {
+            this.$store.commit('SET_PET', this.currentPet);
         }
     },
     mounted() {
@@ -123,7 +123,10 @@ export default {
     computed: {
         getAllPets() {
             return this.$store.state.pets;
-        }
+        },
+        // getCurrentPet() {
+        //     return this.$store.state.pet;
+        // }
     }
 }
 
