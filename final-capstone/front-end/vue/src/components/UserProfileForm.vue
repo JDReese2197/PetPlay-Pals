@@ -170,6 +170,9 @@ export default {
         }
     },
     methods: {
+        setProfileFromStore() {
+            this.user_profile = this.$store.state.profile;
+        },
         setUserId() {
             this.user_profile.userId = this.$store.state.user.id;
             this.setProfileId();
@@ -222,6 +225,11 @@ export default {
                 this.errorMsg =
                 "Error " + verb + " User Profile. Request could not be created.";
             }
+        }
+    },
+    mounted() {
+        if(!this.adding) {
+            this.setProfileFromStore();
         }
     }
 }

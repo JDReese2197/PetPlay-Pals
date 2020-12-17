@@ -14,6 +14,7 @@
         <div class="button-block">
             <img class="button" src="https://res.cloudinary.com/ashdav/image/upload/v1608235617/img/12_yzebmg.png" alt="Book Playdate" title="Book Playdate" v-on:click="acceptPlaydate" />
             <img class="button" src="https://res.cloudinary.com/ashdav/image/upload/v1608235617/img/13_e4js9m.png" alt="Ignore Playdate" title="Ignore Playdate" v-on:click="declined = true"/>
+            <img class="button" id="delete-button" src="https://res.cloudinary.com/ashdav/image/upload/v1608237729/img/trash_pb7gg2.png" alt="Delete Playdate" title="Delete Playdate" type="submit" v-if="canDelete" v-on:click="deletePlaydate"/>
         </div>
     </div>
 </div>
@@ -34,6 +35,14 @@ export default {
       }
     },
   computed: {
+        canDelete() {
+            if(this.playDate.petPosterId === this.$store.state.pet.petId) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        },
         getStorePet() {
             return this.$store.state.pet;
         },
@@ -124,6 +133,23 @@ export default {
             let distance = 2 * radius * Math.asin(Math.sqrt(Math.sin(latDiff/2)*Math.sin(latDiff/2)+Math.cos(rlatA)*Math.cos(rlatB)*Math.sin(lngDiff/2)*Math.sin(lngDiff/2)));
             return distance;
         },
+        deletePlaydate() {
+            if(this.playDate.petPosterId === this.$store.state.pet.petId) {
+                applicationServices
+                .deletePlaydate(this.playDate.playdateId)
+                .then(response => {
+                    if(response.status === 200) {
+                        window.location.reload();
+                    }
+                })
+                .catch (error => {
+                    console.log(error);
+                })
+            }
+            else {
+                console.log("you do not have access to delete this");
+            }
+        }
   },
   mounted() {
       this.getPet();
