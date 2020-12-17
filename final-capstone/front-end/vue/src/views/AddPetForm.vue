@@ -1,7 +1,7 @@
 <template>
     <div>
         <top-home-bar/>
-        <h1 v-if="!this.$store.state.pet.petId">Register Your Pet</h1>
+        <h1 v-if="adding">Register Your Pet</h1>
         <h1 v-else>Update Pet Profile</h1>
         <add-pet />
         <footer-bar/>
@@ -19,6 +19,12 @@ export default {
         addPet,
         topHomeBar,
         footerBar
+    },
+    computed: {
+        adding() {
+            const path = this.$route.path;
+            return path.includes("add");
+        }
     }
 }
 </script>

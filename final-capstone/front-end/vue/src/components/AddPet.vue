@@ -144,6 +144,9 @@ export default {
         };
     },
     methods: {
+        setPetFromStore() {
+            this.pet = this.$store.state.pet;
+        },
         setProfileId() {
             this.pet.profileId = this.$store.state.profile.profileId;
         },
@@ -157,7 +160,7 @@ export default {
         },
         submitPetForm() {
             const newPet = this.pet;
-            if (this.pet.petId === 0) {
+            if (this.adding) {
                 applicationServices
                     .addPet(newPet)
                     .then(response => {
@@ -215,6 +218,17 @@ export default {
         profile() {
             return this.$store.state.profile;
         },
+        //  Returns true if the user is adding, false if registering
+        //      Queries path to determine
+        adding() {
+            const path = this.$route.path;
+            return path.includes("add");
+        }
+    },
+    mounted() {
+        if(!this.adding) {
+            this.setPetFromStore();
+        }
     }
 }
 </script>

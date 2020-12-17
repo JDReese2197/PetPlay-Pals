@@ -71,6 +71,11 @@ const router = new Router({
       component: AddPetForm
     }, 
     {
+      path: "/registerpet",
+      name: "registerpet",
+      component: AddPetForm
+    },
+    {
       path: "/",
       name: "homepage",
       component: Homepage
