@@ -6,11 +6,10 @@
         <h2 class="pet-info">{{pet.petName}}</h2>
         <h3 class="pet-info">{{pet.breed}} | {{pet.gender}} | Age {{pet.age}}</h3>
         <p class="pet-info" id="pet-description"><strong>About {{pet.petName}}: {{pet.description}}</strong></p>
-        <br/>
         <h4>{{playDate.location}}</h4>
         <h4>{{playDate.theDate}}</h4>
         <h4>{{playDate.startTime}} - {{playDate.endTime}}</h4>
-        <p>Details: {{playDate.details}}</p>
+        <p>{{playDate.details}}</p>
 
         <button v-on:click="acceptPlaydate">Book Playdate</button>
         <button v-on:click="declined = true">Ignore Playdate</button>
@@ -137,18 +136,18 @@ export default {
 }
 
 h2 {
+    line-height: 0.5;
     white-space:pre-wrap;
-    margin: 5px;
 }
 
 h3 {
+    line-height: 0.5;
     white-space:pre-wrap;
-    margin-top: -5px;
 }
 
 h4 {
+    line-height: 0.5;
     white-space:pre-wrap;
-    margin: 10px;
 }
 .pet-info {
     color: #ff5757;
@@ -156,7 +155,7 @@ h4 {
 
 .playdate-card {
     width: 250px;
-    height: auto !important;
+    height: auto;
     border-radius: 25px;
     padding: 15px;
     margin: 25px;
@@ -168,8 +167,8 @@ h4 {
     border-radius: 50%;
     object-fit: cover;
     object-position: center top;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     margin: 5px;
     align-content: center;
 }

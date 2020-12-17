@@ -21,6 +21,7 @@ footer {
     text-align: center;
     font-size: 12px;
     padding: 10px;
+    width: 100%
 }
 a {
     text-decoration: none;

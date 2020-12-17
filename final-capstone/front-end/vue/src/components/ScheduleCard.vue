@@ -1,5 +1,6 @@
 <template>
 <!-- A single playdate on calendar card-->
+<div>
 <div class="container">
 
     <div class="pet-poster">
@@ -29,9 +30,8 @@
             <button type="submit" v-if="canDelete" v-on:click="deletePlaydate">Delete Playdate</button>
         </div>
     </div>
-
+    </div>
 </div>
-
 </template>
 
 <script>
@@ -160,6 +160,7 @@ export default {
 .message {
     grid-area: message;
     text-align: center;
+    margin-top: 10px;
 }
 #pet-img {
     border-radius: 50%;

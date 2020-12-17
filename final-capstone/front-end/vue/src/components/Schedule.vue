@@ -104,6 +104,8 @@ h1 {
     grid-area: header;
     color: #ff5757;
     margin-left: 42px;
+    line-height: 0;
+    margin-bottom: -1px;
 }
 .play-date-cards {
     grid-area: petSearch;
