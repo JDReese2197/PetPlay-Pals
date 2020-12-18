@@ -90,7 +90,7 @@ export default {
             this.playdate.lng = place.geometry.location.lng();
         },
         setPosterId() {
-            this.playdate.petPosterId = this.$store.state.user.id;
+            this.playdate.petPosterId = this.$store.state.pet.petId;
         },
         submitPlaydate() {
             console.log("got to submit playdate function")
