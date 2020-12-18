@@ -1,13 +1,17 @@
 <template>
     <!-- This is where we will display a list of playdate cards-->
     <div class="container">
-        <h1>My Schedule</h1>
         <div class = "play-date-cards">
         <play-date-card v-for="playDate in playDateCards"
         v-bind:key="playDate.id" v-bind:playDate = "playDate"/>
         <!-- TO DO: make a view card details method and add this above:  v-on:click="viewCardDetails(card.id)"-->
         </div>
-        <div class="map">
+        <div class="nav">
+            <h3>Select Pet Schedule</h3>
+            <select v-model="pet" v-on:change="setPet">
+                <option :value="pet" v-for="pet in getAllPets" v-bind:key="pet.petId">{{pet.petName}}</option>
+            </select>
+            <br/>
             <play-date-map v-if="true" v-bind:playDates="playDateCards"/>
         </div>
     </div>
@@ -44,10 +48,19 @@ export default {
                 console.log(error);
             })
         },
+        setPet() {
+            this.$store.commit('SET_PET', this.pet);
+            window.location.reload();
+        }
     },
     mounted() {
         this.getAllOpenPlayDates()
     },
+     computed: {
+        getAllPets() {
+            return this.$store.state.pets;
+        }
+    }
 }
 
 </script>
@@ -59,20 +72,11 @@ export default {
     display: grid;
     grid-template-columns: 25% 75%;
     grid-template-areas: 
-        ". header"
-        "map petSearch";   
+        "nav petSearch";   
 }
-.map {
-    grid-area: map;
-    margin-top: 15px;
-    margin-left: 15px;
-}
-h1 {
-    grid-area: header;
+h3 {
     color: #ff5757;
-    margin-left: 42px;
-    line-height: 0;
-    margin-bottom: -1px;
+    text-transform: uppercase;
 }
 .play-date-cards {
     grid-area: petSearch;
@@ -82,5 +86,22 @@ h1 {
     justify-content: flex-start;
     padding: 5px;
     margin: 15px;
+}
+.nav {
+    grid-area: nav;
+    padding-left: 15px;
+    padding-top: 25px;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+select {
+    width: 100%;
+    padding: 5px 5px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+    color: #555555;
 }
 </style>
