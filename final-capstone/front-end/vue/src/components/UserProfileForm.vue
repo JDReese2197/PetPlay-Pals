@@ -187,7 +187,7 @@ export default {
         },
         submitUserProfile() {
             const userProfile = this.user_profile;
-            if (this.user_profile.profileId === 0) {
+            if (!this.user_profile.profileId) {
                 applicationServices
                     .registerUserProfile(userProfile)
                     .then(response => {
@@ -225,6 +225,12 @@ export default {
                 this.errorMsg =
                 "Error " + verb + " User Profile. Request could not be created.";
             }
+        }
+    },
+    computed: {
+        adding() {
+            const path = this.$route.path;
+            return path.includes("add");
         }
     },
     mounted() {
