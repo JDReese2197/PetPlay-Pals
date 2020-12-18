@@ -66,6 +66,11 @@ const router = new Router({
       component: UserProfileForm
     },
     {
+      path: "/createProfile",
+      name: "create-profile-form",
+      component: UserProfileForm
+    },
+    {
       path: "/addPet",
       name: "add-pet",
       component: AddPetForm

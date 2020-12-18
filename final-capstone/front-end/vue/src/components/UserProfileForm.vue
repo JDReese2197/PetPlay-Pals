@@ -135,7 +135,7 @@
         </div>
         <br/>
         <div class="actions">
-            <button type="submit" v-on:click="submitUserProfile">Submit</button>
+            <button type="submit" v-on:click.prevent="submitUserProfile">Submit</button>
         </div>
         <br/>
         <br/>
@@ -175,16 +175,18 @@ export default {
         },
         setUserId() {
             this.user_profile.userId = this.$store.state.user.id;
-            this.setProfileId();
+            // if(!this.adding()) {
+            //     this.setProfileId();
+            // }
         },
-        setProfileId() {
-            if (this.$store.state.profile.profileId != null) {
-                this.user_profile.profileId = this.$store.state.profile.profileId;
-            }
-            else {
-                this.user_profile.profileId = 0;
-            }
-        },
+        // setProfileId() {
+        //     if (this.$store.state.profile.profileId != null) {
+        //         this.user_profile.profileId = this.$store.state.profile.profileId;
+        //     }
+        //     else {
+        //         this.user_profile.profileId = 0;
+        //     }
+        // },
         submitUserProfile() {
             const userProfile = this.user_profile;
             if (!this.user_profile.profileId) {
@@ -230,7 +232,7 @@ export default {
     computed: {
         adding() {
             const path = this.$route.path;
-            return path.includes("add");
+            return path.includes("create");
         }
     },
     mounted() {

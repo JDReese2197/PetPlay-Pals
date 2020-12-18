@@ -1,7 +1,7 @@
 <template>
     <div>
         <top-home-bar/>
-        <h1 v-if="!this.$store.state.profile.profileId">Create Profile</h1>
+        <h1 v-if="!this.$store.state.profile">Create Profile</h1>
         <h1 v-else>Update Profile</h1>
         <user-profile-form />
         <footer-bar/>
@@ -19,6 +19,11 @@ export default {
         userProfileForm,
         TopHomeBar,
         FooterBar
+    },
+    computed: {
+        adding() {
+            return this.$store.state.profile
+        }
     }
 }
 </script>
